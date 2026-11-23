@@ -1,0 +1,25 @@
+{
+  "synthetic": true,
+  "version": "SYNTHETIC course prices v2",
+  "source": "课程合成价目，非真实报价",
+  "items": [
+    {
+      "name": "口腔检查",
+      "unit": "次",
+      "unitPrice": "30.00",
+      "projectKey": "COURSE_EXAM"
+    },
+    {
+      "name": "洁牙",
+      "unit": "次",
+      "unitPrice": "120.00",
+      "projectKey": "COURSE_CLEANING"
+    },
+    {
+      "name": "SYNTHETIC treatment",
+      "unit": "次",
+      "unitPrice": "26.66",
+      "projectKey": "COURSE_TREATMENT"
+    }
+  ]
+}

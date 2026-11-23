@@ -1,0 +1,57 @@
+{
+  "classification": "SYNTHETIC",
+  "schemaVersion": 2,
+  "manifestVersion": "SYNTHETIC-multi-quarter-expenses-v2",
+  "groups": [
+    {
+      "manifestVersion": "classroom-expenses-2026Q4-v1",
+      "quarter": "2026-Q4",
+      "clinicId": 81001,
+      "includesConsumption": false,
+      "expenses": [
+        {
+          "id": "expense-1",
+          "version": "1",
+          "occurredAt": "2026-11-01T00:00:00Z",
+          "amount": "9.00",
+          "category": "SYNTHETIC clinic utilities",
+          "verifiedBasis": "SYNTHETIC classroom verified expense statement",
+          "correction": {
+            "amount": "8.50",
+            "evidence": "SYNTHETIC-EXPENSE-CORRECTION-v1",
+            "description": "SYNTHETIC existing expense statement recheck"
+          }
+        }
+      ],
+      "complete": true,
+      "verifiedBasis": "SYNTHETIC existing 2026-Q4 clinic statement"
+    },
+    {
+      "quarter": "2026-Q4",
+      "clinicId": 81002,
+      "manifestVersion": "SYNTHETIC-81002-2026Q4-v1",
+      "complete": true,
+      "verifiedBasis": "SYNTHETIC demonstration statement: no operating expense entries for this clinic and quarter",
+      "includesConsumption": false,
+      "expenses": []
+    },
+    {
+      "quarter": "2027-Q1",
+      "clinicId": 81001,
+      "manifestVersion": "SYNTHETIC-81001-2027Q1-v1",
+      "complete": true,
+      "verifiedBasis": "SYNTHETIC demonstration statement: no operating expense entries for this clinic and quarter",
+      "includesConsumption": false,
+      "expenses": []
+    },
+    {
+      "quarter": "2027-Q1",
+      "clinicId": 81002,
+      "manifestVersion": "SYNTHETIC-81002-2027Q1-v1",
+      "complete": true,
+      "verifiedBasis": "SYNTHETIC demonstration statement: no operating expense entries for this clinic and quarter",
+      "includesConsumption": false,
+      "expenses": []
+    }
+  ]
+}

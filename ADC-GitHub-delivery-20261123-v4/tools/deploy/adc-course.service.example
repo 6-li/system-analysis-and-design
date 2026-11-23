@@ -1,0 +1,23 @@
+# Candidate for a dedicated Linux course host. Install only after the host is approved.
+[Unit]
+Description=ADC course demonstration backend
+After=network.target postgresql.service
+
+[Service]
+Type=simple
+User=adc-course
+Group=adc-course
+WorkingDirectory=/opt/adc-course
+EnvironmentFile=/etc/adc-course/runtime.env
+ExecStart=/usr/bin/java -Xms256m -Xmx1024m -jar /opt/adc-course/backend.jar --spring.profiles.active=course-demo --server.address=127.0.0.1 --server.port=8080
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

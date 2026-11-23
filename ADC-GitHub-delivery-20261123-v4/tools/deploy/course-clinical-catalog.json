@@ -1,0 +1,10 @@
+{
+  "synthetic": true,
+  "version": "SYNTHETIC course prices v1",
+  "source": "用户批准的课程合成价目，非真实报价",
+  "items": [
+    {"name":"口腔检查","unit":"次","unitPrice":"30.00"},
+    {"name":"洁牙","unit":"次","unitPrice":"120.00"},
+    {"name":"SYNTHETIC treatment","unit":"次","unitPrice":"26.66"}
+  ]
+}
