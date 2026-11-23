@@ -1,0 +1,9 @@
+{
+  "scope": "SYNTHETIC_STORAGE_ONLY_NO_BUSINESS_ACCEPTANCE",
+  "migrationManifest": "db/p0/manifest.json",
+  "originalTableNumbers": [24,25,26,27,28,29,31,51,53,54],
+  "extensions": {"project_duration_version": 8,"extension_operation_audit_event": 11},
+  "expectedTableCount": 12,
+  "realBusinessConfiguration": false,
+  "limit": "合成结构/关联/事务验证，不构成诊所目录、IANA配置、项目配置或岗位授权资料"
+}

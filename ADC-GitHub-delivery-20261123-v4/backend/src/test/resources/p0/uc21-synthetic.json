@@ -1,0 +1,44 @@
+{
+  "scope": "SYNTHETIC_TEST_ONLY",
+  "clinicIds": ["1", "2"],
+  "dentistId": "9007199254740993",
+  "draftReceipt": {
+    "requestReference": "SYNTHETIC/draft/1",
+    "ucCode": "UC21",
+    "status": "COMPLETED",
+    "businessOutcome": "DRAFT",
+    "operationKind": "DRAFT_SAVE",
+    "auditPersistence": "CONFIRMED",
+    "existingResult": false,
+    "message": "已保存待生效草案",
+    "links": { "scheduleRef": { "scheduleId": "9007199254740993", "versionNo": 1 }, "originalUcSuccessEventId": "101" }
+  },
+  "issueReceipt": {
+    "requestReference": "SYNTHETIC/issue/1",
+    "ucCode": "UC21",
+    "status": "PERSISTED_INCOMPLETE",
+    "businessOutcome": "MAINTENANCE_INCOMPLETE",
+    "operationKind": "MAINTENANCE_ISSUE_SAVE",
+    "auditPersistence": "CONFIRMED",
+    "message": "已记录未完成事项",
+    "links": { "issueId": "2001", "originalUcSuccessEventId": "102" }
+  },
+  "unknownReceipt": {
+    "requestReference": "SYNTHETIC/draft/2",
+    "ucCode": "UC21",
+    "status": "UNKNOWN",
+    "businessOutcome": "UNKNOWN",
+    "operationKind": "DRAFT_SAVE",
+    "auditPersistence": "UNKNOWN",
+    "message": "提交结果待核对"
+  },
+  "unauditedFailure": {
+    "requestReference": "SYNTHETIC/draft/3",
+    "ucCode": "UC21",
+    "status": "FAILED",
+    "businessOutcome": "FAILED",
+    "operationKind": "DRAFT_SAVE",
+    "auditPersistence": "NOT_PERSISTED",
+    "message": "保存失败，审计未持久化"
+  }
+}

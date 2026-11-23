@@ -1,0 +1,17 @@
+{
+  "classification": "SYNTHETIC",
+  "manifestVersion": "classroom-expenses-2026Q4-v1",
+  "quarter": "2026-Q4",
+  "clinicId": 81001,
+  "includesConsumption": false,
+  "expenses": [
+    {
+      "id": "expense-1",
+      "version": "1",
+      "occurredAt": "2026-11-01T00:00:00Z",
+      "amount": "9.00",
+      "category": "SYNTHETIC clinic utilities",
+      "verifiedBasis": "SYNTHETIC classroom verified expense statement"
+    }
+  ]
+}
