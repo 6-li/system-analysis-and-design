@@ -1,0 +1,6650 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ADC牙医排班及纯工作人员关联UC契约草稿",
+    "version": "0.4.0-config-preparation",
+    "description": "第二批配置接口技术实现；真实权威身份/资料缺失时默认无DurationAccess bean，不开放真实操作。七UC及其他模块未实施。受控文书使用OpenAPI3.1/JSON Schema2020。"
+  },
+  "servers": [
+    {
+      "url": "/api/v1"
+    }
+  ],
+  "security": [
+    {
+      "StaffSession": []
+    }
+  ],
+  "paths": {
+    "/staff/schedules": {
+      "get": {
+        "operationId": "SCH-OP-001",
+        "summary": "按授权范围查询安排/版本",
+        "description": "T草稿；负责人或原业务必需查询岗位。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "clinicId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "dentistId",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "from",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+            }
+          },
+          {
+            "name": "to",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SchedulePage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedules/{scheduleId}/versions/{versionNo}": {
+      "get": {
+        "operationId": "SCH-OP-002",
+        "summary": "查看准确安排版本",
+        "description": "T草稿；负责人；接待只读其业务必要范围。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "versionNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ScheduleVersion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedule-checks": {
+      "post": {
+        "operationId": "SCH-OP-003",
+        "summary": "UC21初检；不能直接生效",
+        "description": "T草稿；诊所负责人。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedule-drafts": {
+      "post": {
+        "operationId": "SCH-OP-004",
+        "summary": "UC21保存合法草案或真实未完成结果",
+        "description": "T草稿；诊所负责人。只创建新稳定安排。若有前事项，须是本店真实未完成事项、基础双键均空且尚无结果；有真实旧基础的补正按005核对，不得绕过令牌。每次核验岗位和范围，所有检查在最终保存前重做。",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "提交结果待核对，不显示正式成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DraftInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedules/{scheduleId}/draft-revisions": {
+      "post": {
+        "operationId": "SCH-OP-005",
+        "summary": "UC21调整真实基础草案并保留历史",
+        "description": "诊所负责人修改已有稳定安排，锁后核精确基础及令牌。可选前事项须属于有权目标诊所、精确匹配基础且结果尚为空。仅提交确认的草案回执包含该次保存的影响清单。",
+        "parameters": [
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "提交结果待核对，不显示正式成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DraftRevisionInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedules/{scheduleId}/versions/{versionNo}/impact-checks": {
+      "post": {
+        "operationId": "SCH-OP-006",
+        "summary": "重新检查候选切换及影响，不激活",
+        "description": "T草稿；诊所负责人。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "versionNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImpactReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedules/{scheduleId}/versions/{versionNo}/impacts": {
+      "get": {
+        "operationId": "SCH-OP-007",
+        "summary": "查询授权可见影响，快照非生效依据",
+        "description": "T草稿；诊所负责人。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "versionNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ImpactReport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedules/{scheduleId}/versions/{versionNo}/resolutions": {
+      "post": {
+        "operationId": "SCH-OP-008",
+        "summary": "UC22核对并保存处理确认，不代办UC03/04",
+        "description": "T草稿；诊所负责人。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "versionNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "提交结果待核对，不显示正式成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolutionInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedules/{scheduleId}/versions/{versionNo}/activations": {
+      "post": {
+        "operationId": "SCH-OP-009",
+        "summary": "UC22最终重新扫描核验并原子生效",
+        "description": "T草稿；诊所负责人。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "versionNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "提交结果待核对，不显示正式成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivationInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedule-commands/{requestReference}": {
+      "get": {
+        "operationId": "SCH-OP-010",
+        "summary": "核对同请求真实结果；未知不重办",
+        "description": "T草稿；当前有权原命令主体/明确受控核对权限，不新增业务角色。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "requestReference",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "提交结果待核对，不显示正式成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedule-maintenance-issues/{issueId}": {
+      "get": {
+        "operationId": "SCH-OP-011",
+        "summary": "查询真实未完成事项，非自动待办",
+        "description": "T草稿；原权限内诊所负责人。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "issueId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MaintenanceIssueView"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/appointments/{appointmentId}/schedule-support": {
+      "get": {
+        "operationId": "SCH-OP-012",
+        "summary": "区分历史安排依据与当前支持",
+        "description": "T草稿；原授权负责人/预约或诊所接待业务必要范围。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentSupport"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/appointments": {
+      "post": {
+        "operationId": "SCH-OP-013",
+        "summary": "纯工作人员UC02正式预约，无强制mini申请",
+        "description": "T草稿；预约接待人员。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "提交结果待核对，不显示正式成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAppointmentInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/appointments/{appointmentId}/changes": {
+      "post": {
+        "operationId": "SCH-OP-014",
+        "summary": "原UC03沿原预约改约，历史追加",
+        "description": "T草稿；预约接待人员。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "提交结果待核对，不显示正式成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ChangeAppointmentInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/appointments/{appointmentId}/cancellations": {
+      "post": {
+        "operationId": "SCH-OP-015",
+        "summary": "原UC04正式取消，成功才释放停提醒",
+        "description": "T草稿；预约接待人员。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "提交结果待核对，不显示正式成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelAppointmentInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/appointments/{appointmentId}/arrival-verifications": {
+      "post": {
+        "operationId": "SCH-OP-016",
+        "summary": "原UC05人工核实到诊",
+        "description": "T草稿；诊所接待人员。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "提交结果待核对，不显示正式成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ArrivalInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/appointments/{appointmentId}/no-show-verifications": {
+      "post": {
+        "operationId": "SCH-OP-017",
+        "summary": "原UC06人工核实未到诊",
+        "description": "T草稿；诊所接待人员。每次核验岗位和范围，所有检查在最终保存前重做；不新增原UC编号。",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            },
+            "description": "同逻辑命令重试复用；命令作用域/恢复见workflows，不表示实现已完成"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "实际已核实响应；CommandReceipt仍看status/businessOutcome，非所有200均业务成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "提交结果待核对，不显示正式成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "UNKNOWN"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/NoShowInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/appointments/{appointmentId}": {
+      "get": {
+        "operationId": "SCH-OP-018",
+        "summary": "工作人员核对正式预约详情及当前状态",
+        "description": "按UC02—06/21/22原岗位及范围裁剪，不能凭已知ID越权。T草稿。",
+        "parameters": [
+          {
+            "name": "appointmentId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "当前有权最小正式事实",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StaffAppointmentDetail"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见预约",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedule-maintenance-issues": {
+      "post": {
+        "operationId": "SCH-OP-019",
+        "summary": "UC21负责人记录初检失败或待协调的真实未完成事项",
+        "description": "T复用表53，不造安排身份，不自动新增业务待办；保存未完成事实不等于草案/生效成功。登记时结果双键保持空，后续合法草案才可在其事务内条件补写。",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MaintenanceIssueInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "未完成事实已保存，仍不是合法草案",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/CommandReceipt"
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "enum": [
+                            "PERSISTED_INCOMPLETE"
+                          ]
+                        },
+                        "ucCode": {
+                          "enum": [
+                            "UC21"
+                          ]
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "格式错误",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "请求/版本冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "规则或依据不满足",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "普通依赖不可用，或START/业务COMMIT已尝试但其结果仍无法核证。遇COMMIT_OUTCOME_UNKNOWN须保留稳定请求引用，不得推定成功或失败，禁止自动重发同键或换键。",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Error"
+                        },
+                        {
+                          "properties": {
+                            "code": {
+                              "not": {
+                                "const": "COMMIT_OUTCOME_UNKNOWN"
+                              }
+                            }
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "$ref": "#/components/schemas/Uc21IssueCommitOutcomeUnknown"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/duration-projects": {
+      "get": {
+        "operationId": "DUR-OP-001",
+        "summary": "有权查询当前项目/版本",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 50
+            }
+          },
+          {
+            "name": "after",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "pattern": "^(0|[1-9][0-9]*)$",
+              "default": "0"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "已核实结果，业务与审计持久状态分开；未知不表示成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DurationPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/duration-projects/{projectId}/versions/{versionNo}": {
+      "get": {
+        "operationId": "DUR-OP-002",
+        "summary": "有权读取原项目历史",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "versionNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "已核实结果，业务与审计持久状态分开；未知不表示成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DurationVersion"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/headquarters/duration-project-drafts": {
+      "post": {
+        "operationId": "DUR-OP-003",
+        "summary": "独立授权编辑创建项目草稿",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "已核实结果，业务与审计持久状态分开；未知不表示成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadquartersReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "待核对，不重放",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadquartersReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DurationDraftInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/headquarters/duration-projects/{projectId}/versions/{versionNo}/draft": {
+      "put": {
+        "operationId": "DUR-OP-004",
+        "summary": "只修改匹配DRAFT",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "versionNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "已核实结果，业务与审计持久状态分开；未知不表示成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadquartersReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "待核对，不重放",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadquartersReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DurationDraftUpdate"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/headquarters/duration-projects/{projectId}/versions/{versionNo}/publications": {
+      "post": {
+        "operationId": "DUR-OP-005",
+        "summary": "发布与成功扩展审计原子提交",
+        "parameters": [
+          {
+            "name": "projectId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "versionNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "已核实结果，业务与审计持久状态分开；未知不表示成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadquartersReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "待核对，不重放",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadquartersReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DurationPublishInput"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/headquarters/duration-commands/{requestReference}": {
+      "get": {
+        "operationId": "DUR-OP-006",
+        "summary": "有权核查原请求和真实提交，不重放",
+        "parameters": [
+          {
+            "name": "requestReference",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "已核实结果，业务与审计持久状态分开；未知不表示成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadquartersReceipt"
+                }
+              }
+            }
+          },
+          "202": {
+            "description": "待核对，不重放",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HeadquartersReceipt"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        },
+        "description": "服务端catch-all保留HQCFG/v1/ownerHash/operation/UUID的斜线段；绑定当前真实主体，读取原已存摘要和事实，只查询不执行/重放/关闭命令。"
+      }
+    },
+    "/staff/schedules/{scheduleId}/versions/{versionNo}/resolution-histories": {
+      "get": {
+        "operationId": "SCH-READ-020",
+        "summary": "授权完整修订链/当前核验结果分离",
+        "parameters": [
+          {
+            "name": "scheduleId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          {
+            "name": "versionNo",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "已核实结果，业务与审计持久状态分开；未知不表示成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResolutionHistory"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/schedule-resolution-audits/{auditEventId}": {
+      "get": {
+        "operationId": "SCH-READ-021",
+        "summary": "授权读取完整必要修订文书",
+        "parameters": [
+          {
+            "name": "auditEventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "minLength": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "已核实结果，业务与审计持久状态分开；未知不表示成功",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/P0RevisionEvidence"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "输入格式不正确",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "未认证",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "岗位或范围无权",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "无可见目标",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "版本/状态/幂等冲突",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "未通过或规则待确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "依赖/核对不可用",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/staff/mini-requests": {
+      "get": {
+        "operationId": "SCH-OP-046",
+        "summary": "授权接待人员只读待处理小程序申请",
+        "description": "按可信接待身份及诊所范围过滤。申请不是正式预约；真实成功事实核验后才从待办排除。UUID分页可能为空但仍有nextCursor，刷新重新扫描。",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "脱敏待办页",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MiniRequestInboxPage"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "非法游标"
+          },
+          "403": {
+            "description": "身份或范围无权读取"
+          },
+          "503": {
+            "description": "收件来源不可用，不表示没有待办"
+          }
+        }
+      }
+    },
+    "/staff/booking-options": {
+      "get": {
+        "operationId": "SCH-OP-047",
+        "summary": "查询课程新预约可选项目及正式排班窗口",
+        "description": "绑定当前前台诊所授权；可选来源须为当前已关联患者的新申请。仅预览、不占号、不预占容量。无EFFECTIVE安排返回空窗口。",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "date",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "in": "query",
+            "name": "sourceContextReference",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "可选项目及正式窗口",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BookingOptions"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "格式或确认资料无效"
+          },
+          "401": {
+            "description": "未登录"
+          },
+          "403": {
+            "description": "无UC02权限、CSRF失败或来源不匹配"
+          },
+          "409": {
+            "description": "来源、排班、时长或容量失鲜，请重新匹配和确认"
+          },
+          "503": {
+            "description": "数据或可信配置源不可用"
+          }
+        }
+      }
+    },
+    "/staff/booking-confirmations": {
+      "post": {
+        "operationId": "SCH-OP-048",
+        "summary": "记录课程合成患者对本次完整方案的明确接受",
+        "description": "需可信前台会话及CSRF。重核完整方案，CURRENT同分钟换版仍409。仅支持本课程合成本人；代理不得通过SELF冒充。仅生成013的确认引用，不自动保存预约。",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "X-CSRF-Token",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SyntheticBookingConfirmationInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "明确标记为合成的方案确认",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SyntheticBookingConfirmation"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "格式或确认资料无效"
+          },
+          "401": {
+            "description": "未登录"
+          },
+          "403": {
+            "description": "无UC02权限、CSRF失败或来源不匹配"
+          },
+          "409": {
+            "description": "来源、排班、时长或容量失鲜，请重新匹配和确认"
+          },
+          "503": {
+            "description": "数据或可信配置源不可用"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Error": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requestReference": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ],
+        "description": "受控最小错误，不含SQL/凭据/跨店患者详情"
+      },
+      "ScheduleVersionRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "scheduleId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "versionNo": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "required": [
+          "scheduleId",
+          "versionNo"
+        ]
+      },
+      "ScheduleVersion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ref": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "clinicId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "dentistId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          },
+          "statusLabel": {
+            "type": "string",
+            "minLength": 1,
+            "description": "原状态的受控显示文字；已批activationStatus另列，图示/旧数据核验限制保持"
+          },
+          "activatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          },
+          "stateToken": {
+            "type": "string",
+            "minLength": 1,
+            "description": "服务端当前事实token，不是新增列"
+          },
+          "qualificationSummary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "coordinationSummary": {
+            "type": "string",
+            "minLength": 1
+          },
+          "incompleteReason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "activationStatus": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "EFFECTIVE",
+              "SUPERSEDED"
+            ],
+            "description": "01已批映射；statusLabel为展示，不以最大版本或activatedAt非空选当前"
+          }
+        },
+        "required": [
+          "ref",
+          "clinicId",
+          "dentistId",
+          "startsAt",
+          "endsAt",
+          "statusLabel",
+          "stateToken"
+        ]
+      },
+      "SchedulePage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ScheduleVersion"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "CheckInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "clinicId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "dentistId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "basisRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "submittedStartsAt": {
+            "type": "string",
+            "minLength": 1,
+            "description": "可保留未通过检查的原始必要输入"
+          },
+          "submittedEndsAt": {
+            "type": "string",
+            "minLength": 1
+          },
+          "coordinationBasis": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "clinicId"
+        ],
+        "description": "用于初检，未知目标不造真实牙医/安排；真实失败持久化遵守表53授权上下文"
+      },
+      "ConflictSummary": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "code": {
+            "type": "string",
+            "minLength": 1
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1,
+            "description": "仅授权允许的最小原因，其他店无患者信息"
+          },
+          "visibleScheduleRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          }
+        },
+        "required": [
+          "code",
+          "message"
+        ]
+      },
+      "CheckReport": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "conclusion": {
+            "type": "string",
+            "enum": [
+              "PASSED",
+              "NOT_PASSED",
+              "POLICY_UNRESOLVED"
+            ],
+            "description": "T契约标签，不代表已批准数据库状态码"
+          },
+          "checks": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "conflicts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConflictSummary"
+            }
+          },
+          "checkToken": {
+            "type": "string",
+            "minLength": 1,
+            "description": "仅检查快照，最终不得免复核"
+          }
+        },
+        "required": [
+          "conclusion",
+          "checks",
+          "conflicts"
+        ]
+      },
+      "DraftInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "clinicId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "dentistId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          },
+          "coordinationBasis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "checkReference": {
+            "type": "string",
+            "minLength": 1,
+            "description": "核对真实检查与提交内容，不代替锁后复查"
+          },
+          "previousIssueId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          }
+        },
+        "required": [
+          "clinicId",
+          "dentistId",
+          "startsAt",
+          "endsAt"
+        ]
+      },
+      "DraftRevisionInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "basisRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "previousIssueId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "可省略，不接受null。所选真实未完成事项须在授权目标诊所，与basisRef精确匹配，结果尚未占用。"
+          },
+          "expectedStateToken": {
+            "type": "string",
+            "minLength": 1,
+            "description": "服务端不透明令牌，绑定精确基础复合键及同一稳定安排已提交版本集合。锁后重算；同ID后续提交须令旧值失鲜，即使旧版本行仍存在。"
+          },
+          "clinicId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "dentistId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          },
+          "coordinationBasis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "changeBasis": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "basisRef",
+          "expectedStateToken",
+          "clinicId",
+          "dentistId",
+          "startsAt",
+          "endsAt",
+          "changeBasis"
+        ]
+      },
+      "CurrentSupport": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "appointmentId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "originScheduleRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "effectiveScheduleRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "result": {
+            "type": "string",
+            "enum": [
+              "SUPPORTED",
+              "NOT_SUPPORTED",
+              "UNRESOLVED"
+            ],
+            "description": "T契约标签，不代表已批准数据库状态码"
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "evaluatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          }
+        },
+        "required": [
+          "appointmentId",
+          "originScheduleRef",
+          "result",
+          "reasons",
+          "evaluatedAt"
+        ],
+        "description": "T派生非持久实体，完整支持不改历史FK；无唯一生效/规则未定不得SUPPORTED",
+        "oneOf": [
+          {
+            "properties": {
+              "result": {
+                "enum": [
+                  "SUPPORTED"
+                ]
+              }
+            },
+            "required": [
+              "effectiveScheduleRef"
+            ]
+          },
+          {
+            "properties": {
+              "result": {
+                "enum": [
+                  "NOT_SUPPORTED",
+                  "UNRESOLVED"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "ImpactItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "appointmentId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "observedStateToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "support": {
+            "$ref": "#/components/schemas/CurrentSupport"
+          },
+          "handlingStatus": {
+            "type": "string",
+            "enum": [
+              "NOT_REQUIRED",
+              "REQUIRES_HANDLING",
+              "PENDING_VERIFICATION"
+            ],
+            "description": "T契约标签，不代表已批准数据库状态码"
+          },
+          "reasons": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "resolutionIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^-?[0-9]+$",
+              "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+            }
+          }
+        },
+        "required": [
+          "appointmentId",
+          "observedStateToken",
+          "support",
+          "handlingStatus",
+          "reasons"
+        ]
+      },
+      "ImpactReport": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "targetRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "checkToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "asOf": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          },
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImpactItem"
+            }
+          },
+          "hiddenConflicts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ConflictSummary"
+            }
+          },
+          "policyStatus": {
+            "type": "string",
+            "enum": [
+              "CONFIRMED",
+              "UNRESOLVED"
+            ],
+            "description": "T契约标签，不代表已批准数据库状态码"
+          }
+        },
+        "required": [
+          "targetRef",
+          "checkToken",
+          "asOf",
+          "items",
+          "hiddenConflicts",
+          "policyStatus"
+        ],
+        "description": "完整后台扫描与按权限展示分离；无可见项不等于无跨店冲突"
+      },
+      "EvidenceReference": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "ucCode": {
+            "type": "string",
+            "enum": [
+              "UC03",
+              "UC04"
+            ],
+            "description": "T契约标签，不代表已批准数据库状态码"
+          },
+          "auditSuccessEventId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "appointmentChangeId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "cancellationBasisReference": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "ucCode",
+          "auditSuccessEventId"
+        ],
+        "description": "成功引用必须服务端核对；开始/失败事件无效；UC03/04引用义务见oneOf",
+        "oneOf": [
+          {
+            "properties": {
+              "ucCode": {
+                "enum": [
+                  "UC03"
+                ]
+              }
+            },
+            "required": [
+              "appointmentChangeId"
+            ]
+          },
+          {
+            "properties": {
+              "ucCode": {
+                "enum": [
+                  "UC04"
+                ]
+              }
+            },
+            "not": {
+              "required": [
+                "appointmentChangeId"
+              ]
+            }
+          }
+        ]
+      },
+      "ResolutionInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "appointmentId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "resolutionId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "需更正事项当前唯一链头的原resolutionId，不是UPDATE目标；成功更正新增resolutionId，旧行不覆盖"
+          },
+          "expectedAppointmentToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expectedResolutionToken": {
+            "type": "string",
+            "minLength": 1,
+            "description": "候选服务端修订链头/完整上下文指纹，锁后重新核验，无陈旧链头追加"
+          },
+          "revisionReason": {
+            "type": "string",
+            "minLength": 1,
+            "description": "更正必填；真实操作人/保存时点由服务端取得，54保留必要前后内容；不是新增物理字段"
+          },
+          "subject": {
+            "type": "string",
+            "minLength": 1
+          },
+          "claimedResult": {
+            "type": "string",
+            "minLength": 1,
+            "description": "客户端陈述不是完成事实"
+          },
+          "formalEvidence": {
+            "$ref": "#/components/schemas/EvidenceReference"
+          },
+          "basis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pendingReason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "appointmentId",
+          "expectedAppointmentToken",
+          "subject",
+          "claimedResult"
+        ],
+        "description": "APR-SCH-03最终候选待批：初始保存或新ID追加修订；原28不覆盖。新依据必须服务端核验，原失败事实不改成功，保存处理不等于排班生效",
+        "oneOf": [
+          {
+            "required": [
+              "resolutionId",
+              "expectedResolutionToken",
+              "revisionReason"
+            ]
+          },
+          {
+            "not": {
+              "required": [
+                "resolutionId"
+              ]
+            }
+          }
+        ]
+      },
+      "ActivationInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expectedDraftToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "previousImpactCheckToken": {
+            "type": "string",
+            "minLength": 1,
+            "description": "只用于识别陈旧上下文，UC22仍重新扫描"
+          },
+          "coordinationBasis": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "expectedDraftToken"
+        ],
+        "description": "没有忽略冲突/强制生效字段；未解决问题不能生效"
+      },
+      "BusinessLinks": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "scheduleRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "issueId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "appointmentId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "appointmentChangeId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "visitId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "originalUcSuccessEventId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "resolutionId": {
+            "type": "string",
+            "description": "真实已保存表28处理项ID，非预约正式办理ID"
+          }
+        },
+        "description": "仅真实已提交可见引用；精确UC成功必备项见CommandReceipt语义约束"
+      },
+      "CommandReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "requestReference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "ucCode": {
+            "type": "string",
+            "enum": [
+              "UC02",
+              "UC03",
+              "UC04",
+              "UC05",
+              "UC06",
+              "UC21",
+              "UC22"
+            ],
+            "description": "T契约标签，不代表已批准数据库状态码"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "COMPLETED",
+              "PERSISTED_INCOMPLETE",
+              "FAILED",
+              "REJECTED",
+              "UNKNOWN"
+            ],
+            "description": "T契约标签，不代表已批准数据库状态码"
+          },
+          "businessOutcome": {
+            "type": "string",
+            "minLength": 1
+          },
+          "links": {
+            "$ref": "#/components/schemas/BusinessLinks"
+          },
+          "appointmentImpact": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "仅004/005确认成功。与scheduleRef对应的保存时影响复核清单，仅包含授权诊所预约标识。恢复读取同一提交快照。",
+            "required": [
+              "appointmentIds"
+            ],
+            "properties": {
+              "appointmentIds": {
+                "type": "array",
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "pattern": "^(0|-?[1-9][0-9]*)$"
+                }
+              }
+            }
+          },
+          "existingResult": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          },
+          "operationKind": {
+            "type": "string",
+            "enum": [
+              "DRAFT_SAVE",
+              "DRAFT_REVISE",
+              "RESOLUTION_SAVE",
+              "ACTIVATE",
+              "APPOINTMENT_CREATE",
+              "APPOINTMENT_CHANGE",
+              "APPOINTMENT_CANCEL",
+              "ARRIVAL_VERIFY",
+              "NO_SHOW_VERIFY",
+              "MAINTENANCE_ISSUE_SAVE"
+            ],
+            "description": "T命令阶段，非新UC/数据库状态"
+          },
+          "auditPersistence": {
+            "type": "string",
+            "enum": [
+              "CONFIRMED",
+              "NOT_PERSISTED",
+              "UNKNOWN"
+            ],
+            "description": "本次必要审计写入状态，与已核实业务结果分开；未持久化不得称完成"
+          }
+        },
+        "required": [
+          "requestReference",
+          "ucCode",
+          "status",
+          "businessOutcome",
+          "message",
+          "operationKind",
+          "auditPersistence"
+        ],
+        "description": "T命令结果非数据库状态；UC21保存未完成事实不得显示草案/排班成功，UC22只有ACTIVATE/EFFECTIVE才算生效完成，RESOLUTION_SAVE可仅处理保存完成；UNKNOWN不能有成功links UC05/06待核实采用PERSISTED_INCOMPLETE，不伪造真实到诊/未到诊完成。UC22处理保存与正式激活用operationKind区分。",
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "ucCode": {
+                  "const": "UC21"
+                },
+                "status": {
+                  "const": "COMPLETED"
+                },
+                "operationKind": {
+                  "enum": [
+                    "DRAFT_SAVE",
+                    "DRAFT_REVISE"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "appointmentImpact"
+              ],
+              "properties": {
+                "businessOutcome": {
+                  "const": "DRAFT"
+                }
+              }
+            },
+            "else": {
+              "not": {
+                "required": [
+                  "appointmentImpact"
+                ]
+              }
+            }
+          }
+        ],
+        "oneOf": [
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "COMPLETED"
+                ]
+              }
+            },
+            "required": [
+              "links",
+              "existingResult"
+            ],
+            "allOf": [
+              {
+                "oneOf": [
+                  {
+                    "properties": {
+                      "ucCode": {
+                        "enum": [
+                          "UC21"
+                        ]
+                      },
+                      "links": {
+                        "type": "object",
+                        "required": [
+                          "scheduleRef",
+                          "originalUcSuccessEventId"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "ucCode": {
+                        "enum": [
+                          "UC22"
+                        ]
+                      },
+                      "businessOutcome": {
+                        "enum": [
+                          "EFFECTIVE"
+                        ]
+                      },
+                      "links": {
+                        "type": "object",
+                        "required": [
+                          "scheduleRef",
+                          "originalUcSuccessEventId"
+                        ]
+                      },
+                      "operationKind": {
+                        "enum": [
+                          "ACTIVATE"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "ucCode": {
+                        "enum": [
+                          "UC22"
+                        ]
+                      },
+                      "operationKind": {
+                        "enum": [
+                          "RESOLUTION_SAVE"
+                        ]
+                      },
+                      "businessOutcome": {
+                        "enum": [
+                          "PROCESSING_SAVED"
+                        ]
+                      },
+                      "links": {
+                        "type": "object",
+                        "required": [
+                          "scheduleRef",
+                          "originalUcSuccessEventId",
+                          "resolutionId"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "ucCode": {
+                        "enum": [
+                          "UC02",
+                          "UC04",
+                          "UC06"
+                        ]
+                      },
+                      "links": {
+                        "type": "object",
+                        "required": [
+                          "appointmentId",
+                          "originalUcSuccessEventId"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "ucCode": {
+                        "enum": [
+                          "UC03"
+                        ]
+                      },
+                      "links": {
+                        "type": "object",
+                        "required": [
+                          "appointmentId",
+                          "appointmentChangeId",
+                          "originalUcSuccessEventId"
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "properties": {
+                      "ucCode": {
+                        "enum": [
+                          "UC05"
+                        ]
+                      },
+                      "links": {
+                        "type": "object",
+                        "required": [
+                          "appointmentId",
+                          "visitId",
+                          "originalUcSuccessEventId"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "PERSISTED_INCOMPLETE"
+                ]
+              }
+            },
+            "required": [
+              "links"
+            ],
+            "oneOf": [
+              {
+                "properties": {
+                  "ucCode": {
+                    "enum": [
+                      "UC21"
+                    ]
+                  },
+                  "links": {
+                    "required": [
+                      "issueId",
+                      "originalUcSuccessEventId"
+                    ],
+                    "not": {
+                      "required": [
+                        "scheduleRef"
+                      ]
+                    }
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "ucCode": {
+                    "enum": [
+                      "UC05",
+                      "UC06"
+                    ]
+                  },
+                  "links": {
+                    "required": [
+                      "appointmentId",
+                      "originalUcSuccessEventId"
+                    ],
+                    "not": {
+                      "required": [
+                        "visitId"
+                      ]
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "properties": {
+              "status": {
+                "enum": [
+                  "FAILED",
+                  "REJECTED",
+                  "UNKNOWN"
+                ]
+              }
+            },
+            "not": {
+              "required": [
+                "links"
+              ]
+            }
+          }
+        ]
+      },
+      "MaintenanceIssueView": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "issueId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "clinicId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "relatedScheduleRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "resultingScheduleRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "failureReason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "recordedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          }
+        },
+        "required": [
+          "issueId",
+          "clinicId",
+          "failureReason",
+          "recordedAt"
+        ],
+        "description": "表53受控查询，不自动新增跨会话业务待办或新执行者"
+      },
+      "BookingScheme": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "effectiveScheduleRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "APR-SCH-01原则批准：带偏移的绝对时点、微秒精度和半开区间；诊所业务ZoneId政策待审核，禁止默认Asia/Shanghai；接口其余字段仍为草稿"
+          },
+          "treatmentRequest": {
+            "type": "string",
+            "minLength": 1
+          },
+          "durationBasisReference": {
+            "type": "string",
+            "minLength": 1,
+            "deprecated": true,
+            "description": "旧草稿不透明引用，仅兼容追溯；不能单独证明项目/版本/时长，APR-SCH-02以受控durationBasis核验为准"
+          },
+          "durationBasis": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "APR-SCH-02已批业务方向的契约草稿，非新增物理列。所有值须服务端解析核验，不信任调用方声明。首次/换主项目核对CURRENT；仅改日期开始或安排保留原已发布版本，不强制追新。具体成员命名/版本为候选",
+            "properties": {
+              "schemaVersion": {
+                "type": "integer",
+                "enum": [
+                  1
+                ]
+              },
+              "primaryProjectId": {
+                "type": "string",
+                "pattern": "^[1-9][0-9]*$"
+              },
+              "projectVersion": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "adoptedDurationMinutes": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "basisMode": {
+                "type": "string",
+                "enum": [
+                  "INITIAL_CURRENT",
+                  "CHANGED_PROJECT_CURRENT",
+                  "PRESERVED_ORIGINAL"
+                ],
+                "description": "候选技术标签，仅表达已批三种取值分支；不是数据库状态码或额外授权"
+              }
+            },
+            "required": [
+              "schemaVersion",
+              "primaryProjectId",
+              "projectVersion",
+              "adoptedDurationMinutes",
+              "basisMode"
+            ]
+          }
+        },
+        "required": [
+          "effectiveScheduleRef",
+          "startsAt",
+          "endsAt",
+          "treatmentRequest",
+          "durationBasis"
+        ],
+        "description": "APR-SCH-02：正整数分钟、无默认；服务端核验项目版本/采用时长与区间一致，保留原需求/多意向，实际接受由独立证据核对；只改时间不自动改变原时长"
+      },
+      "CreateAppointmentInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "patientId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "scheme": {
+            "$ref": "#/components/schemas/BookingScheme",
+            "properties": {
+              "durationBasis": {
+                "properties": {
+                  "basisMode": {
+                    "const": "INITIAL_CURRENT"
+                  }
+                }
+              }
+            }
+          },
+          "acceptanceEvidenceReference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "manualCoordinationBasis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceContextReference": {
+            "type": "string",
+            "minLength": 1,
+            "description": "可选真实mini来源，后端可信解析；无来源不造申请"
+          }
+        },
+        "required": [
+          "patientId",
+          "scheme",
+          "acceptanceEvidenceReference"
+        ]
+      },
+      "ChangeAppointmentInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expectedAppointmentToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "scheme": {
+            "$ref": "#/components/schemas/BookingScheme"
+          },
+          "acceptanceEvidenceReference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "changeBasis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceContextReference": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "expectedAppointmentToken",
+          "scheme",
+          "acceptanceEvidenceReference",
+          "changeBasis"
+        ]
+      },
+      "CancelAppointmentInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expectedAppointmentToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "cancellationVerification": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceContextReference": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "expectedAppointmentToken",
+          "cancellationVerification"
+        ],
+        "description": "已取消回既有结果，不重复释放；异步患者审核规则不在本稿新增"
+      },
+      "ArrivalInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expectedAppointmentToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "verifiedIdentityReference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding": {
+            "type": "string",
+            "enum": [
+              "ARRIVAL_VERIFIED",
+              "PENDING_VERIFICATION"
+            ],
+            "description": "T契约标签，不代表已批准数据库状态码"
+          },
+          "verificationBasis": {
+            "type": "string",
+            "minLength": 1
+          },
+          "actualDentistId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          },
+          "actualClinicId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$",
+            "description": "原BIGINT十进制字符串，物理约束按原报告；非UUID替换"
+          }
+        },
+        "required": [
+          "expectedAppointmentToken",
+          "finding",
+          "verificationBasis"
+        ],
+        "description": "UC05原人工核实；实际牙医/诊所仅真实到诊适用，非授予临时换人权",
+        "oneOf": [
+          {
+            "properties": {
+              "finding": {
+                "enum": [
+                  "ARRIVAL_VERIFIED"
+                ]
+              }
+            },
+            "required": [
+              "verifiedIdentityReference",
+              "actualDentistId",
+              "actualClinicId"
+            ]
+          },
+          {
+            "properties": {
+              "finding": {
+                "enum": [
+                  "PENDING_VERIFICATION"
+                ]
+              }
+            }
+          }
+        ]
+      },
+      "NoShowInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expectedAppointmentToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding": {
+            "type": "string",
+            "enum": [
+              "NO_SHOW_VERIFIED",
+              "PENDING_VERIFICATION"
+            ],
+            "description": "T契约标签，不代表已批准数据库状态码"
+          },
+          "verificationBasis": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "expectedAppointmentToken",
+          "finding",
+          "verificationBasis"
+        ],
+        "description": "UC06后端检查时段结束/未取消/无确认到诊，待核实不计未到诊"
+      },
+      "StaffAppointmentDetail": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "appointmentId": {
+            "type": "string"
+          },
+          "patientId": {
+            "type": "string"
+          },
+          "originScheduleRef": {
+            "$ref": "#/components/schemas/ScheduleVersionRef"
+          },
+          "currentSupport": {
+            "$ref": "#/components/schemas/CurrentSupport"
+          },
+          "startsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endsAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "statusLabel": {
+            "type": "string"
+          },
+          "stateToken": {
+            "type": "string"
+          },
+          "arrivalPendingSummary": {
+            "type": "string"
+          },
+          "reminderSummary": {
+            "type": "string"
+          },
+          "cancellationSummary": {
+            "type": "string"
+          },
+          "durationBasis": {
+            "$ref": "#/components/schemas/BookingScheme/properties/durationBasis"
+          }
+        },
+        "required": [
+          "appointmentId",
+          "patientId",
+          "originScheduleRef",
+          "currentSupport",
+          "startsAt",
+          "endsAt",
+          "statusLabel",
+          "stateToken"
+        ],
+        "description": "T角色裁剪的正式预约详情，供UC03—06核对；不返回病历/跨店患者明细，不把当前支持冒充历史FK；可核验冻结时长依据通过durationBasis返回，缺失不得伪造默认或当成正式可办，客户端不能用目录最新版覆盖它"
+      },
+      "Uc21IssueCommitOutcomeUnknown": {
+        "description": "SCH-OP-019专用未知结果。稳定引用对应原请求，不得自动重发同键或换键，不附成功链接，不发送自动重试指示。",
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/Error"
+          },
+          {
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "requestReference"
+            ],
+            "properties": {
+              "code": {
+                "const": "COMMIT_OUTCOME_UNKNOWN"
+              }
+            }
+          }
+        ]
+      },
+      "MaintenanceIssueInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "checkReference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "submittedContext": {
+            "$ref": "#/components/schemas/CheckInput"
+          },
+          "failureReason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "previousIssueId": {
+            "type": "string",
+            "pattern": "^-?[0-9]+$"
+          }
+        },
+        "required": [
+          "submittedContext",
+          "failureReason"
+        ],
+        "description": "T UC21按表53保存真实未完成事实；诊所/记录人由认证上下文核定，未知目标/矛盾时段不造合法安排。"
+      },
+      "DurationVersionRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "versionNo": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "projectId",
+          "versionNo"
+        ]
+      },
+      "DurationDraftInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "expectedBaseVersion": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "projectName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647,
+            "description": "原始JSON数字token须正整数，拒绝1.0/1e0或字符串；不能仅靠JSON Schema整数语义/PG类型强制转换",
+            "x-strict-json-integer": true
+          }
+        },
+        "required": [
+          "projectName",
+          "durationMinutes"
+        ]
+      },
+      "DurationDraftUpdate": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "expectedBaseVersion": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "projectName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2147483647,
+            "description": "原始JSON数字token须正整数，拒绝1.0/1e0或字符串；不能仅靠JSON Schema整数语义/PG类型强制转换",
+            "x-strict-json-integer": true
+          },
+          "expectedStateToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "expectedStateToken",
+          "projectName",
+          "durationMinutes",
+          "reason"
+        ]
+      },
+      "DurationPublishInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "expectedDraftToken": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expectedCurrentRef": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/DurationVersionRef"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "expectedDraftToken",
+          "expectedCurrentRef",
+          "reason"
+        ]
+      },
+      "HeadquartersReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "requestReference": {
+            "type": "string",
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "COMMITTED",
+              "FAILED",
+              "REJECTED",
+              "UNKNOWN"
+            ]
+          },
+          "operationCode": {
+            "type": "string",
+            "enum": [
+              "DURATION_DRAFT_CREATE",
+              "DURATION_DRAFT_EDIT",
+              "DURATION_PUBLISH"
+            ]
+          },
+          "auditPersistence": {
+            "type": "string",
+            "enum": [
+              "CONFIRMED",
+              "NOT_PERSISTED",
+              "UNKNOWN"
+            ]
+          },
+          "message": {
+            "type": "string",
+            "minLength": 1
+          },
+          "versionRef": {
+            "$ref": "#/components/schemas/DurationVersionRef"
+          },
+          "existingResult": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "requestReference",
+          "status",
+          "operationCode",
+          "auditPersistence",
+          "message"
+        ]
+      },
+      "DurationVersion": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "projectId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "versionNo": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "projectName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "publicationStatus": {
+            "type": "string",
+            "enum": [
+              "DRAFT",
+              "CURRENT",
+              "SUPERSEDED"
+            ]
+          },
+          "publishedAt": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "format": "date-time"
+          },
+          "publishedBy": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "publicationEvidence": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "stateToken": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$",
+            "readOnly": true,
+            "description": "服务器完整八列规范快照指纹，非数据库字段"
+          }
+        },
+        "required": [
+          "projectId",
+          "versionNo",
+          "projectName",
+          "durationMinutes",
+          "publicationStatus",
+          "publishedAt",
+          "publishedBy",
+          "publicationEvidence"
+        ]
+      },
+      "DurationPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DurationVersion"
+            }
+          },
+          "nextCursor": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "capabilities": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "canEdit": {
+                "type": "boolean"
+              },
+              "canPublish": {
+                "type": "boolean"
+              }
+            },
+            "required": [
+              "canEdit",
+              "canPublish"
+            ],
+            "description": "当前总部动作核验结果，不能替代后端授权"
+          },
+          "csrfToken": {
+            "type": "string",
+            "readOnly": true,
+            "description": "仅同源可信会话的CSRF校验值，不是认证凭据"
+          },
+          "requestNamespace": {
+            "type": "string",
+            "pattern": "^HQCFG/v1/[a-f0-9]{32}$",
+            "readOnly": true,
+            "description": "发送前构造原请求引用，网络丢失后只核对、不换键重放；不授予权限"
+          }
+        },
+        "required": [
+          "items"
+        ]
+      },
+      "P0Id": {
+        "type": "string",
+        "pattern": "^-?[0-9]+$",
+        "description": "原BIGINT十进制字符串，真实引用由服务端核验，不是新PK约束"
+      },
+      "P0Instant": {
+        "type": "string",
+        "format": "date-time",
+        "description": "带Z/偏移，至多微秒；具体偏移/时区/精度必须语义核验"
+      },
+      "P0Digest": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$"
+      },
+      "P0ScheduleRef": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "scheduleId": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "versionNo": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "scheduleId",
+          "versionNo"
+        ]
+      },
+      "P0ResolutionSnapshot": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "resolution_id": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "schedule_id": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "schedule_version_no": {
+            "type": "integer"
+          },
+          "appointment_id": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "resolution_subject": {
+            "type": "string",
+            "minLength": 1
+          },
+          "resolution_result": {
+            "type": "string",
+            "minLength": 1
+          },
+          "resolution_basis": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "responsible_party": {
+            "type": "string",
+            "minLength": 1
+          },
+          "pending_confirmation": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "recorded_at": {
+            "$ref": "#/components/schemas/P0Instant"
+          },
+          "appointment_change_id": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/P0Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "resolution_id",
+          "schedule_id",
+          "schedule_version_no",
+          "appointment_id",
+          "resolution_subject",
+          "resolution_result",
+          "resolution_basis",
+          "responsible_party",
+          "pending_confirmation",
+          "recorded_at",
+          "appointment_change_id"
+        ]
+      },
+      "P0FormalEvidence": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "ucCode": {
+                "const": "UC03"
+              },
+              "auditSuccessEventId": {
+                "$ref": "#/components/schemas/P0Id"
+              },
+              "appointmentChangeId": {
+                "$ref": "#/components/schemas/P0Id"
+              }
+            },
+            "required": [
+              "ucCode",
+              "auditSuccessEventId",
+              "appointmentChangeId"
+            ]
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "ucCode": {
+                "const": "UC04"
+              },
+              "auditSuccessEventId": {
+                "$ref": "#/components/schemas/P0Id"
+              },
+              "cancellationBasisReference": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": [
+              "ucCode",
+              "auditSuccessEventId",
+              "cancellationBasisReference"
+            ]
+          }
+        ]
+      },
+      "P0Verification": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "evaluatedAt": {
+            "$ref": "#/components/schemas/P0Instant"
+          },
+          "appointmentFingerprint": {
+            "$ref": "#/components/schemas/P0Digest"
+          },
+          "conclusion": {
+            "enum": [
+              "VERIFIED",
+              "PENDING",
+              "STALE",
+              "INCONSISTENT"
+            ]
+          },
+          "formalEvidence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/P0FormalEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "supportReasons": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "pendingReason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "evaluatedAt",
+          "appointmentFingerprint",
+          "conclusion",
+          "formalEvidence",
+          "supportReasons",
+          "pendingReason"
+        ]
+      },
+      "P0ResolutionBasis": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": {
+            "const": 1
+          },
+          "rootResolutionId": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "supersedesResolutionId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/P0Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "revisionReason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "previousContentFingerprint": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/P0Digest"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "targetDraftRef": {
+            "$ref": "#/components/schemas/P0ScheduleRef"
+          },
+          "appointmentId": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "processingKind": {
+            "enum": [
+              "CHANGED",
+              "CANCELLED",
+              "RETAINED",
+              "PENDING"
+            ]
+          },
+          "observedAppointmentFingerprint": {
+            "$ref": "#/components/schemas/P0Digest"
+          },
+          "formalEvidence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/P0FormalEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "supportAssessment": {
+            "$ref": "#/components/schemas/P0Verification"
+          },
+          "necessaryBasis": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "rootResolutionId",
+          "supersedesResolutionId",
+          "revisionReason",
+          "previousContentFingerprint",
+          "targetDraftRef",
+          "appointmentId",
+          "processingKind",
+          "observedAppointmentFingerprint",
+          "formalEvidence",
+          "supportAssessment",
+          "necessaryBasis"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "supersedesResolutionId": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "supersedesResolutionId"
+              ]
+            },
+            "then": {
+              "properties": {
+                "revisionReason": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "previousContentFingerprint": {
+                  "$ref": "#/components/schemas/P0Digest"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "processingKind": {
+                  "const": "CHANGED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "formalEvidence": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/P0FormalEvidence"
+                    },
+                    {
+                      "properties": {
+                        "ucCode": {
+                          "const": "UC03"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "processingKind": {
+                  "const": "CANCELLED"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "formalEvidence": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/P0FormalEvidence"
+                    },
+                    {
+                      "properties": {
+                        "ucCode": {
+                          "const": "UC04"
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      "P0RevisionEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": {
+            "const": 1
+          },
+          "operationKind": {
+            "enum": [
+              "RESOLUTION_CREATE",
+              "RESOLUTION_APPEND"
+            ]
+          },
+          "requestReference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "canonicalPayloadHash": {
+            "$ref": "#/components/schemas/P0Digest"
+          },
+          "targetDraftRef": {
+            "$ref": "#/components/schemas/P0ScheduleRef"
+          },
+          "rootResolutionId": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "predecessorResolutionId": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/P0Id"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "newResolutionId": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "revisionReason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "before": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/P0ResolutionSnapshot"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "after": {
+            "$ref": "#/components/schemas/P0ResolutionSnapshot"
+          },
+          "verification": {
+            "$ref": "#/components/schemas/P0Verification"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "operationKind",
+          "requestReference",
+          "canonicalPayloadHash",
+          "targetDraftRef",
+          "rootResolutionId",
+          "predecessorResolutionId",
+          "newResolutionId",
+          "revisionReason",
+          "before",
+          "after",
+          "verification"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "operationKind": {
+                  "const": "RESOLUTION_APPEND"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "before": {
+                  "$ref": "#/components/schemas/P0ResolutionSnapshot"
+                },
+                "predecessorResolutionId": {
+                  "$ref": "#/components/schemas/P0Id"
+                },
+                "revisionReason": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "operationKind": {
+                  "const": "RESOLUTION_CREATE"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "before": {
+                  "type": "null"
+                },
+                "predecessorResolutionId": {
+                  "type": "null"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "P0CommandEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": {
+            "const": 1
+          },
+          "eventPhase": {
+            "enum": [
+              "REQUEST_STARTED",
+              "BUSINESS_RESULT",
+              "RECOVERY_OBSERVATION"
+            ]
+          },
+          "operationKind": {
+            "type": "string",
+            "minLength": 1
+          },
+          "canonicalPayloadHash": {
+            "$ref": "#/components/schemas/P0Digest"
+          },
+          "confirmedCommit": {
+            "enum": [
+              "YES",
+              "NO",
+              "UNKNOWN"
+            ]
+          },
+          "businessResultSnapshot": {
+            "anyOf": [
+              {
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "observationReason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "eventPhase",
+          "operationKind",
+          "canonicalPayloadHash",
+          "confirmedCommit",
+          "businessResultSnapshot",
+          "observationReason"
+        ]
+      },
+      "P0AuditEvent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "audit_event_id": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "request_reference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "event_sequence_no": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "uc_code": {
+            "type": "string",
+            "pattern": "^UC(0[1-9]|1[0-9]|2[0-2])$"
+          },
+          "operation_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "actor_reference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "occurred_at": {
+            "$ref": "#/components/schemas/P0Instant"
+          },
+          "authorization_scope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "business_reference": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "outcome": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "evidence": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/P0RevisionEvidence"
+              },
+              {
+                "$ref": "#/components/schemas/P0CommandEvidence"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "audit_event_id",
+          "request_reference",
+          "event_sequence_no",
+          "uc_code",
+          "operation_name",
+          "actor_reference",
+          "occurred_at",
+          "authorization_scope",
+          "business_reference",
+          "outcome",
+          "reason",
+          "evidence"
+        ],
+        "description": "原12字段映射：evidence在此表示TEXT已解析文书，不改变物理类型。条件非空、结果/提交、UC及各引用关系须服务端验证；不能仅schema通过就宣称真实成功。"
+      },
+      "P0TimeInterpretation": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "zonePolicyVersion": {
+            "type": "string",
+            "minLength": 1
+          },
+          "clinicId": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "zoneId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceLocalStart": {
+            "type": "string",
+            "minLength": 1
+          },
+          "sourceLocalEnd": {
+            "type": "string",
+            "minLength": 1
+          },
+          "localEndSource": {
+            "enum": [
+              "PROVIDED",
+              "DERIVED_FROM_DURATION"
+            ]
+          },
+          "selectedOffsetStart": {
+            "type": "string",
+            "minLength": 1
+          },
+          "selectedOffsetEnd": {
+            "type": "string",
+            "minLength": 1
+          },
+          "resolvedInstantStart": {
+            "$ref": "#/components/schemas/P0Instant"
+          },
+          "resolvedInstantEnd": {
+            "$ref": "#/components/schemas/P0Instant"
+          },
+          "tzdbVersion": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "zonePolicyVersion",
+          "clinicId",
+          "zoneId",
+          "sourceLocalStart",
+          "sourceLocalEnd",
+          "localEndSource",
+          "selectedOffsetStart",
+          "selectedOffsetEnd",
+          "resolvedInstantStart",
+          "resolvedInstantEnd",
+          "tzdbVersion"
+        ]
+      },
+      "P0DurationBasis": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": {
+            "const": 1
+          },
+          "primaryProjectId": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "projectVersion": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "projectNameSnapshot": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "adoptedDurationMinutes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "basisMode": {
+            "enum": [
+              "INITIAL_CURRENT",
+              "CHANGED_PROJECT_CURRENT",
+              "PRESERVED_ORIGINAL"
+            ]
+          },
+          "timeInterpretation": {
+            "$ref": "#/components/schemas/P0TimeInterpretation"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "primaryProjectId",
+          "projectVersion",
+          "projectNameSnapshot",
+          "adoptedDurationMinutes",
+          "basisMode",
+          "timeInterpretation"
+        ]
+      },
+      "P0PublicationContent": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "projectId": {
+            "$ref": "#/components/schemas/P0Id"
+          },
+          "versionNo": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "projectName": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "durationMinutes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "publicationStatus": {
+            "enum": [
+              "CURRENT",
+              "SUPERSEDED"
+            ]
+          },
+          "publishedAt": {
+            "$ref": "#/components/schemas/P0Instant"
+          },
+          "publishedBy": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          }
+        },
+        "required": [
+          "projectId",
+          "versionNo",
+          "projectName",
+          "durationMinutes",
+          "publicationStatus",
+          "publishedAt",
+          "publishedBy"
+        ]
+      },
+      "P0PublicationEvidence": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "schemaVersion": {
+            "const": 1
+          },
+          "operationKind": {
+            "const": "DURATION_PUBLISH"
+          },
+          "requestReference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "canonicalPayloadHash": {
+            "$ref": "#/components/schemas/P0Digest"
+          },
+          "actorReference": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "authorizationScope": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          },
+          "expectedDraftFingerprint": {
+            "$ref": "#/components/schemas/P0Digest"
+          },
+          "previousCurrentRef": {
+            "anyOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "projectId": {
+                    "$ref": "#/components/schemas/P0Id"
+                  },
+                  "versionNo": {
+                    "type": "integer",
+                    "minimum": 1
+                  }
+                },
+                "required": [
+                  "projectId",
+                  "versionNo"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "before": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/P0PublicationContent"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "after": {
+            "$ref": "#/components/schemas/P0PublicationContent"
+          },
+          "recordedAt": {
+            "$ref": "#/components/schemas/P0Instant"
+          }
+        },
+        "required": [
+          "schemaVersion",
+          "operationKind",
+          "requestReference",
+          "canonicalPayloadHash",
+          "actorReference",
+          "authorizationScope",
+          "reason",
+          "expectedDraftFingerprint",
+          "previousCurrentRef",
+          "before",
+          "after",
+          "recordedAt"
+        ]
+      },
+      "ResolutionHistory": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "rootResolutionId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "originalRecord": {
+            "$ref": "#/components/schemas/P0ResolutionSnapshot"
+          },
+          "revisions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/P0ResolutionSnapshot"
+            }
+          },
+          "chainIntegrity": {
+            "type": "string",
+            "enum": [
+              "VALID",
+              "BROKEN",
+              "BRANCHED",
+              "UNVERIFIABLE"
+            ]
+          },
+          "currentHeadReference": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "expectedResolutionToken": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "currentAssessment": {
+            "type": "string",
+            "enum": [
+              "PENDING",
+              "VERIFIED",
+              "STALE",
+              "INCONSISTENT"
+            ]
+          },
+          "formalOperationFacts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/P0FormalEvidence"
+            }
+          }
+        },
+        "required": [
+          "rootResolutionId",
+          "originalRecord",
+          "revisions",
+          "chainIntegrity",
+          "currentHeadReference",
+          "expectedResolutionToken",
+          "currentAssessment",
+          "formalOperationFacts"
+        ]
+      },
+      "MiniRequestInboxItem": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "requestId",
+          "requestVersion",
+          "receivedAt",
+          "type",
+          "clinicId",
+          "applicantSummary",
+          "contactSummary"
+        ],
+        "properties": {
+          "requestId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "requestVersion": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "receivedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "NEW",
+              "CHANGE",
+              "CANCEL"
+            ]
+          },
+          "clinicId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "applicantSummary": {
+            "type": "string"
+          },
+          "contactSummary": {
+            "type": "string"
+          },
+          "associatedPatientId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "originalAppointmentId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "preferredDate": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "MiniRequestInboxPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "items"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "maxItems": 50,
+            "items": {
+              "$ref": "#/components/schemas/MiniRequestInboxItem"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "BookingOptions": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "synthetic",
+          "clinicId",
+          "timeZone",
+          "reservesCapacity",
+          "projects",
+          "windows"
+        ],
+        "properties": {
+          "synthetic": {
+            "const": true
+          },
+          "clinicId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "timeZone": {
+            "type": "string"
+          },
+          "reservesCapacity": {
+            "const": false
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "projectId",
+                "projectName",
+                "projectVersion",
+                "minutes"
+              ],
+              "properties": {
+                "projectId": {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]*$"
+                },
+                "projectName": {
+                  "type": "string"
+                },
+                "projectVersion": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 2147483647
+                },
+                "minutes": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 2147483647
+                }
+              }
+            }
+          },
+          "windows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "scheduleId",
+                "versionNo",
+                "dentistId",
+                "startsAt",
+                "endsAt"
+              ],
+              "properties": {
+                "scheduleId": {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]*$"
+                },
+                "versionNo": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 2147483647
+                },
+                "dentistId": {
+                  "type": "string",
+                  "pattern": "^[1-9][0-9]*$"
+                },
+                "startsAt": {
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endsAt": {
+                  "type": "string",
+                  "format": "date-time"
+                }
+              }
+            }
+          }
+        }
+      },
+      "SyntheticBookingConfirmationInput": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "patientId",
+          "scheme",
+          "confirmed",
+          "actingMode",
+          "verificationBasis"
+        ],
+        "properties": {
+          "patientId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "scheme": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/BookingScheme"
+              },
+              {
+                "type": "object",
+                "properties": {
+                  "durationBasis": {
+                    "type": "object",
+                    "properties": {
+                      "basisMode": {
+                        "const": "INITIAL_CURRENT"
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "confirmed": {
+            "const": true
+          },
+          "actingMode": {
+            "const": "SELF"
+          },
+          "verificationBasis": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 2000
+          },
+          "sourceContextReference": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "description": "课程合成本人接受记录。不是外部真实身份或临床同意；不授予代理权。确认不创建预约，完整方案有变须重新确认。"
+      },
+      "SyntheticBookingConfirmation": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "synthetic",
+          "patientId",
+          "scheme",
+          "acceptanceEvidenceReference"
+        ],
+        "properties": {
+          "synthetic": {
+            "const": true
+          },
+          "patientId": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]*$"
+          },
+          "scheme": {
+            "$ref": "#/components/schemas/BookingScheme"
+          },
+          "acceptanceEvidenceReference": {
+            "type": "string",
+            "pattern": "^SYNTHETIC-confirmation:"
+          }
+        },
+        "description": "会话内合成确认。成功预约保存后，由原冻结文书和成功审计保留历史事实；重启前的未提交确认不自动重建或重放。"
+      }
+    },
+    "securitySchemes": {
+      "StaffSession": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "ADC_STAFF_SESSION",
+        "description": "既有网页会话候选，不代表认证已实现"
+      }
+    }
+  },
+  "x-source-boundary": {
+    "R": "原UC21/22与UC02—06，表26/28/29/51/53/54",
+    "E": "BR-SCH-01—09及原D03-A/T01-A",
+    "T": "所有DTO、端点、标签、锁/幂等/文书方案；物理模型未批准"
+  },
+  "x-server-invariants": [
+    "UC21合法草案成功必须有真实scheduleRef与原UC21成功审计；未成草案保存仅返回PERSISTED_INCOMPLETE及真实issueId",
+    "UC22 ACTIVATE命令只有businessOutcome=EFFECTIVE才COMPLETED；RESOLUTION_SAVE的PROCESSING_SAVED仅处理确认保存，不是生效。两者均须真实目标scheduleRef及对应UC22成功审计，必要写失败不COMPLETED",
+    "UC03成功必须原appointmentId和真实appointmentChangeId，UC04已取消不重复创造成功取消事实",
+    "UC05真实到诊成功才返回真实visitId；PENDING不创建假visit",
+    "所有成功引用由服务端从本次真实提交解析，客户端不得指定原UC成功审计ID来制造业务成功",
+    "JSON Schema只能表达结构；状态/权限/事务/相互引用及Q01—03由服务端规则和测试验证",
+    "路径scheduleId/versionNo与正文basisRef/targetRef必须真实相容，不能仅schema通过就跨安排/版本办理",
+    "更正已有事项以resolutionId定位旧链头并必须expectedResolutionToken和revisionReason；新ID追加修订，原28行不UPDATE/DELETE，关联根/前驱只在受控文书中，不是数据库FK；claimedResult不跳过真实核验",
+    "SUPPORTED必须有服务端真实当前适用effectiveScheduleRef；不是调用方可用于证明生效的布尔值",
+    "请求START、事务内业务操作完成、COMMIT成功和客户端收到响应分开；COMMIT未知或仅START不自动FAILED/重放，RESOLUTION_SAVE成功不是ACTIVATE成功",
+    "五类原文预约状态按APR-SCH-03最终待批矩阵核验资源及事实，不新增接诊中或已完成预约码；01/02批准保持，03最终候选不是正式实现或DDL授权"
+  ],
+  "x-p0-review": {
+    "status": "FINAL_REVIEW_DRAFT",
+    "supplements": [
+      "duration-policy-api.md",
+      "resolution-history-api.md"
+    ],
+    "totalTechnicalOperations": 27,
+    "machineOperationsCurrently": 27,
+    "implementationAuthorized": false
+  },
+  "x-development-authorization": {
+    "draftTasksOnly": false,
+    "businessImplementationAuthorized": false,
+    "supplements": [
+      "duration-policy-api.md",
+      "resolution-history-api.md"
+    ],
+    "contractConsolidationTask": "T002",
+    "authorizedInfrastructureTasks": "T001—T012"
+  }
+}

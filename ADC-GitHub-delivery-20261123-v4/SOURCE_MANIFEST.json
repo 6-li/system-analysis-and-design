@@ -1,0 +1,3199 @@
+{
+  "files": [
+    {
+      "file": ".gitattributes",
+      "sha256": "a24b2dc9176cadf2e597169aef71b665b886f7fe15c1c1eb50cb104d854d208e",
+      "bytes": 303
+    },
+    {
+      "file": ".github/workflows/engineering.yml",
+      "sha256": "35e0e7a80f6483363914065a400c58b6590accdf0914787f0e8fbe5621ef7888",
+      "bytes": 1746
+    },
+    {
+      "file": ".gitignore",
+      "sha256": "466a935d66bc37c4b3a2fbfd3498606cb86269db8038f4d83c09edddc66a1815",
+      "bytes": 1241
+    },
+    {
+      "file": "README.md",
+      "sha256": "d25c9f5169ad250bd7f315586a8e4f08ce3044d4bfae51c99575172df922896f",
+      "bytes": 1512
+    },
+    {
+      "file": "apps/patient-miniapp/README.md",
+      "sha256": "93c66b1f5a90d33d7dbe59491306b10b223db2b2894398d6718a0eee636e7f78",
+      "bytes": 880
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/app.js",
+      "sha256": "771c1c9af0bbee1bcfd9ff29e9bceb3d609582b57333420c9fa98a5fd9bed0ca",
+      "bytes": 2888
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/app.json",
+      "sha256": "c3cd40e08350096c6681e14a85b754c53de017e21a7eb5bcaacfb156a7a02866",
+      "bytes": 164
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/app.wxss",
+      "sha256": "3ea8055c622a9c8db74ef8cf55425ecb3c690f52cc0576791482ef5a6bc7c1c1",
+      "bytes": 7271
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/course-preview-config.js",
+      "sha256": "f585cb89c10c5ac6c9a72fb6007bee96941cd83b699be020ed9b7acb8efebc0a",
+      "bytes": 138
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/pages/index/index.js",
+      "sha256": "6d2e4c10869945cc645171058a4458847c1ef88fd22acc9c4c5b11cb11c84f0c",
+      "bytes": 29323
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/pages/index/index.json",
+      "sha256": "b51a3a150ec612d2b30e9e9dbf4b2fab76b6b20d75665694a9bcc43ee6df8cbc",
+      "bytes": 40
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/pages/index/index.wxml",
+      "sha256": "efcad8ae85788b0bd1807bdb3dcb878a315f3632e330c22f482131c33ec68b28",
+      "bytes": 19087
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/release-config.js",
+      "sha256": "fcfe76ed64b91d1cd5f588e5eb6a56b79834babcdf0585be47367e07d8ac16d1",
+      "bytes": 208
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/services/appointment-display.js",
+      "sha256": "53805bb2bc823a191adc440366907650b08e4b73337ae5c53fd5607b89581933",
+      "bytes": 1701
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/services/appointment-requests.js",
+      "sha256": "227fcb21570081c243b7754c182b92a38c7fdc4751049804caf85094c5a9c94f",
+      "bytes": 9907
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/services/bootstrap.js",
+      "sha256": "e1068552c73502a28e68479ff5dd7374aeefa52de5bfc568679a5e7651c0aac2",
+      "bytes": 127
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/services/demo-dentists.js",
+      "sha256": "45f737a5d266903cc405a454986c284d36bf9b9c5938ce8149b45ec3968facfd",
+      "bytes": 479
+    },
+    {
+      "file": "apps/patient-miniapp/miniprogram/services/http.js",
+      "sha256": "7b8df9869b5fd54e2856d394f8b208bb7b7070692efdc0e7bbe5d811c285d52e",
+      "bytes": 5462
+    },
+    {
+      "file": "apps/patient-miniapp/project.config.json",
+      "sha256": "fe96d8722b2cdaad57601687759cebea3bdef300859e1de604c2ea14fdb8acae",
+      "bytes": 930
+    },
+    {
+      "file": "apps/patient-miniapp/tests/appointment-display.test.cjs",
+      "sha256": "9810a13839335bc55e62ccd2797c0e2e42ba8158b939ce1b268accdf9fee191e",
+      "bytes": 2766
+    },
+    {
+      "file": "apps/patient-miniapp/tests/appointment-requests.test.cjs",
+      "sha256": "4b604885e89b8d6ba9d98840d0de7d312b695de52710a46463a253e8e69eeb15",
+      "bytes": 1670
+    },
+    {
+      "file": "apps/patient-miniapp/tests/appointment-wxml-condition.test.cjs",
+      "sha256": "37f15e64b1707d465f994f1f2e2414311ba798e0b673035cb9b1a407c5360f49",
+      "bytes": 1422
+    },
+    {
+      "file": "apps/patient-miniapp/tests/bill-status-display.test.cjs",
+      "sha256": "0028434bd86b98fa079c5e8703692020e5b4dd07e05685f0e874f068e269add0",
+      "bytes": 2600
+    },
+    {
+      "file": "apps/patient-miniapp/tests/booking-batch.test.cjs",
+      "sha256": "6ec3d2a56e4e571ef30a51b3c51fd7f72486fd4fb767e2736d737f2ab245e214",
+      "bytes": 2876
+    },
+    {
+      "file": "apps/patient-miniapp/tests/bootstrap.test.cjs",
+      "sha256": "36abc4b2042da5b071733141090485f23b778e90f8a481b7978b56ebdcb0df16",
+      "bytes": 1170
+    },
+    {
+      "file": "apps/patient-miniapp/tests/change-profile-prefill.test.cjs",
+      "sha256": "a164b918cfabe5a1e77c93615e76796458c26c0ed73a0b694b8225b4733e543b",
+      "bytes": 1871
+    },
+    {
+      "file": "apps/patient-miniapp/tests/course-change-config.test.cjs",
+      "sha256": "3ec312015ebe5bd1f4f4069ad2622962aef4ada666898f368c6fe083b96912f5",
+      "bytes": 933
+    },
+    {
+      "file": "apps/patient-miniapp/tests/course-login-diagnostics.test.cjs",
+      "sha256": "f319f86104008d97f3d7abcd9979f879f6e300760d191326684f3160c867679b",
+      "bytes": 1483
+    },
+    {
+      "file": "apps/patient-miniapp/tests/course-phone-debug.test.cjs",
+      "sha256": "1f12421e3ebe3ab784982cd8fdca3aa601d758437500e2c1d30326a6f128cef6",
+      "bytes": 1157
+    },
+    {
+      "file": "apps/patient-miniapp/tests/course-preview-bootstrap.test.cjs",
+      "sha256": "f747a379d053dfa36ba36ba6adc46d7ed1316baf4faa50d6627e82184c1e1123",
+      "bytes": 1743
+    },
+    {
+      "file": "apps/patient-miniapp/tests/doctor-first.test.cjs",
+      "sha256": "2bd3ffcd0a60cc7a13976ce71945c539a5582efca2cb017807d306b0a0e29271",
+      "bytes": 1787
+    },
+    {
+      "file": "apps/patient-miniapp/tests/http.test.cjs",
+      "sha256": "743ea941776071f2d3217860948176a7d55a2cafa713d115231f9bd4959916a9",
+      "bytes": 5338
+    },
+    {
+      "file": "apps/patient-miniapp/tests/isolated-appointment-read.cjs",
+      "sha256": "60a96c525932ae4fb901752256e614c23306a49074ec005af1a31385ecf7e9ff",
+      "bytes": 5942
+    },
+    {
+      "file": "apps/patient-miniapp/tests/local-demo-bootstrap.test.cjs",
+      "sha256": "05144f5c02e9a91955f700261b8945182dbbb7b0ccb0d8093adae1d3b5833938",
+      "bytes": 1351
+    },
+    {
+      "file": "apps/patient-miniapp/tests/new-booking-profile.test.cjs",
+      "sha256": "5b671ce159e5ef66631235eb3c7169d36c0ed3014c0a2f493ccfacf363cf141c",
+      "bytes": 2802
+    },
+    {
+      "file": "apps/patient-miniapp/tests/patient-accounts.test.cjs",
+      "sha256": "00a419c488187a49b75c6a9218ddda861e909d6c5de99c362c1d90483a790c38",
+      "bytes": 3766
+    },
+    {
+      "file": "apps/patient-miniapp/tests/patient-notes.test.cjs",
+      "sha256": "28e670560b16536bfdaca11d1ff822941da8868e6f9b9bb25e24ee8ba0eda1da",
+      "bytes": 1267
+    },
+    {
+      "file": "apps/patient-miniapp/tests/patient-slots.test.cjs",
+      "sha256": "706698c94113540ac12df6a15ee5fd88708abc8c9797adeb288359ec91743722",
+      "bytes": 5054
+    },
+    {
+      "file": "apps/patient-miniapp/tests/preliminary-page.test.cjs",
+      "sha256": "3eec546f5bdd5e85e35bdba648c51d42162177e1a84448d38eb68c038eeb1bc9",
+      "bytes": 8024
+    },
+    {
+      "file": "apps/patient-miniapp/tests/release-bootstrap.test.cjs",
+      "sha256": "26f707205476efff2f624da5cfad27ee455820443817d0e53f78b8137cf15668",
+      "bytes": 1903
+    },
+    {
+      "file": "apps/patient-miniapp/tests/release-clinic-selection.test.cjs",
+      "sha256": "daf6609a29827a473ca8d7e85396b649a75e4501afe990a5964117dfad54c043",
+      "bytes": 1785
+    },
+    {
+      "file": "apps/patient-miniapp/tests/remote-course-bootstrap.test.cjs",
+      "sha256": "cefe02d2142048acff9968b5abb4cf633a08638bdc03b2eed23ae5de543eaef7",
+      "bytes": 1161
+    },
+    {
+      "file": "apps/patient-miniapp/tests/self-booking-fields.test.cjs",
+      "sha256": "f531e7843eee444a7f045eb3d723575c077e94ff31cbd809a5c6596c1d647295",
+      "bytes": 1704
+    },
+    {
+      "file": "apps/patient-miniapp/tests/self-profile.test.cjs",
+      "sha256": "3b488db3749ee5dcf5a91754992570d52e07e5412496efd8e7ec282ff0546874",
+      "bytes": 1944
+    },
+    {
+      "file": "apps/patient-miniapp/tests/submit-diagnostics.test.cjs",
+      "sha256": "cc765ae688e9a391de3849c3dd82a7f975359c729b765a00322174cb478ad3ad",
+      "bytes": 1315
+    },
+    {
+      "file": "apps/patient-miniapp/tests/ux-layout.test.cjs",
+      "sha256": "26f829389fed8b2a8fc9c5765c6e0768dedae9855131aa481d0f216632701ab3",
+      "bytes": 2276
+    },
+    {
+      "file": "apps/patient-miniapp/tests/visit-detail.test.cjs",
+      "sha256": "09646a6fcc9094fc7fe9f006cadb33e19eddc9c6eb9c58162321aad1f475f120",
+      "bytes": 2364
+    },
+    {
+      "file": "apps/patient-miniapp/tests/visit-history.test.cjs",
+      "sha256": "832afb6aff2263f3caf74e5cc52fc1b3c5faa62afa0bbb9e732cc86e605afe9b",
+      "bytes": 1987
+    },
+    {
+      "file": "apps/staff-web/browser-tests/appointment-read.spec.js",
+      "sha256": "9203d662676f764268d3a2840f7386ebf513d28df60defff4e1fc97d07a3f3e5",
+      "bytes": 4754
+    },
+    {
+      "file": "apps/staff-web/browser-tests/appointments.spec.js",
+      "sha256": "6ce505899cc06d7ab91973264f8af8a9fa61285160e1eec45fa801e0f134f30a",
+      "bytes": 102137
+    },
+    {
+      "file": "apps/staff-web/browser-tests/booking-interaction.spec.js",
+      "sha256": "e45e160d6e2a25fd68db6df6aa93411b0837c6f3195256115de77981627847eb",
+      "bytes": 3676
+    },
+    {
+      "file": "apps/staff-web/browser-tests/booking-review.spec.js",
+      "sha256": "a0712a19b505ca36fd5752adfe4e1d9ba9d711e49987bcd4587ae29ffdc7ec1e",
+      "bytes": 10691
+    },
+    {
+      "file": "apps/staff-web/browser-tests/calendar-update.spec.js",
+      "sha256": "bb488d46a2c7d890d8f70de261cabc4a92221f814e34ae00794c878c687acfff",
+      "bytes": 3894
+    },
+    {
+      "file": "apps/staff-web/browser-tests/current-booking-fix.spec.js",
+      "sha256": "8ceda29862e9ecdbd0bebeee25fe1d96e223d769e4d121e66a94abb030d396f8",
+      "bytes": 4277
+    },
+    {
+      "file": "apps/staff-web/browser-tests/duration-workspace.spec.js",
+      "sha256": "b4a9bdcbefae52b3333f8a74e090fafdde3365eb397cd53f3466b0b5f82afc34",
+      "bytes": 3874
+    },
+    {
+      "file": "apps/staff-web/browser-tests/fixtures/appointment-read.html",
+      "sha256": "66f87063d0e5237a90fac45a6fb615bc5b497269b1ed21aa7d97e2e85c83629c",
+      "bytes": 242
+    },
+    {
+      "file": "apps/staff-web/browser-tests/fixtures/appointment-read.js",
+      "sha256": "605d3ef0899517a68756de852c613f4f1d1b613cbcca61e0436de38290d0d415",
+      "bytes": 330
+    },
+    {
+      "file": "apps/staff-web/browser-tests/fixtures/appointments.html",
+      "sha256": "ae2b3117639267720c67faa6d79905799824be178365a5318459cb069e1ae2d0",
+      "bytes": 203
+    },
+    {
+      "file": "apps/staff-web/browser-tests/fixtures/appointments.js",
+      "sha256": "28367f80fbbb1edf64fb061f734ae51155edcda21e14fe6d0777bbc22f07d741",
+      "bytes": 1027
+    },
+    {
+      "file": "apps/staff-web/browser-tests/fixtures/booking-review.html",
+      "sha256": "d3cd8bbaf4ae9e6e1084765d22eebe48d6f77396cd30ad7bfca744db15960878",
+      "bytes": 226
+    },
+    {
+      "file": "apps/staff-web/browser-tests/fixtures/booking-review.js",
+      "sha256": "c7e47303f4eaa5e6edc1618360e038f6273aa957ae01f6716bc5b1aa17c5c69f",
+      "bytes": 2722
+    },
+    {
+      "file": "apps/staff-web/browser-tests/fixtures/patient-live.cjs",
+      "sha256": "b7c49f34259edcffc4ac1ecfeb418fdc5ac2d4d8b289ba919b1b0134711306e9",
+      "bytes": 3506
+    },
+    {
+      "file": "apps/staff-web/browser-tests/fixtures/resolution-live.cjs",
+      "sha256": "e5d44948f7dca3d4235d5edd8a810bd212f5590924fc5e839f9849eba18c93f4",
+      "bytes": 4477
+    },
+    {
+      "file": "apps/staff-web/browser-tests/mini-request-inbox.spec.js",
+      "sha256": "98883840a7fa80fe0c0dcc0df9d083539d7659712a2595b41faa50faff14a53c",
+      "bytes": 3271
+    },
+    {
+      "file": "apps/staff-web/browser-tests/patient-intake-repair.spec.js",
+      "sha256": "e080f8eff364729ce14b06ddf93e142ac90a1a8ec51620dfb0cca5aa8f6393d5",
+      "bytes": 2121
+    },
+    {
+      "file": "apps/staff-web/browser-tests/patient-slots.spec.js",
+      "sha256": "258b6fb953635d7db2e28522afda1b56032ac0b8a4cdcd9ab5553c2c42be5c00",
+      "bytes": 3781
+    },
+    {
+      "file": "apps/staff-web/browser-tests/request-booking.spec.js",
+      "sha256": "3459288d72b510a1b0385cd6b5e66620babf0bf34837752796033ae68f6c7d02",
+      "bytes": 6251
+    },
+    {
+      "file": "apps/staff-web/browser-tests/schedule-calendar.spec.js",
+      "sha256": "85818838035edabd090e0922a84e25d631764f0991a2fe235bfde98639f6b1fe",
+      "bytes": 4741
+    },
+    {
+      "file": "apps/staff-web/browser-tests/schedule-resolutions.spec.js",
+      "sha256": "7e218d7954426e4b322a517998d620812784a8786fa946bb549c89c812b64673",
+      "bytes": 6612
+    },
+    {
+      "file": "apps/staff-web/browser-tests/schedule-workspace.spec.js",
+      "sha256": "54efe8751c36704fc6af15b69fc207f01fa97dd49d4b342158dad61aa1df9bab",
+      "bytes": 5698
+    },
+    {
+      "file": "apps/staff-web/browser-tests/t024-demo.spec.js",
+      "sha256": "95cf7448993e69f0b38dbcef564e26d8793c4dc508d7bce5e77df4808c4369cf",
+      "bytes": 4736
+    },
+    {
+      "file": "apps/staff-web/browser-tests/t024-final.spec.js",
+      "sha256": "99758ad682d8eab9dbbf8350d9304c18186da0d532c3d024e5d372519873a1dd",
+      "bytes": 3246
+    },
+    {
+      "file": "apps/staff-web/browser-tests/technical.spec.js",
+      "sha256": "fb3508e5fad2a9c3a006f56dc9e17fe4bfc87763eee429ff7dfbd9d5d50ade0f",
+      "bytes": 4324
+    },
+    {
+      "file": "apps/staff-web/browser-tests/uc01-patient.spec.js",
+      "sha256": "727c581828aa9505b73332ddbda2610ee9a4e1a252d376a4006bcd433b2d7a11",
+      "bytes": 2479
+    },
+    {
+      "file": "apps/staff-web/index.html",
+      "sha256": "3dcba5f4e20c725b95f41ddcb7709a554d9d01aaddf44c1efd36fb7445b4e709",
+      "bytes": 258
+    },
+    {
+      "file": "apps/staff-web/package-lock.json",
+      "sha256": "475b7ef5dee30a1abd2b835e92b5de878ed02f2eb71581e667ef636b3504b28c",
+      "bytes": 46289
+    },
+    {
+      "file": "apps/staff-web/package.json",
+      "sha256": "d654a9324c82d04fcd7b63294d4cdc5e18865551b7dec391e1b631052eedaa8d",
+      "bytes": 513
+    },
+    {
+      "file": "apps/staff-web/playwright.appointment-read.config.js",
+      "sha256": "20fa6d962295ab9dbf415534dc5768c4944f92d2a849a08e90bd6abeb509e9bb",
+      "bytes": 496
+    },
+    {
+      "file": "apps/staff-web/playwright.appointments.config.js",
+      "sha256": "93cf2fec67cbb55c97fe24cd8254649d9bbfa1720cd323b04956f047fad53068",
+      "bytes": 416
+    },
+    {
+      "file": "apps/staff-web/playwright.booking-interaction.config.js",
+      "sha256": "d9f0debbb4165ba5db415359fab8d6306cda633185cc33c59a87adeb58382028",
+      "bytes": 415
+    },
+    {
+      "file": "apps/staff-web/playwright.calendar-update.config.js",
+      "sha256": "462f3d16bc3082afaa55473d5e3f73d10745d684ce0cf9cd486d691db9886ff8",
+      "bytes": 408
+    },
+    {
+      "file": "apps/staff-web/playwright.calendar.config.js",
+      "sha256": "da27c87b35302cd1ca2a72cae76710fdada3334b040e214af555e3588b0e5c31",
+      "bytes": 435
+    },
+    {
+      "file": "apps/staff-web/playwright.config.js",
+      "sha256": "2afb59381299fd1d212e83c89e9265f9bdedc939e5aa3442d26d98d1d9ef4539",
+      "bytes": 614
+    },
+    {
+      "file": "apps/staff-web/playwright.current-booking-fix.config.js",
+      "sha256": "ec8f88af7fc459c1af1b25aced4ce6f164f7ae7d71da7e3c9a15a7f7f777e31b",
+      "bytes": 413
+    },
+    {
+      "file": "apps/staff-web/playwright.inbox.config.js",
+      "sha256": "c6b345bc28836f71fa6953e5daeae89f1ac66ba8ca5d46f9b01502cd6b6b7fb6",
+      "bytes": 412
+    },
+    {
+      "file": "apps/staff-web/playwright.patient-repair.config.js",
+      "sha256": "6337dbff3ac3c8a97a1e207679062ea36b1fe46a7e1c81d445d5779535267290",
+      "bytes": 407
+    },
+    {
+      "file": "apps/staff-web/playwright.patient-slots.config.js",
+      "sha256": "49024231e74bd1504ae98ddfa702c3f8cd130bc8b1e65ac5ce8f5f677c11187b",
+      "bytes": 399
+    },
+    {
+      "file": "apps/staff-web/playwright.request-booking.config.js",
+      "sha256": "a4637928bfa83104c3dcce0ae5863d525c8ecf265a082669b9eee7247324ff86",
+      "bytes": 415
+    },
+    {
+      "file": "apps/staff-web/playwright.resolution.config.js",
+      "sha256": "a5c834c1505bdbcfba2cbd40e9b919a22a33824b0e0222e9c143b2c6ca0219ba",
+      "bytes": 196
+    },
+    {
+      "file": "apps/staff-web/playwright.t024-demo.config.js",
+      "sha256": "806f18be5ae789e5dae48e1b75b4e460c1359021330339f011b10e15cb82b5e5",
+      "bytes": 257
+    },
+    {
+      "file": "apps/staff-web/playwright.t024-final.config.js",
+      "sha256": "3ffbaef3ad749aa39e55c62b5ac5cfae69224c6329341288210990e94839ec63",
+      "bytes": 221
+    },
+    {
+      "file": "apps/staff-web/playwright.uc01.config.js",
+      "sha256": "0c804b086fdc4c6111a3ae850d1c9c7d443f743538c7ceab62826cc41b21a736",
+      "bytes": 188
+    },
+    {
+      "file": "apps/staff-web/playwright.uc02-offline.config.js",
+      "sha256": "3d7e1d9f6ee46b959b8f2feae9fb729b12e701f99ea64504bb576b75f9903aca",
+      "bytes": 262
+    },
+    {
+      "file": "apps/staff-web/playwright.uc21-offline.config.js",
+      "sha256": "6714334af566f4ed6fbf32a7e6c05ed2eb3952e8f00e06385cc826ecaa675d6c",
+      "bytes": 266
+    },
+    {
+      "file": "apps/staff-web/src/App.vue",
+      "sha256": "f8af85bc6c6b2c98d69091e04291fa5566a7391f0ce3b35d1e1c4cb9ef41a9d5",
+      "bytes": 2558
+    },
+    {
+      "file": "apps/staff-web/src/api/appointments.js",
+      "sha256": "8da28ce73d30f1db2bbba04944706a18c138262f456075d0876583f0f6f04fda",
+      "bytes": 4188
+    },
+    {
+      "file": "apps/staff-web/src/api/booking-time.js",
+      "sha256": "927eae9b64440f7323acf0f32b3baa4fd3df6dce52456f74eee4b423c82df528",
+      "bytes": 1357
+    },
+    {
+      "file": "apps/staff-web/src/api/dentist-schedule.js",
+      "sha256": "c0574b17fa065dc4be31b364e0f266b0ea125e132d303e2c9ca755d6b216b34b",
+      "bytes": 1678
+    },
+    {
+      "file": "apps/staff-web/src/api/duration.js",
+      "sha256": "9e9dc5a050fd0af0347a5cc4501ed4252536b648e24fc1fdf59246399568a633",
+      "bytes": 2249
+    },
+    {
+      "file": "apps/staff-web/src/api/schedules.js",
+      "sha256": "910ca036e3f26a7a3e11585dd904d02cbc1dc07e35ddf276f5375a0f673af2de",
+      "bytes": 4218
+    },
+    {
+      "file": "apps/staff-web/src/components/BookingSchemePicker.vue",
+      "sha256": "7ad1c31d773a28742dc69b687b20af5a2b970cf54ab37f6b7d82828efb70daaf",
+      "bytes": 8985
+    },
+    {
+      "file": "apps/staff-web/src/components/CourseInventoryGuide.vue",
+      "sha256": "9ec05a1e7e42dc991a7ace5f172dec702a1e004f3639c71e2d07cdd33248541d",
+      "bytes": 1212
+    },
+    {
+      "file": "apps/staff-web/src/components/FinanceSummary.vue",
+      "sha256": "3cffa7ebaf652f251591562b399c41f33e9ae149fe75228f852b8e6ef66e71e4",
+      "bytes": 2177
+    },
+    {
+      "file": "apps/staff-web/src/components/MiniRequestInbox.vue",
+      "sha256": "0bc2d39c8687887b6da2913523bd379795e1f7f3e95379b354bdb1e6c0a93e13",
+      "bytes": 4952
+    },
+    {
+      "file": "apps/staff-web/src/components/QuarterScopePicker.vue",
+      "sha256": "d4607dc80023650c4bfb6c0997aa84838345d0799f9ed6bdece011e6ddcf916d",
+      "bytes": 2399
+    },
+    {
+      "file": "apps/staff-web/src/components/QuarterlyRecordBrowser.vue",
+      "sha256": "22c790e8d127528b7d7ce576807d6858505c4c5ccdf23df0fffc8795f05f15ef",
+      "bytes": 4976
+    },
+    {
+      "file": "apps/staff-web/src/components/ReceptionCalendar.vue",
+      "sha256": "279ea63cd7e8655070d235297f03daa873bfe30446f1c0dc3eaf62e9b6bcf031",
+      "bytes": 2991
+    },
+    {
+      "file": "apps/staff-web/src/components/ScheduleCalendar.vue",
+      "sha256": "8bad475be35bd37efcfef72084c8b98444eed1eae2a13ef320a73807a422d633",
+      "bytes": 10452
+    },
+    {
+      "file": "apps/staff-web/src/components/VisitPicker.vue",
+      "sha256": "e484809d307d8533166eaad64cfe87572b7773f3cabf15c2f2194b46db4b7f81",
+      "bytes": 6387
+    },
+    {
+      "file": "apps/staff-web/src/components/consumption-time.js",
+      "sha256": "53a884c0e395ec31899c1978c4c2141dbbe7587d05cbc5d103db7ec6071e09ae",
+      "bytes": 712
+    },
+    {
+      "file": "apps/staff-web/src/components/inventory-guide.js",
+      "sha256": "b0693a89d79cb485bda07c83e78e42e8dca63b89a63fe27e8105e73ec6148c70",
+      "bytes": 324
+    },
+    {
+      "file": "apps/staff-web/src/main.js",
+      "sha256": "5e04f418a2b13f37fe1634362368365088e140700fb1f07b58f67d8a61250507",
+      "bytes": 3018
+    },
+    {
+      "file": "apps/staff-web/src/services/health.js",
+      "sha256": "8fe716edc2b0eea4ea62be136de89710782dd496a60555081a5b5240c6959795",
+      "bytes": 366
+    },
+    {
+      "file": "apps/staff-web/src/services/http.js",
+      "sha256": "33bf479ca7f449c9adbf42f347b05b074a235d785b78f09a632ca2be432bfe83",
+      "bytes": 1671
+    },
+    {
+      "file": "apps/staff-web/src/services/quarterly-display.js",
+      "sha256": "4552ad1507f9e53243e90816c819334e7a85bd705df8fc0ef37be93b9c68ccfa",
+      "bytes": 379
+    },
+    {
+      "file": "apps/staff-web/src/services/quarterly-records.js",
+      "sha256": "87c045e66231ea2fee5e5508ccebb3d90e4661b5c8b0c2ef653f5ad1d8e23d3d",
+      "bytes": 1222
+    },
+    {
+      "file": "apps/staff-web/src/services/quarterly-report.js",
+      "sha256": "ed630c5595c44653b91312344e5af5c4a1fe958359fae9392e98a5d9414d3e3d",
+      "bytes": 2852
+    },
+    {
+      "file": "apps/staff-web/src/services/reception-availability.js",
+      "sha256": "3126c197b2599db7c1a7bd4b680eba8adcc5a0fb556fe3156858ea4acedfd215",
+      "bytes": 1486
+    },
+    {
+      "file": "apps/staff-web/src/services/schedule-calendar.js",
+      "sha256": "422d625e5eec35294922a890cbab4566247d7474c9b9fdc2df7e822f0ddd2d90",
+      "bytes": 4572
+    },
+    {
+      "file": "apps/staff-web/src/services/schedule-display.js",
+      "sha256": "0a3725a9b463465bbb330b84c10df539666bd6e95f3fd43db3e1e9c6747c2117",
+      "bytes": 1250
+    },
+    {
+      "file": "apps/staff-web/src/services/staff-workspace.js",
+      "sha256": "86acbcee298f825ea1a1cab99432cbc563d26854953dee8329663b61e7f6f893",
+      "bytes": 785
+    },
+    {
+      "file": "apps/staff-web/src/styles/workspace.css",
+      "sha256": "6214cc72f6785615a4ece911d16fcc7f7773cb0b511268ad23bde517a3022dbc",
+      "bytes": 8416
+    },
+    {
+      "file": "apps/staff-web/src/views/AppointmentReadPanel.vue",
+      "sha256": "bcdaaa9cd9ccd895a851b0eaca3900db27aff5e7c2d9ee3d3eaf78528abb7a85",
+      "bytes": 3442
+    },
+    {
+      "file": "apps/staff-web/src/views/Appointments.vue",
+      "sha256": "f004aa97c7a52e14f96791f055161e490bda82931629801b50ef9e151c7c37ef",
+      "bytes": 23399
+    },
+    {
+      "file": "apps/staff-web/src/views/BillingWorkbench.vue",
+      "sha256": "433976e4d6b853cd874f2a2cd29b0ca89833e55354f72be1ec37bfeef376248c",
+      "bytes": 4546
+    },
+    {
+      "file": "apps/staff-web/src/views/BookingReviewPanel.vue",
+      "sha256": "3f9da75a71275f60a2407575f2208fc10d9f6ee29fa19a4c0887f5e1331606b9",
+      "bytes": 8823
+    },
+    {
+      "file": "apps/staff-web/src/views/DentistSchedule.vue",
+      "sha256": "da4b0632a6890fe09f147313886762de3cfc34cdacea90bbbba3cecbc3fd5c6d",
+      "bytes": 5261
+    },
+    {
+      "file": "apps/staff-web/src/views/DurationWorkspace.vue",
+      "sha256": "3f80236b62fe97fe842fc7af1815867a5704c5f6faf889336580e1586b2b3f03",
+      "bytes": 5380
+    },
+    {
+      "file": "apps/staff-web/src/views/InvoiceQuestion.vue",
+      "sha256": "d386f4f65f6b168432f467be0ed9f9519fd682870c300c88ad703b476a2efde3",
+      "bytes": 11547
+    },
+    {
+      "file": "apps/staff-web/src/views/InvoiceSettlement.vue",
+      "sha256": "202448c8237db15d2829fae870d1ea465ddba1728dc387230c57da10ee4a4fd8",
+      "bytes": 6467
+    },
+    {
+      "file": "apps/staff-web/src/views/NotFoundView.vue",
+      "sha256": "8faf81347a67acdaef33bc116d1a07ecfd7b26901aa6c93d4c908049ae035ec7",
+      "bytes": 113
+    },
+    {
+      "file": "apps/staff-web/src/views/PatientMaintenance.vue",
+      "sha256": "4071271b3eb8efa396ce1be6060537869f745784b09825ef8411effc93bfae13",
+      "bytes": 11774
+    },
+    {
+      "file": "apps/staff-web/src/views/PurchaseRequirement.vue",
+      "sha256": "7d17b96fca188479146d6b9388d5336459578507aca84dcbfc6b78f72d5aefae",
+      "bytes": 5268
+    },
+    {
+      "file": "apps/staff-web/src/views/QuarterlyCalculation.vue",
+      "sha256": "593935acc6c0c362f403bc49bb31521376363d4d0877e047a2567a1333682e98",
+      "bytes": 12818
+    },
+    {
+      "file": "apps/staff-web/src/views/QuarterlyFinancialReview.vue",
+      "sha256": "3e85dd05c519992af8eb94017e8d46e5e04a68dcc606571c1c680f1a99b47d00",
+      "bytes": 7002
+    },
+    {
+      "file": "apps/staff-web/src/views/QuarterlyIssue.vue",
+      "sha256": "2c4ac98163e1392f3440dc8bcc41ef665f36094b45b0365edc2fd5c6fe4456c1",
+      "bytes": 6437
+    },
+    {
+      "file": "apps/staff-web/src/views/QuarterlyPreview.vue",
+      "sha256": "eff3c3afc8f3cb3e61c4713bed6670f83b9dc2012524e91a911c7628681d8053",
+      "bytes": 8006
+    },
+    {
+      "file": "apps/staff-web/src/views/ScheduleActivationPanel.vue",
+      "sha256": "b87c2ab94b2e61f9abf015ba571d0ba547735e5f0682709b9d386bf046672d68",
+      "bytes": 4887
+    },
+    {
+      "file": "apps/staff-web/src/views/ScheduleResolutions.vue",
+      "sha256": "1d0bd3786abb72be6d83b020f0ee5a640b3f2522b86eb8031a526468b0e26223",
+      "bytes": 8243
+    },
+    {
+      "file": "apps/staff-web/src/views/ScheduleWorkspace.vue",
+      "sha256": "0819a40f4bf97a65d45f143ee44d464ed497811cb53800519b0955f65d6ac64d",
+      "bytes": 10456
+    },
+    {
+      "file": "apps/staff-web/src/views/StatusView.vue",
+      "sha256": "0c1808a7e709d8cf98eb2d0c49316e01b65de4fa75c30181a51f3c4a9aabf09e",
+      "bytes": 712
+    },
+    {
+      "file": "apps/staff-web/src/views/StockInquiry.vue",
+      "sha256": "6277d7de7141e19610b3832d9773c1e900e8210f6f5d446439935becf43616cf",
+      "bytes": 3674
+    },
+    {
+      "file": "apps/staff-web/src/views/SupplyConsumption.vue",
+      "sha256": "baab810adffc350b6c53e91f0c6e6188e34bdc093888138d2cf5635050e698b5",
+      "bytes": 8609
+    },
+    {
+      "file": "apps/staff-web/src/views/SupplyReceipt.vue",
+      "sha256": "5a5eaba442aeaecbd5e4eefa24868bbdf3fc722582c5318c08f48ead7f37bb44",
+      "bytes": 5371
+    },
+    {
+      "file": "apps/staff-web/src/views/TreatmentInvoice.vue",
+      "sha256": "67379da5aefcb451db94d23b96629e78bcb2b98103d92a6fbd9a7f04e2d61326",
+      "bytes": 3936
+    },
+    {
+      "file": "apps/staff-web/src/views/VisitConsent.vue",
+      "sha256": "8ad5447d9f640cb5623e49e7a15761f61c978d6ef4be042e809f520c8ef7e6b3",
+      "bytes": 8514
+    },
+    {
+      "file": "apps/staff-web/src/views/VisitHealth.vue",
+      "sha256": "861a40a491a9ad151365aa02cee3d7969a9661e87ba79a2b185210d10049cebb",
+      "bytes": 6190
+    },
+    {
+      "file": "apps/staff-web/src/views/VisitTreatment.vue",
+      "sha256": "dbe0caf7c042c65d659b5ba9f4964478f930b7e6b62698dbdaf90ea123d7e385",
+      "bytes": 12124
+    },
+    {
+      "file": "apps/staff-web/tests/appointments.test.js",
+      "sha256": "47ac0c8e787b4963c9588200e34d98156611af0f86c89d0a8ac6a6ae9a498471",
+      "bytes": 10089
+    },
+    {
+      "file": "apps/staff-web/tests/booking-time.test.js",
+      "sha256": "01bdeb219a63d97081d59b58dcb8afd0eef0ec99c9118a8b69c49b281ef081eb",
+      "bytes": 652
+    },
+    {
+      "file": "apps/staff-web/tests/clinical-catalog.test.js",
+      "sha256": "1041b54dae4db33f85378053759c2e4c8d26eeb9db93ddcaac31ed8156693153",
+      "bytes": 1853
+    },
+    {
+      "file": "apps/staff-web/tests/consumption-confirmation.test.js",
+      "sha256": "d3b058f696d599b0fed3e6a5b45d361605d8aa990d4a6ee0e4bf44aa7f87e8a9",
+      "bytes": 2192
+    },
+    {
+      "file": "apps/staff-web/tests/consumption-time.test.js",
+      "sha256": "fe0fa3bc94b28fc2bbc8ff2c6da80801ee7fba9e959c588aa513ce49cef6bb94",
+      "bytes": 725
+    },
+    {
+      "file": "apps/staff-web/tests/course-change-picker.test.js",
+      "sha256": "eb4a16ceece57a50c8cfbf5905dacc81cd946766525444171494dc85d53d4e31",
+      "bytes": 1886
+    },
+    {
+      "file": "apps/staff-web/tests/dentist-schedule.test.js",
+      "sha256": "d61b4e7c962b81a95712441c7a189ec9c6737b24b0489188f9476c023b684181",
+      "bytes": 750
+    },
+    {
+      "file": "apps/staff-web/tests/doctor-appointment-lookup.test.js",
+      "sha256": "96b8a85d6f2b278d9fc9192b23b7f5a861591d120bef0c673af3c16716bd28ab",
+      "bytes": 2555
+    },
+    {
+      "file": "apps/staff-web/tests/doctor-appointment-timeline.test.js",
+      "sha256": "eb5c5f15a8938098d221fa91990d1056832640360bb08f48a1644d10979fb9cb",
+      "bytes": 699
+    },
+    {
+      "file": "apps/staff-web/tests/duration-workspace.test.js",
+      "sha256": "0d5597fccdeba256ccc077fa81c874645afa5a6d8d195314656e8c744737a8fd",
+      "bytes": 2078
+    },
+    {
+      "file": "apps/staff-web/tests/existing-patient-link.test.js",
+      "sha256": "40b93f4fc566b7438f3e8f70d5da3498ac8b69b7924a673a02a8e76e75c977ce",
+      "bytes": 2209
+    },
+    {
+      "file": "apps/staff-web/tests/health.test.js",
+      "sha256": "8c4fd2886db8febf06e878341d0f3a7ecdb5754f353420804d8a5808dc9ea58d",
+      "bytes": 1152
+    },
+    {
+      "file": "apps/staff-web/tests/http.test.js",
+      "sha256": "717dca60d3dfeeadf831f4610429c7b25af812edee86b9a7a3e644d31b095448",
+      "bytes": 2304
+    },
+    {
+      "file": "apps/staff-web/tests/inventory-guide.test.js",
+      "sha256": "1bac44ecb701eef3428819bd9124fcfe0b72d811e42192f1198902bf7b26e3e6",
+      "bytes": 801
+    },
+    {
+      "file": "apps/staff-web/tests/multi-project-treatment.test.js",
+      "sha256": "41d460387f8f1b5152d3f2980a54f4aebbb19f83da2d87a3bb631d6f1f05721d",
+      "bytes": 2246
+    },
+    {
+      "file": "apps/staff-web/tests/patient-account-binding.test.js",
+      "sha256": "a69de09b1c8061695e00081e1db011f59a4a77c92dec384dc26c516f12854ff2",
+      "bytes": 1821
+    },
+    {
+      "file": "apps/staff-web/tests/quarterly-records.test.js",
+      "sha256": "2697372208475e5641314f387e7b9e6561c0c08872509e75628dc8da0cf0d9eb",
+      "bytes": 2952
+    },
+    {
+      "file": "apps/staff-web/tests/quarterly-report.test.js",
+      "sha256": "25d63c50e8d6dab1f1b361c2028e5eeaf383fecf0f3a1f2033484a042299b47c",
+      "bytes": 1167
+    },
+    {
+      "file": "apps/staff-web/tests/quarterly-scope.test.js",
+      "sha256": "201d34f92555ce300c115f53eee18d8e90ff4a66ec0a3f62e766b611b1b9db2b",
+      "bytes": 1959
+    },
+    {
+      "file": "apps/staff-web/tests/reception-availability.test.js",
+      "sha256": "99111771d71c30b08ab019f0de98f9dc9e40bc8c463ff76a78535d4682cd70fb",
+      "bytes": 1011
+    },
+    {
+      "file": "apps/staff-web/tests/request-rejection.test.js",
+      "sha256": "421ada20db95a4344c6ca9e3c6e9de3a1ad29e497de47cb47a7ef94ca783c2a3",
+      "bytes": 1708
+    },
+    {
+      "file": "apps/staff-web/tests/schedule-calendar.test.js",
+      "sha256": "20af8a3904d9aa90ae2f70c942a865c1f5b4f45d9131815354713e3dbe165e51",
+      "bytes": 2364
+    },
+    {
+      "file": "apps/staff-web/tests/schedule-display.test.js",
+      "sha256": "806ee6dc80c54c277c5f2e328fbb890331d36790f472afb361bb306bdb1a6ab6",
+      "bytes": 905
+    },
+    {
+      "file": "apps/staff-web/tests/schedule-drafts.test.js",
+      "sha256": "96588b5c8d3e476b3c0843eec94fcf07c33b3fd55143e9367794c807f3bd68d5",
+      "bytes": 3512
+    },
+    {
+      "file": "apps/staff-web/tests/schedule-resolutions.test.js",
+      "sha256": "5c4e6279950a076f8375d43dfd5eee7bd9af9c6c6e103e1a3374e58f68279bc9",
+      "bytes": 2235
+    },
+    {
+      "file": "apps/staff-web/tests/schedule-workspace-api.test.js",
+      "sha256": "1de95954c944b021df240344be405eb002d947a859248c9084877490164ed533",
+      "bytes": 3664
+    },
+    {
+      "file": "apps/staff-web/tests/staff-workspace.test.js",
+      "sha256": "27af6b4fecc0d3b746cb9180bd9474d6d3ae17af46fe4e93fcfa6a0806bdd836",
+      "bytes": 1211
+    },
+    {
+      "file": "apps/staff-web/tests/visit-picker.test.js",
+      "sha256": "2f17bd9f70eca484a2bc22e8ea0321dd9a23c99cf31db299e496fa857d1da672",
+      "bytes": 1614
+    },
+    {
+      "file": "apps/staff-web/vite.config.js",
+      "sha256": "616a87bf7a5eedd7e4900d6b28ae4621d16d01692f2f28797f5cddb00602df12",
+      "bytes": 1234
+    },
+    {
+      "file": "backend/pom.xml",
+      "sha256": "73f8457d59721bebf4156bbbbde20e416ebc10a0030261b7b59b29f8374ee19c",
+      "bytes": 1549
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/AdcApplication.java",
+      "sha256": "4ae147e1169512f41db3c426223d56e54431ddd7568f61671cae227c526fddbe",
+      "bytes": 293
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/AppointmentCancellationService.java",
+      "sha256": "211dd35146463d20546570456cce2b2186e6ce0f5922da36ed96f72e87218bb8",
+      "bytes": 14907
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/AppointmentChangeService.java",
+      "sha256": "5fe7d3c82ed626c67b694bd6cf3d2b95a3403fc1786042195df8c8f4c0cbd7b6",
+      "bytes": 17750
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/AppointmentController.java",
+      "sha256": "acaff110d6cf0d4342c2cf536e8be1ac35c783b2782bdb6063a00c86422d162a",
+      "bytes": 10491
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/AppointmentEvidenceCodec.java",
+      "sha256": "7ddd8ffd6f9acfb9f68f334c89ed146c2a68cefcda1ef4085d84029f6f84b2d5",
+      "bytes": 4624
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/AppointmentReadService.java",
+      "sha256": "c5ea54998fb774660a123f0e160520d2880b6ca60ae761d476565cd9253295fb",
+      "bytes": 6383
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/AppointmentRepository.java",
+      "sha256": "3fa5791c41e5341d8e477b005d17ffe4d996802fec21633e42fb7fcf172758c7",
+      "bytes": 20744
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/AppointmentResolutionEvidence.java",
+      "sha256": "8015d31feab0ae859341d63284cb32c83a37e468e6f02ef1ce47487143c41c27",
+      "bytes": 4820
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/ArrivalNoShowService.java",
+      "sha256": "d5bb6cecca42a1ddfc5ae1522d25c63f7c8aeb3b08db43fbe9ca1ba8dea13587",
+      "bytes": 17427
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/BookingAcceptanceVerifier.java",
+      "sha256": "b237b6e90b3c20eb17f4ee99e080f2dd8971cf7b6651c76ebbcc533dad8e723d",
+      "bytes": 3873
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/BookingInteractionController.java",
+      "sha256": "d45d58ad6f1446e64ad742b9cd00458e8ea3adb5c3f0fbd8f85dd3921fcdb597",
+      "bytes": 9192
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/BookingProposalService.java",
+      "sha256": "4f1d719a83445ae6a1d713e105e3637c0430a10a0f52def3a7c24e57d963be2b",
+      "bytes": 9193
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/BookingReviewFeedback.java",
+      "sha256": "ec550078f251bf5e23f05f51bfaaa3bc2cb37e167435a415e830c1eb7a67893d",
+      "bytes": 804
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/BoundPatientRequest.java",
+      "sha256": "bc76dbbf8626e5d9b7f36ecf471f0078738b72875f847222853e27348302233c",
+      "bytes": 1128
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CommittedBookingRelease.java",
+      "sha256": "53fe7594181f326452ad1773025832e20b527bf9c6eb138f4bc17cd94ead0114",
+      "bytes": 864
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/ConsentProjectScopes.java",
+      "sha256": "932d99bbbab12e1dfc57fa4c49194956ec8dd8b3b3f434ba58c623cb78b0c56e",
+      "bytes": 2947
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseAppointmentCancellation.java",
+      "sha256": "1e6566effd2629d26be71e8ca0a5f5f8e0dbfae1a0e22895561efa2798a100cd",
+      "bytes": 2751
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseAppointmentChange.java",
+      "sha256": "ccaf0f357bb63cad175d9f76b80c6caf4ef69ca49b69b68d63b6b72bc163f2bc",
+      "bytes": 4126
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseAppointmentRead.java",
+      "sha256": "cd827b8b1f168b44807eb03a0833014dbcc7db8d498d0b41e0834a58e84d6b39",
+      "bytes": 4975
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseAppointmentWrite.java",
+      "sha256": "83728508c9146b66414fcaa71925420b5c88315b2a7f1eaf24207391a934fac2",
+      "bytes": 7123
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseAttendance.java",
+      "sha256": "4e6f1ab00208874a03953844980055fbe479db7990eb9a0afeba59a8ca82bb55",
+      "bytes": 3533
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseBillingDirectory.java",
+      "sha256": "0c545fe2ed27ff68a89eb1e2c7f3b4ebdf6dd1e8acf79e23321ac60b5de3a734",
+      "bytes": 5743
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseBookingIds.java",
+      "sha256": "cc715b7ea5bf6fefa324c4f8d1a651da488e9ae8543e919c9c2134b16abf2abe",
+      "bytes": 1487
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseBookingInteractionConfiguration.java",
+      "sha256": "e035b68fea89d68815b029282d3d012570b310c5208c9dc890c17ce4222c216a",
+      "bytes": 5210
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseCancellationSource.java",
+      "sha256": "9fe6fd8c14240c5b7d836475cdefcf9ee605d73f8a7d81e8fa88b2c7e4f1ced1",
+      "bytes": 1640
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseChangeProposal.java",
+      "sha256": "6cc8474fd37c50646eb917e5250c01f9c0446ded0db469de70df7466bfdde151",
+      "bytes": 3365
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseChangeSource.java",
+      "sha256": "031e5f2ab8241f3987df8c6bc1e59596e9c63ac4b8f962b7b2731865aeab958b",
+      "bytes": 2963
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseClinicalBillingConfiguration.java",
+      "sha256": "36fdf5b94f758e229efd615de4b42699af1a80f600ea4d8b703bd5843f9befa3",
+      "bytes": 3703
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseClinicalCatalog.java",
+      "sha256": "cbbbf3ed872534e599552fc04badb062bfe076c4da4ed2941dbda128062060f7",
+      "bytes": 3355
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseClinicalCatalogController.java",
+      "sha256": "f8c8e02cedd6d0860a41e32629f5fce56f54621dadc1258f5698c84ae9b35865",
+      "bytes": 1528
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseClinicalIds.java",
+      "sha256": "b137dae2d97908f48fa8a298c34db48f695416356d2990dada5053a14c9c6118",
+      "bytes": 1296
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseConsentConfiguration.java",
+      "sha256": "39e98f9d90e961ac7f510ed3061f59cf1fd5fcbd4b311664b3be7e51d92ac2ca",
+      "bytes": 2836
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseDentistSchedule.java",
+      "sha256": "1e8d2983bf37645ec6844efdcf3619bded9070ca5c928c5b49713593c0a8c248",
+      "bytes": 6714
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseDeveloperSessionConfiguration.java",
+      "sha256": "adfbbacdb30cd9b68835b173a67d7636786ad4035954672d6a9e9c5b7c201607",
+      "bytes": 1437
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseHealthConfiguration.java",
+      "sha256": "f0baf88436ca7850641da681458a8a5e801f17afd59beb1ddea5a22d7d0c9d7a",
+      "bytes": 2665
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseMiniBookingContext.java",
+      "sha256": "75d5db3f564c4cd2922d04d314f522f8f2686d63e80e40fcba59554b73cf3646",
+      "bytes": 4119
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseMiniBookingOptionsConfiguration.java",
+      "sha256": "a35d59086f9a8b7ddc660ab88f4e1605f9957fd6977768df80cf5d514c0b254c",
+      "bytes": 1217
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseMiniClinicDirectory.java",
+      "sha256": "041a8e170dc3666ab4fd54ed1ac8f097c052465b65dd01cbbd43bda2b7bd49e5",
+      "bytes": 3634
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseMiniExistingRequestContexts.java",
+      "sha256": "c9102e8ed0178f451ad6c7fab241b0c23e4a68e753c3053ea6c97c4be5767407",
+      "bytes": 2409
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseMiniIntakeConfiguration.java",
+      "sha256": "f021a0e6ad629284f2b79fbd9740b1112f5d10f3f99494258ba2b080341f6a19",
+      "bytes": 4674
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseMiniPatientScope.java",
+      "sha256": "fc646f16149751637c5b95190241d3ca5a21f3746fbb18c060435bd626072988",
+      "bytes": 2139
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseMiniReadConfiguration.java",
+      "sha256": "77ed958e10271a0df94603838cfd5c7664a7d1491493075388c5aee169174798",
+      "bytes": 4876
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseMiniRequestInboxConfiguration.java",
+      "sha256": "e771c84fb720c5e88391a5ab61549e562b2bbbfd3d54cfde360365a791db45b1",
+      "bytes": 1298
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CoursePatientAccountConfiguration.java",
+      "sha256": "45b334fbac48283509cb024fdc07ee2d85763155cef03c3bc5428ae7e4d7e54d",
+      "bytes": 6439
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CoursePatientIntakeConfiguration.java",
+      "sha256": "12f7a280d82c98139297c1fd708223aeaacecf2be62c1647f1b89dbf937e4179",
+      "bytes": 5122
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseProjectCatalog.java",
+      "sha256": "c7e71e999c8a371547915c287d32be4fe61e17973650e455af86e0fa3b9847d7",
+      "bytes": 1638
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseScheduleConfiguration.java",
+      "sha256": "baa30afa5c57f9f3cba3f7884072b742e930973a64cdbb4f1f7a18a80916a311",
+      "bytes": 4315
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseTreatmentConfiguration.java",
+      "sha256": "6b07bc8b39ee06c7f5bf1b548f80196193eeba9a536ea200d40fc67b7f444b60",
+      "bytes": 2875
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/CourseVisitDirectory.java",
+      "sha256": "b96a6056d823ea24640546dc9c09d707cf82dc844dbc2815d23013b46bb0e28b",
+      "bytes": 7197
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/ExistingPatientLink.java",
+      "sha256": "1d61e23f83905a9ee37a4da8129dc6d2512c66ad680a232e5e174a47ef66c836",
+      "bytes": 5965
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/ExistingPatientLinkController.java",
+      "sha256": "df6bffb801d6455a51a25e830b652c3d1d0681c5b9bca0b30633dbb572d6dee5",
+      "bytes": 2418
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/FormalBookingService.java",
+      "sha256": "b7ff7e730967587bc32ef063327823c94aae14eba8e29d314ec730a9f82be9b6",
+      "bytes": 14344
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/InitialBookingReview.java",
+      "sha256": "4370b8854a97f4f3d7d328a42966ce3d002effe3006d8299e1fb72ce06779bcd",
+      "bytes": 12225
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/InvoiceQuestionController.java",
+      "sha256": "a2b5e20db9e235a09658c3133c4a485062cb86582388a2136170f34c2cee6153",
+      "bytes": 9326
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/InvoiceQuestionService.java",
+      "sha256": "6213a3d026d3d05a25978fbcd4ed9edd668b89f6b545f0fead0f3aafa0e4bb71",
+      "bytes": 27442
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/InvoiceSettlementController.java",
+      "sha256": "db3b8693feddae34f7a22e676091565a8ab7b839490fc7d53d8791bd6479ad99",
+      "bytes": 5987
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/InvoiceSettlementService.java",
+      "sha256": "e923d317849d93a83d6e5e8816cd474d350c1d007d2a4ccc7b8340a6f4c8c0cc",
+      "bytes": 14864
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/JdbcMiniBookingSource.java",
+      "sha256": "02e393efffa78d3dbfe39a5f7919d7a6f8b05b5def3be34ee56929ce25c0d677",
+      "bytes": 4565
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/JdbcMiniCancellationSource.java",
+      "sha256": "5cb9202b81fd06a72f71e07d3910023a509030f389938be3f4d802e023b5364d",
+      "bytes": 4806
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/JdbcMiniChangeSource.java",
+      "sha256": "250ab037ee490d5f37fb254228598c37d8f90f0ab5d37834a66194f063ffecc4",
+      "bytes": 4670
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/JdbcMiniPatientSource.java",
+      "sha256": "e67b2923a522e17bc90a97bc0f3e6b92f8fe851055b90bf48113561bec1f8374",
+      "bytes": 6173
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/JdbcMiniRequestIntakeStore.java",
+      "sha256": "f195924c8d601f9405a98db9ad4f7f4879f99df9629bc17d289a0479362438d8",
+      "bytes": 7240
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/JdbcPatientAccountScope.java",
+      "sha256": "37a3d45f09c676eec5f3edf171002ab87d8ad373577f983aaf547d40fbe11f30",
+      "bytes": 1805
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/JdbcPatientAccounts.java",
+      "sha256": "8fe4e177203b4a77832f08309104ea22abfc04c16d49eae69945883193f82f26",
+      "bytes": 1824
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniAppointmentReadController.java",
+      "sha256": "3618ee8020450fc21acc95412842b54cdda3485bd31a151ecb3fe5c92fa2fd2a",
+      "bytes": 15363
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniAvailabilityPlanner.java",
+      "sha256": "3c6d54f9ba0fcf128d73ab3e5fe80ae80c7e0642a7af257c251ce56943413b31",
+      "bytes": 2620
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniBookingOptionsController.java",
+      "sha256": "3b91b09351632faead64690760cae0235d8a325b344bb87aca70b332912bb05c",
+      "bytes": 11934
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniChangeSelection.java",
+      "sha256": "a6c6260031fffc4ce9e71ca21633623a23986e3391e90f5337fe88a2b0e0a487",
+      "bytes": 1556
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniIntakeController.java",
+      "sha256": "48de57526709b592f9a39c20ee05957764a0900bf0f242967b95d37d9152ae9c",
+      "bytes": 2938
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniNewRequestIntake.java",
+      "sha256": "a69de45fe9c723d8bdee614fa8c303b20f95db41885a071fc4b63c39fed8111a",
+      "bytes": 8188
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniPatientProfileController.java",
+      "sha256": "97f937e6dcd27e1af892453648909bc01476d38d63f6b4dcc5eff6495af413b3",
+      "bytes": 4213
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniRequestInboxController.java",
+      "sha256": "44fed3f53bbbb884d9ddbc91d0ab42419f7d90499de2e0d4c0da77f5f115798a",
+      "bytes": 1507
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniRequestInboxService.java",
+      "sha256": "495cb8cb4b53c5e78415b1baeaf374d7f3cf6d524413e828ce73b4479e524111",
+      "bytes": 16878
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniRequestSession.java",
+      "sha256": "236ffb597a309ff7f4be894caad9388efe408c8e9fa0fb0370c34f083fef02a1",
+      "bytes": 2181
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniSelectedScheme.java",
+      "sha256": "03b1c17921086556c9f62410fbff8da72d4c595bb4e9a0d6dea943e055e285ad",
+      "bytes": 3389
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/MiniVisitDetail.java",
+      "sha256": "8f5c211f1c72fdc233eec7d82437e5e2f7adae8277e89e8d7354d80f3ea691fd",
+      "bytes": 4814
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientAccountBinding.java",
+      "sha256": "bd2d9aec155ef7118c16d56f6d62194e4b1668a0dfb3a49a578132a33867b902",
+      "bytes": 2699
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientAccountBindingController.java",
+      "sha256": "06d5c587a67270bf42fc6b78a5873221a4cf68c7d1de17f2c8da477c267b90cb",
+      "bytes": 2112
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientAccountController.java",
+      "sha256": "0fea8d27107bc1f46d6837d57d1a30cc152c8210c31babb4832983bbbb1868c1",
+      "bytes": 2618
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientAccountLogoutController.java",
+      "sha256": "5598c40511838eecee701a8c608f485846adf1f69cb9afbda415b94a71a2a965",
+      "bytes": 1127
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientAccountPasswords.java",
+      "sha256": "6c1410ea8b1d2e73bd7d8ba55e239b74e31ae69ed9c08225d47c7f6bad3bdd26",
+      "bytes": 2210
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientAccountRequests.java",
+      "sha256": "6ea350fd43cef176ac88ce6f4dc19a35a5f658dc5a10a8a1a4defa9578680103",
+      "bytes": 3698
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientAccountRequestsController.java",
+      "sha256": "e8a7431ebfd19b55269844d778ce44384ca6a6a280a9103285423456251e031b",
+      "bytes": 2094
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientAccounts.java",
+      "sha256": "0248a8379a59b3531c9e0bfec6e2a2afc95186e85b9d7510f1a79cbe7e11f6cb",
+      "bytes": 2846
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientDirectoryQuery.java",
+      "sha256": "080a1c730b834e29c0d1f0136ab291226634eeaf26db9bfe818a8a3f1a59dd33",
+      "bytes": 2911
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientMaintenanceAccess.java",
+      "sha256": "fabda345a47eaaf34d3f0df5a3d94886baefbeb6451e91ca983d2592974138b1",
+      "bytes": 2997
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientMaintenanceController.java",
+      "sha256": "164d07d1564d1ce368800fc7983091843c33f8e96bc51fec379eece95cf41242",
+      "bytes": 5875
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/PatientMaintenanceService.java",
+      "sha256": "df5a799a95d77b59f3228f23089adeaac48bbca21c6364844a98b959a1c29620",
+      "bytes": 12764
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/RequestDecisions.java",
+      "sha256": "1ff01f56b3fdc1ba11f5e1132263c05c8e7298d8c2068dbf5ad8b10472369b32",
+      "bytes": 1092
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/RequestRejectionController.java",
+      "sha256": "c86228340e03beda0cff3402f776127a73df18426b021166229beb589d8148b3",
+      "bytes": 6897
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/SyntheticBookingConfirmations.java",
+      "sha256": "95ad4a3dca8508b3208d3d1661c48c30c6f9a884e1842ba662bb379678c5618a",
+      "bytes": 2319
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/TreatingDentistAccess.java",
+      "sha256": "cc1d6917087303e8cdab1dc00080176da5f5a843d34eb28c3eca1887704a8f7e",
+      "bytes": 1378
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/TreatmentInvoiceController.java",
+      "sha256": "b222154449f3bdfa9d411a9a8457dc1b3dac1fca1bed1f51a6da225e6db3723b",
+      "bytes": 4507
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/TreatmentInvoiceService.java",
+      "sha256": "0440d82d2a9aa5db431be92d395e2eb90a67824f87c8fa889e40098778a098b4",
+      "bytes": 13731
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/VisitConsentAccess.java",
+      "sha256": "c7a124d5bea7dc0e5fba567cc23bfe360603e2cf919c3a6fdf51ae3ce7a020c6",
+      "bytes": 1653
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/VisitConsentController.java",
+      "sha256": "ba82ad0b38d4172c3c87b5904cc2e6691fdf647a0f422de72b2638ebec8dbc62",
+      "bytes": 6358
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/VisitConsentService.java",
+      "sha256": "546622d51a9b55bc7e8413c890c64c69d340f1fb6e5bc021e8c621a6a8e56d00",
+      "bytes": 10743
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/VisitHealthAccess.java",
+      "sha256": "53c533802c17cd79dfb039433fe333953dc1bdc18c48fe0170760d5fc192af46",
+      "bytes": 1646
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/VisitHealthController.java",
+      "sha256": "8e5630fa529152472969290770da72f01d4ccd950b39bd421823c68537e4ff30",
+      "bytes": 5584
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/VisitHealthService.java",
+      "sha256": "38e74631f6851fc39ad12ee5800382b75d528abbbd514ec1daaf6c8896028cd8",
+      "bytes": 10556
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/VisitTreatmentAccess.java",
+      "sha256": "9f9ab434b5e5af9c42b41704894ed222f8296a505a7e6f4fe4ea68884c53d892",
+      "bytes": 1661
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/VisitTreatmentController.java",
+      "sha256": "ce9c8ff459c72f747b0c5945ed9b91176064261a90f77f456e9ce9643b92cc4e",
+      "bytes": 6341
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/VisitTreatmentService.java",
+      "sha256": "a522c32fe9c218c6452a86e6b967e1d8a0a563555026a7728de810807a67d4fb",
+      "bytes": 14729
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/WeChatCodeExchange.java",
+      "sha256": "921451dc8597aa704dbec63a5db4e0304075b1036b402a52e8b33f57d0979cd1",
+      "bytes": 3540
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/appointments/WeChatCourseSessionConfiguration.java",
+      "sha256": "4635013fe075ab6f6e662dc41fee82916168c2bf1268aed9599471e9020fd5ae",
+      "bytes": 2292
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/classroom/CourseStaffLogin.java",
+      "sha256": "e10e11616f6aedf3196e87eb7cb6c6e5daffbbe97c9ee75e1390585efbaefbc7",
+      "bytes": 7558
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/classroom/CourseStaffWorkspace.java",
+      "sha256": "21a56f6cc347dd019f9f97574f1694adc09ada0b3420b384dcd4b63f137fc741",
+      "bytes": 16017
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/duration/DurationAccess.java",
+      "sha256": "7653686e31b7bf7deb95ad77ef01439e5ddf8dd52a10317f0cd39dc2e141800a",
+      "bytes": 286
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/duration/DurationAccessFactory.java",
+      "sha256": "6a660a719e5712d98e82550949be660aa7a4c21c5ce2d73a4e29bcb942a6c3d5",
+      "bytes": 1696
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/duration/DurationController.java",
+      "sha256": "d7dbe260f3fe3c8690bb8836aaebdabb8df08d2a62f4477d821c8b73d17a177c",
+      "bytes": 6201
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/duration/DurationOperations.java",
+      "sha256": "abd96d305ad200ae9d4bc7fe40273b5d1b6ab6f002ddde90420629d59f325c93",
+      "bytes": 793
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/duration/DurationPolicyService.java",
+      "sha256": "6d1179447c21797594c5c89f6a47f8ec77f7055efadc42a5a455086c4fed6ccb",
+      "bytes": 9298
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/duration/DurationRepository.java",
+      "sha256": "a720340a00ce58042cc76c0ce89d69e20b3080568ebb6adcecfb453ba5faf4ed",
+      "bytes": 4067
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/duration/DurationSuccessVerifier.java",
+      "sha256": "4534b924b46f1e12eb1b0e7d91d84976dfc965a30b8a0484b47f92d01849e9d5",
+      "bytes": 2364
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/ConsumptionCostConfirmation.java",
+      "sha256": "d9984662f51556e67f08e6cc5c6e1d6a47cd7b48cf6238201282ce7e80041b13",
+      "bytes": 5267
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/ConsumptionCostController.java",
+      "sha256": "c58365d27dbf36cd9e50c4ff63661ed0a3518ba45255bdc59fd33d458c7bbff9",
+      "bytes": 3573
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/CourseInventoryConfiguration.java",
+      "sha256": "8251ba17a79e9506b24ca7b2739c5b1115c7cdaa631ffc38b5d3cc3621efa21e",
+      "bytes": 7388
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/PurchaseRequirementController.java",
+      "sha256": "4ad89c77c388961e05fb0993d5911337a2e4361f21779b5051a2fade54b399e3",
+      "bytes": 5766
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/PurchaseRequirementService.java",
+      "sha256": "1473a053ab7b82adb0fca1576c180993744673892eaf60d15605e45523719002",
+      "bytes": 10259
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/StockInquiryController.java",
+      "sha256": "63b110114fcbc30b0122803253ce61a24ee9d5cb6bf73ca542f385738538318b",
+      "bytes": 4071
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/StockInquiryService.java",
+      "sha256": "51993f53cf129b0a8eed9932adbd3c8307680997faa599561603ac6351bde4e6",
+      "bytes": 4823
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/SupplyConsumptionController.java",
+      "sha256": "9e02322942ae1b149d569304ed16f12359e8e197a744d7045c6dcf0d0cf0eb75",
+      "bytes": 5120
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/SupplyConsumptionService.java",
+      "sha256": "a86f5cb9a94429c34634d0cbde5e09944489acc336624fac54f8707b386be01f",
+      "bytes": 10727
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/SupplyReceiptController.java",
+      "sha256": "f690bdd9e0e85296053c8ba31fc9a06a6174ced9b0fce8eb7b4e36d7c6ff6263",
+      "bytes": 6036
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/inventory/SupplyReceiptService.java",
+      "sha256": "17d08fc9f49132ac4ed5d480e92dbc562674276ed9ae148c6a6296f53c4acb74",
+      "bytes": 13665
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/platform/TechnicalController.java",
+      "sha256": "d52708ec45b5fa50260c48f63c1d30a73b8851d36be2bf19804b01be40d32a21",
+      "bytes": 442
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/platform/TechnicalErrorHandler.java",
+      "sha256": "0d3de6c8a9f2f8e606e9b50e7e74c1b449706b735fe796fd67d853d6924dd87d",
+      "bytes": 1323
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/CourseQuarterlyConfiguration.java",
+      "sha256": "f280e9f97a7b7f8fad8b4a65529dc8cc7dcc4b37e44ae633dedbe984f5cce35d",
+      "bytes": 22678
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterExpenseCatalog.java",
+      "sha256": "b95901ae5a475ec0f358bfecd17eb16f795ab13094a1397e5d85725d35d9a404",
+      "bytes": 7061
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyCalculationController.java",
+      "sha256": "83a3d3431bc6e9caa44392986a3386a498988e2702b6586441a423f84d69ae3f",
+      "bytes": 7082
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyCalculationService.java",
+      "sha256": "c64899f762b6d02bf17dd87df767139083e88b876a9119bb49fdb8da12ba64d6",
+      "bytes": 18408
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyFinancialReviewController.java",
+      "sha256": "8e61a092948a7e2e7be3f388f2c4c09b8afdd0c0a2a0a5def7c14639c8f0d767",
+      "bytes": 4528
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyFinancialReviewService.java",
+      "sha256": "4fb1affa1f96223d464241def366ce56bfc4f916a2d6f36ebad5964c0b40c82a",
+      "bytes": 9898
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyIssueController.java",
+      "sha256": "149b3127ce02dbf719911e7feb710cfc1fc8c7b4bb1084775fa4b779836445f4",
+      "bytes": 6277
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyIssueService.java",
+      "sha256": "bfc70c3caa339f488b7f5854a0d90c848a8aaef3c594a23eb6852348de381e08",
+      "bytes": 14173
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyPreviewController.java",
+      "sha256": "25b71b79d7687f88517f1a70c18d711c597d8b3342c0ce9cad6383d809e6b3d0",
+      "bytes": 4979
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyPreviewService.java",
+      "sha256": "c987295cf208a309f254790ec0a83c3f79dafa571f004179003a016580f17e76",
+      "bytes": 25820
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyRecordsController.java",
+      "sha256": "1e2a1d19502aafd603df63f80ca7a65c3afd263a18802253ea1176e6b9d12b31",
+      "bytes": 2783
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyRecordsService.java",
+      "sha256": "5a2eaea96815f9e154e67e85fc3d936d970c138bbafe67bab307b1acafa55d40",
+      "bytes": 10567
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/quarterly/QuarterlyWindow.java",
+      "sha256": "e3da55b6fb3958bbeba8b41dc1188ca9c61a61874b838d9f063cfe4b551b9f66",
+      "bytes": 807
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ActivationSubmission.java",
+      "sha256": "cafeabcf7ca96fea8187dec3f33581197399d93fe4cef1599612fe9aafd8c0fe",
+      "bytes": 3601
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ImpactAssessmentService.java",
+      "sha256": "48553808d8d4aee5da2f01314d88f7551e94228d33b6646d91aa4a0f2fc3b940",
+      "bytes": 6504
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ImpactReportView.java",
+      "sha256": "7f98ce810d0f0379dc233a4c58a0e8b865f277ed8c10f1a796c9a87a50c10b3b",
+      "bytes": 2298
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/JdbcScheduleStore.java",
+      "sha256": "e4beff81e97e14193d8ed34e2f9b9ab922a1c382cb2e9ad55a248478de8276b0",
+      "bytes": 9461
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ResolutionChain.java",
+      "sha256": "ba4eb8bd81f09ed39cbb5e87bc9a2074ec522ab3c253dd348c0ca9245e876b20",
+      "bytes": 4268
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ResolutionController.java",
+      "sha256": "d4a57dfcb741bf586aaf158417c8b0d502f529239198736703d8a39a031ec054",
+      "bytes": 12960
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ResolutionHistoryReadService.java",
+      "sha256": "074c805cc2c3ad43be077abb32e97a323af38399feefb8c2cd9778876b083058",
+      "bytes": 7688
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ResolutionHistoryService.java",
+      "sha256": "4497a4e505794390bb50a173362d374fc39bb8238a1e3a2bfedc43db2b259362",
+      "bytes": 13587
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ResolutionRepository.java",
+      "sha256": "1c6727c4fa8054df25ccbbb6a09afa7dedc9205c03fc260358ef01406c24776f",
+      "bytes": 6663
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ResolutionSubmission.java",
+      "sha256": "93c68d85ec8f41d5b3467a5028d98f61679a0760e27762ea2a9dc9c52664d996",
+      "bytes": 7110
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ScheduleAccess.java",
+      "sha256": "5bc795572cff22f1c8f6a4ee9e55e63af3c928ecd513c7d0cf362f415778bf6e",
+      "bytes": 379
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ScheduleAccessFactory.java",
+      "sha256": "3ee0b11e99afa152838bd7f1d03d4f3d75187a9e76d8394c0dfa297aea487e30",
+      "bytes": 8512
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ScheduleActivationReview.java",
+      "sha256": "6e850bd02024a454c2c5e50559c61b852cbd2bb337822c609e3031aad13d21fe",
+      "bytes": 1986
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ScheduleActivationScan.java",
+      "sha256": "d9c32b48c1fb9d6c4c01fec372e4115f594d79a406817626a64a946baf1ef2c3",
+      "bytes": 5462
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ScheduleActivationService.java",
+      "sha256": "9b79721d86e5f2535a4744af15d2665af96afb03fbe167609bb09da2b019fc25",
+      "bytes": 14661
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ScheduleController.java",
+      "sha256": "ec089089a947834b31eb38b3f748cd38d6e52f84b00e4480974956dfdea1e2af",
+      "bytes": 10138
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ScheduleDraftService.java",
+      "sha256": "7c6625c89bc49e674930e03b3da64b16feecda705588b186116d6a687d8048f6",
+      "bytes": 30248
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ScheduleOperations.java",
+      "sha256": "3af1760c773e3b3813ff3dca4b57c240b93bd79287855ce3ab3af02e9dbf654d",
+      "bytes": 570
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ScheduleStateToken.java",
+      "sha256": "aefb6aa1f9ccb14a52cd57713a41713a7fce4b358febbae171c6d711b7784710",
+      "bytes": 2595
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/scheduling/ScheduleStore.java",
+      "sha256": "4f0d934f1bce17f27d69403853fcee625b1cc85a8b7f5a7f60e3a7568100e859",
+      "bytes": 1410
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/audit/AuditDocuments.java",
+      "sha256": "eb09b0f9cd060d75eb7fd7c9b8aa80c28f5d1c7e3e7e2f4072e38e06b91b1782",
+      "bytes": 12823
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/audit/AuditStore.java",
+      "sha256": "d3d57b997cbe6f27a6f2a72cabf9cfac7d8a0ef442692add247f2b4ee197a86b",
+      "bytes": 5371
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/audit/CommandRecovery.java",
+      "sha256": "564ba8bad3e07a51fc74a85c10dd67e7e1b617bedd8581129afc566108015e00",
+      "bytes": 23991
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/audit/ExtensionAuditService.java",
+      "sha256": "dfac43860305ee3d7de8545aca382d7eeff4e29823eebd7369d7eebc97be7098",
+      "bytes": 601
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/audit/UcAuditService.java",
+      "sha256": "4a750f9770842ed4508dcef15e34831e92369a6b5f4f37264d2bcfed138a8a2d",
+      "bytes": 2402
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/config/ClinicConfigurationAdapter.java",
+      "sha256": "d4f429528d921e5421d17b45043564975e3ffc31ee7898488876272c87139320",
+      "bytes": 1088
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/config/ClinicDirectoryProvider.java",
+      "sha256": "4f75cefc9f7b7841c488a7e0904134519d81839a9260e1fe7777b7d8b9e306cf",
+      "bytes": 192
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/config/ConfigurationReadiness.java",
+      "sha256": "ee527dc6f6d2b00e503a50005de48066d5833d2c1fbe42dae7f7d50e95e4597b",
+      "bytes": 1369
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/config/ConfigurationUnavailable.java",
+      "sha256": "844e97cfb03d34597f7382e73c0eab6014f28cf183dcf74e0331ac22739d1ecc",
+      "bytes": 181
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/config/CoursePublicOrigin.java",
+      "sha256": "ca42f242ea483ba91b87bc167c2b069eac52d84591e56226d9c4065386f96804",
+      "bytes": 790
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/config/DentistConfigurationAdapter.java",
+      "sha256": "2514fb0419c18a1bec71af210c15b21eb33ca507fed5df1467f66cdabebb9aa9",
+      "bytes": 1211
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/config/DentistEligibilityProvider.java",
+      "sha256": "c5dee858ca86d18a9f3e3bf50574bf6056ef5dfa70f186a50254114934b89b6f",
+      "bytes": 226
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/config/JdbcReferenceDataReader.java",
+      "sha256": "400516288d2f7fa9d4c46e2bab2414d7c275d0138e833ddaab829d6e8ad2e49b",
+      "bytes": 1177
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/config/ReferenceDataReader.java",
+      "sha256": "dad196752b253d420542946324aeda130d4c19d53bee147b71eaca4f9b968448",
+      "bytes": 253
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/config/SourceStamp.java",
+      "sha256": "ce4bb588adc8027b2caad4197142ce4f0427206a83c5d999c68e652bb55e29de",
+      "bytes": 463
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/db/JdbcTransactions.java",
+      "sha256": "72a5a471948c84cb8a85989a3ead3c6dfae5501df6eb098d9e44595db76b3899",
+      "bytes": 2930
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/db/P0DataSourceConfig.java",
+      "sha256": "8fd8be0a440d5aca4161dd5dd563392ea74e5178d98c800fe4de9f238f0d3fb8",
+      "bytes": 463
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/db/P0DriverDataSource.java",
+      "sha256": "a47f6132a05b3641579a9b7cb15093bb309556f96fba2fe0f0f4e039dca17b83",
+      "bytes": 3494
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/db/VersionedMigrations.java",
+      "sha256": "a5e77de1dd0aebf143c2bf7f7d426924ace3b4a106e7b5a46cc2ba028be6eb33",
+      "bytes": 3000
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/resource/ResourceLockCoordinator.java",
+      "sha256": "eb84fd801f3a12e80478a875363cce0b82128270d6759d3c1565b5fea2780228",
+      "bytes": 5553
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/security/StaffAuthorization.java",
+      "sha256": "ab68a04668875f7ca31f8f98332a2bcadf7313f50a81ed9f9e2f0dc439a7260a",
+      "bytes": 3382
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/security/StaffBindingAdapter.java",
+      "sha256": "8d428678224da3834d11eef3e10a9ba2567b12c35f986a143a88879028222be8",
+      "bytes": 1388
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/security/StaffIdentityProvider.java",
+      "sha256": "8234b536f120a0d51f42f33b3b7e84314b92131a2ce71af7a7104a040ebf0821",
+      "bytes": 236
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/security/StaffSessionIdentityAdapter.java",
+      "sha256": "addcf71579968d244799e6c45f2ea9189a43c90be782d6761216bd59ebbe0b88",
+      "bytes": 1791
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/time/ClinicTimePolicy.java",
+      "sha256": "7ebf1e4b63fce914d66b8f89b973f4677ec09ca5e7441904d8bf5d5f949f422d",
+      "bytes": 2226
+    },
+    {
+      "file": "backend/src/main/java/cn/adc/shared/time/StrictInputPolicy.java",
+      "sha256": "cd2cc4daff9430131c8c1fa1e64847ffc82e722fc4fa02b4e3b7a09c283f1320",
+      "bytes": 1580
+    },
+    {
+      "file": "backend/src/main/resources/application-course-demo.properties",
+      "sha256": "01ebfd61ee04b54636a4b459ce37a486bb17930f6e8037b0e247f27f406652af",
+      "bytes": 166
+    },
+    {
+      "file": "backend/src/main/resources/application-p0-test.properties",
+      "sha256": "5c6aea520f6226ab48be92848e7c5e90aee0256a232150ae134879adc1c50d7d",
+      "bytes": 191
+    },
+    {
+      "file": "backend/src/main/resources/application.properties",
+      "sha256": "ca279c7a55dcbbfcaf974b3175acaf5a5619b2d6746d123538ec08213ab8009c",
+      "bytes": 291
+    },
+    {
+      "file": "backend/src/main/resources/db/mini/patient-course-account-grants.sql",
+      "sha256": "3f84807b358c3d163609e0ffcacc25909e3f398a986419416d8853c0e256d538",
+      "bytes": 1108
+    },
+    {
+      "file": "backend/src/main/resources/db/mini/patient-course-accounts.sql",
+      "sha256": "a9a980f414419ac1d5b91c0a52da483eba6714fd1b3408a22669afd22f1759d7",
+      "bytes": 1447
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/README.md",
+      "sha256": "17015eda5a2b68387f51517971c3f5c6770891a69a732ea33b3611e0a43a868a",
+      "bytes": 1835
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/V001__original_p0_tables.sql",
+      "sha256": "e4a21cbd68d8d4bd80b0bb44c978001d765a19e9b3a69ba11f4f9ccd37716e94",
+      "bytes": 8393
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/V002__duration_versions.sql",
+      "sha256": "1b9fbb87e30bae84c3cd9c9614e55c45a1e9885f5350c982ec216bfc9aba26f2",
+      "bytes": 1694
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/V003__headquarters_audit.sql",
+      "sha256": "57f5aa1dcb438d3cc1f09ae1f1b607b9d495c1bbaec64bd55752062f53e62a5e",
+      "bytes": 6268
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/V004__minimum_test_permissions.sql",
+      "sha256": "784779c30ce29d91fc1885362c2479a6f06df3b627f05d2457c74a48066522b8",
+      "bytes": 679
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/V005__clinical_and_billing.sql",
+      "sha256": "52073ea2b87b09104e90b31e18717a5b2e5f3b469e0d3ce197565c309bacbeaf",
+      "bytes": 4925
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/V006__inventory.sql",
+      "sha256": "8d39dc87763684a33f6df6a89982347297d9258ee03728708b410188b8a2044f",
+      "bytes": 3292
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/V007__quarterly.sql",
+      "sha256": "78edd92d95ace3a476283a7e5fb79a3d308f1bab9e774fd955c3d87ccb42b393",
+      "bytes": 4858
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/V008__course_roles.sql",
+      "sha256": "9a448978d6d81099b7890f923a7789a07f998a97ba02fa9570a641ec43a4cec6",
+      "bytes": 6371
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/course-manifest.json",
+      "sha256": "0d5ff011f93cc8af92e4930c473b8ee41562743863122e072aa0d64e84f9aa33",
+      "bytes": 4001
+    },
+    {
+      "file": "backend/src/main/resources/db/p0/manifest.json",
+      "sha256": "f60158963a759bc9806e0d52f52d2229c5e495ce5538a0de1cd8e50243bc641f",
+      "bytes": 1248
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/P0ProfileIsolationTest.java",
+      "sha256": "ead06aaab022c9b5f29cc428c25a4b6fa1862d06dd3518c01f7b590c8232bfd3",
+      "bytes": 1359
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/P0SchemaContractIT.java",
+      "sha256": "325c9984b334323ddd48f7cbe0e82272fd6634c46effc2584f3e7dbb70d4cdf5",
+      "bytes": 2736
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/PgITSupport.java",
+      "sha256": "5d5b68724bf4e38a18522a62e069bdb0898747c03442ae2d67aaa5bbf8c7f5df",
+      "bytes": 5798
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/TechnicalHttpTest.java",
+      "sha256": "3b6e7332447a71c62347c44d2fc99a56aab84139078b13212981bcb9d471c030",
+      "bytes": 2803
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/TechnicalUnitTest.java",
+      "sha256": "1d1165e145c2a2542f7fe56f43030bbb4e0ebfe575657082dda9bc04137a4311",
+      "bytes": 1548
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/AppointmentCancellationServiceTest.java",
+      "sha256": "ce54d14e6c9c973a7db5c9250b81083cab80f29881a7197324fae34df65cc18a",
+      "bytes": 12910
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/AppointmentChangeServiceTest.java",
+      "sha256": "5fd2fe6c733ae4156edac252fe8a9de6d9f82a6908f30f58a918ae7993a79337",
+      "bytes": 19235
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/AppointmentConcurrencyIT.java",
+      "sha256": "36c83ca8d39cccea43b8ccc9e1990f71769db8054b3187c2b9b2816201f971c3",
+      "bytes": 2883
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/AppointmentControllerTest.java",
+      "sha256": "68870bae59b82a63ab89abb22e693a8621679ac4825a64eeeb160c4155c8c86e",
+      "bytes": 7657
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/AppointmentEvidenceCodecTest.java",
+      "sha256": "54f43b36c96ea88fc95f1e625af2a3d9d828e91c4d6ed4676f9dfb35aa002502",
+      "bytes": 3527
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/AppointmentFlowIT.java",
+      "sha256": "e68261309129d4ffcbee2639b08c0047cd164eef2cfbdd5a6f86d1cc9d0a7108",
+      "bytes": 46043
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/AppointmentReadServiceTest.java",
+      "sha256": "da7d8487f12c7f8e3ee2ba150548837ac652e1899bda8f0a4b0a896133aa6cb5",
+      "bytes": 13904
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/AppointmentRepositoryTest.java",
+      "sha256": "57e446dc4cbf1718afbaa76e3657de92ba91351b30662158ae6f9ab8754f2c46",
+      "bytes": 15209
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/AppointmentResolutionEvidenceTest.java",
+      "sha256": "81841e5a939755d0137bf61ff71cb047645fb1d3414ba1cc4b091c1522d3b69a",
+      "bytes": 983
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/ArrivalNoShowContractTest.java",
+      "sha256": "1695adcf54e20de70a61d684d5d9cbae7c8e8b7fa99fe1b930c5eb2ce828e332",
+      "bytes": 4986
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/ArrivalNoShowServiceTest.java",
+      "sha256": "85fa35665e2402c6bb5f86a09513180dd422143f742a8ebd06284ed272155a6a",
+      "bytes": 10042
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/ArrivalNoShowTest.java",
+      "sha256": "54055f250f774066b6705df5f68746e7977d39063079795b602cf081cc764a5e",
+      "bytes": 17630
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/BookingAcceptanceVerifierTest.java",
+      "sha256": "b13f61e9e52da276a254a2dc2a36b3038ac2404c7324e81d277a5a3ed2600e30",
+      "bytes": 8032
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/BookingInteractionControllerTest.java",
+      "sha256": "9b55fbc10289420be3228cca78e47d0b9808ca63f10e0f11eba12f712e21256d",
+      "bytes": 4767
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/BookingProposalServiceTest.java",
+      "sha256": "f90160c5dfa9c7b63f3251c333ffc9851208d711bbd153fa23b6bd20fb7e4a50",
+      "bytes": 5732
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/BoundPatientRequestTest.java",
+      "sha256": "9a25357527d0d29d184c115b4a129450bf271ff05b075ddf3d0594d0a8984b09",
+      "bytes": 1365
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CancellationContractTest.java",
+      "sha256": "c41f7cb7baa4fd8e4057c5222c929590892b33d3cd28c4bc8861f82914c463ac",
+      "bytes": 3440
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/ClassroomBillingHttpIT.java",
+      "sha256": "d7a8a243f05f4530350f49019e5c6696498190b44392ba148cd0b53e93f33d4c",
+      "bytes": 114840
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/ConsentProjectScopesTest.java",
+      "sha256": "b7ef181c4092baf27f04526c94bd6dfe258e6f91d5abe61390c265ce64775f1a",
+      "bytes": 2540
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseAppointmentChangeTest.java",
+      "sha256": "d6a6999a75fa5cf83365cfc133215189770150a9822f91c759e1fec0af476fe5",
+      "bytes": 3296
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseAppointmentReadTest.java",
+      "sha256": "7ba11da1e76dcff7d063ed382985ff7043c68fa076b95de2c5d6ad7b9010982e",
+      "bytes": 2652
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseBillingFilterTest.java",
+      "sha256": "368261a583463dd867fbdc4d4d71f22386f34236753d47d0ea8bb0dedc985acf",
+      "bytes": 2552
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseBookingIdsTest.java",
+      "sha256": "da5ef093b768808d16ce3aa88861d9e4715f5c328cdeae0b8771be64e51c7a3f",
+      "bytes": 2014
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseClinicalCatalogTest.java",
+      "sha256": "70bd10c5b8fa13579be691a755380c8589659787b1872e3c12e5f0dccb583707",
+      "bytes": 2511
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseConsentConfigurationTest.java",
+      "sha256": "0b58655a8087591d038500402d29f4352f9bcd392634bdad09dfbad866f6c911",
+      "bytes": 3182
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseDentistScheduleTest.java",
+      "sha256": "1d3f5c14ef76a5016649d2bcc1e96ef894ce91a3b20fdf8f8dd5313ac58d9e32",
+      "bytes": 3130
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseDeploymentOriginTest.java",
+      "sha256": "1c3c5e9075ca4881346d6318e9decfe22ee1e098a5654664f7ab48bbbfabeb2d",
+      "bytes": 1763
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseDeveloperSessionsTest.java",
+      "sha256": "7d809f53a40ae334b931714cd887ed95f70c1a69a3b40a7529d4abd864beaa18",
+      "bytes": 1633
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseHealthConfigurationTest.java",
+      "sha256": "97f51cf231438c1b29609251f1b040a6b2b434e9e261d26656de9d21aa8f0892",
+      "bytes": 4455
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseMiniBookingContextTest.java",
+      "sha256": "50c3ec61a23a8e3bc9496cf51e8ef89bf1b21b05642d46c43a78ee080af29715",
+      "bytes": 2320
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseMiniExistingRequestContextsTest.java",
+      "sha256": "4b978b657a1eccf8304e9d004343472938db8786f88fcf7d758a7e5ba6fc7ea8",
+      "bytes": 1473
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseMiniIntakeIsolatedPgIT.java",
+      "sha256": "e0e14eef1f3b162fdeae182d1e9152fd99c1f851c4bc9b3ed5549e1c0adb3299",
+      "bytes": 9406
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseMiniReadConfigurationTest.java",
+      "sha256": "d5d15f7af5e9e188f48fda7ec907075254bcde217031d96088056bb41b063fd1",
+      "bytes": 1915
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CoursePatientAccountConfigurationTest.java",
+      "sha256": "360522485ee3b3c64a95da9d69a21b879927b635a24e90a1c48edc1fff0ff300",
+      "bytes": 1244
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CoursePatientFlexibleInputTest.java",
+      "sha256": "15af412fec6239f9e223f8f6677df7cfacbf9720e037393241b93c76fa5ebb38",
+      "bytes": 1762
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CoursePatientIntakeTest.java",
+      "sha256": "5affe903e6ad0a58a308d69bb2c73999de549c3cbfef2b85505ecf16c519277b",
+      "bytes": 1859
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseScheduleConfigurationTest.java",
+      "sha256": "91de93966a3ff7e241b7a2e714d72ea97c048be2ddae423e21bb4aac43ec0171",
+      "bytes": 1727
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseScheduleDirectoryTest.java",
+      "sha256": "43bfeb29b0f7175c4e1e89bff0b165163818d6dd8b1d4ca89df8741a29eaaee3",
+      "bytes": 1028
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseTreatmentConfigurationTest.java",
+      "sha256": "b3d77981505a2a453f7708d52b63d83a653368ded231471824f345b69b7512dc",
+      "bytes": 2868
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/CourseVisitDirectoryTest.java",
+      "sha256": "796b03e47d8044995aeb9148de5ae8851ac036336db30aded700f88e4fc1ef43",
+      "bytes": 1693
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/DoctorAppointmentLookupTest.java",
+      "sha256": "b07bea9f1c1a074c6c8538131be3c04a948934d0bed36e114a5d96d86f8f3af9",
+      "bytes": 6300
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/DoctorAppointmentTimelineTest.java",
+      "sha256": "37b7cf26312ca6d69b858e0fde8a493e376cf17b490aae64ba6b4d439c72c83c",
+      "bytes": 2762
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/ExistingPatientLinkControllerTest.java",
+      "sha256": "1bff7db32071523da13e571cc3bfb972d7b824b39132330c970b6ad60b0791c9",
+      "bytes": 1157
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/ExistingPatientLinkTest.java",
+      "sha256": "804defd1d261061d1552e086f5e4d8495c11239b6a558cf2b1ac7333cb3fc053",
+      "bytes": 3891
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/FormalAppointmentTest.java",
+      "sha256": "a92a05829fbfe257c38004ee31755f4b3efed469cc36361d1d10a8610839f094",
+      "bytes": 6434
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/FormalBookingServiceTest.java",
+      "sha256": "9f92c6663f793ca1777e94d5b227cee8d25826022db8440fbe8ca87945185b4c",
+      "bytes": 24922
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/InitialBookingReviewTest.java",
+      "sha256": "70607ec0fca771aec2cb2f6503f1aa839fc2702a2ae5cb9f16e03a97e4a3f822",
+      "bytes": 19227
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/InvoiceQuestionServiceTest.java",
+      "sha256": "e2c9684912aa90db65a4e8d6163268fc1fc2f05bcc9c2df98be25fb3bb019aae",
+      "bytes": 13519
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/InvoiceSettlementServiceTest.java",
+      "sha256": "fb0dabd9cef1e7e4e8bdac50fc46f02b01e582b2d8156ec97566ef803685b01d",
+      "bytes": 5620
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/JdbcMiniChangeSourceTest.java",
+      "sha256": "dab89e3c5e8d56ae68ea9a26cc0d11d63909c5561ee6cdafa8ef49c256d6f3e4",
+      "bytes": 2053
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/JdbcMiniRequestIntakeStoreTest.java",
+      "sha256": "49fb703222829a9b752c813166a2c9ed094ffe7394a87d3f0831bc889dddd062",
+      "bytes": 5570
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/JdbcPatientAccountsTest.java",
+      "sha256": "84c9fc16a8aef6a4c713c1096646b547aee10587650fef2bd2c13bf9014ca507",
+      "bytes": 1834
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniAppointmentReadControllerTest.java",
+      "sha256": "4bfcce1419ae8879b975aea7060ddd463e5f0311f1cdd94340a900f8ea69c604",
+      "bytes": 5415
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniAvailabilityPlannerTest.java",
+      "sha256": "2442d3c2bb25506e5cc03a6a7d21c5694d8cf9544b54b454e34560df332387d6",
+      "bytes": 2475
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniBookingOptionsIsolatedPgIT.java",
+      "sha256": "cc7089ba9c235296b5ca92c00b3339426a23140bbdace6849dc63001e811bee9",
+      "bytes": 2526
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniChangeSelectionTest.java",
+      "sha256": "0fa39d14808c0dd604b9694cdfc058eaa9594f006dad28288b69f344fcea133a",
+      "bytes": 1955
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniIntakeIsolatedPgIT.java",
+      "sha256": "d1e510b1e5ef74f62ffde919542df53520be60c68d71c0a0cdd5a339bf66eb7c",
+      "bytes": 3156
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniNewRequestIntakeTest.java",
+      "sha256": "e5c64b640b4713d9985ff29729e9e0c6d92a7788f4318fc38c3dffd6055aa681",
+      "bytes": 5204
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniPatientProfileControllerTest.java",
+      "sha256": "499183c65b79683f1aab02697adb1196b472c987c8c5ee60fb73afd35704d12f",
+      "bytes": 4052
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniPatientProfileIsolatedPgIT.java",
+      "sha256": "972aef336ed9721f83c90e56766136a3e2008eefaecb9fa187c04150f79f4154",
+      "bytes": 3293
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniPatientSourceIsolatedPgIT.java",
+      "sha256": "d7bd34212b98f29d8cacfac5fca61f665a25811f7e9e35933a29097f59df90ab",
+      "bytes": 11330
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniRequestInboxTest.java",
+      "sha256": "5030c2dba1d1d75711f5ca8010db5ebe26d9c3cb7fe3aeee289b1afd6d323a70",
+      "bytes": 6296
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniRequestSessionTest.java",
+      "sha256": "38394c74eab53bed74eb08ddd7e33a2a2ef17f8f18f9c5e11e3fe7b845bfb09f",
+      "bytes": 1515
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniSelectedSchemeTest.java",
+      "sha256": "547727954526b78eca1757f298e52de011814001c234694699d3417d82022bef",
+      "bytes": 2030
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniSlotStalenessTest.java",
+      "sha256": "f1e9551ee47ccb301f4cf5e951fac998c95881a96357e2db9662576c9c3b1fab",
+      "bytes": 1729
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/MiniVisitDetailTest.java",
+      "sha256": "1230b230dfc45700e963fc8ef561019fd15a945f55b54c11f2af3f4768410764",
+      "bytes": 1818
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientAccountBindingControllerTest.java",
+      "sha256": "6f3370aaae516037218038fc868301a32736e97e3b440e234335088e8bdae3e2",
+      "bytes": 992
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientAccountControllerTest.java",
+      "sha256": "c6968e475f928efb15222b0eb8fbacd3563dbcf605bda5bf586351446e09cedb",
+      "bytes": 1632
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientAccountIntakeSourceTest.java",
+      "sha256": "ed5cf531dd436f6a15367aadab37acb089dd829575ca8a2d0edd76eca9ec1ba1",
+      "bytes": 1275
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientAccountLogoutTest.java",
+      "sha256": "4f70856acbaff14ec48d3032a923d6032600338b682bfd8f7495505c835ba607",
+      "bytes": 921
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientAccountPasswordsTest.java",
+      "sha256": "8a9ecb89777273361fe703fbb81f28a3a627e98a43996878912f5a8ea12b815f",
+      "bytes": 1272
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientAccountProfileWiringTest.java",
+      "sha256": "d4f26b0e5e0d65e958436de8fceaef24f840d7e35092a139f37220ae909b68d7",
+      "bytes": 1433
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientAccountRequestsControllerTest.java",
+      "sha256": "6dbcf578664e9972ddaed7ab268d471a3cde5cc8cf577d94bb381f5a9d6d1e7b",
+      "bytes": 976
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientAccountScopeTest.java",
+      "sha256": "87a52d82f38c8b7aec3ed346b46db38f3d7dd28b27ab84428fbcdf7612a33a0d",
+      "bytes": 2755
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientAccountsTest.java",
+      "sha256": "13d46d6ac4a13685991ebd2e2faa324e904c9d81b76d6b6b12d663a89dd050da",
+      "bytes": 2890
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientClinicalNotesTest.java",
+      "sha256": "131252c838c3391fd8dbea839a8bba9866754e9f791fcd88affcf67d200af9e9",
+      "bytes": 1068
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientDirectoryQueryTest.java",
+      "sha256": "adfbce11d7c7553b827f1dcf0a5a46d4424a9ee082e58e414e336c13e35a7464",
+      "bytes": 2648
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/PatientMaintenanceServiceTest.java",
+      "sha256": "8cd0d8e10f44a5bea055f7105e3ddf85a9ace94f7f88a70fd0e079c318ed40ec",
+      "bytes": 1884
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/T028IsolatedPgIT.java",
+      "sha256": "adcb118d01403b7f5248c69dfe43ec9a4b6140c26a21efbcbaf6f284d6b6c164",
+      "bytes": 17335
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/T029IsolatedPgIT.java",
+      "sha256": "9cf6aaef243595814553ff3b816b3ed3b68cc5b098802be5e5e1722bd2cb0ab4",
+      "bytes": 11975
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/T030IsolatedPgIT.java",
+      "sha256": "33272d591da48093aa974b62758a1392cc0722fd41031bb26d5c6bbd175a42a3",
+      "bytes": 10112
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/T031IsolatedPgIT.java",
+      "sha256": "357ab96616cf89d2a22e86f99e2b3040ae14812939ccaae7fe8a278d489f0166",
+      "bytes": 11218
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/TreatmentInvoiceServiceTest.java",
+      "sha256": "ab3bc69ebde4f0086a2ded82cddfdb07b8423882e801c01a34abffd8cfeb8880",
+      "bytes": 5798
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/Uc03OfflineResourceContractTest.java",
+      "sha256": "2abee2f4b6326b545cd358f7213c886c13307dea11cccd7e5c6e2c647f0b7367",
+      "bytes": 5405
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/Uc03OfflineReviewTest.java",
+      "sha256": "88f12337a3dd4a6fd12f93f9a9b7fdba648af361df9815511f2a6ad69ea7a790",
+      "bytes": 12054
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/VisitConsentServiceTest.java",
+      "sha256": "f06f781fea9a7f9ac3fb04433bfecb0b3462cc9ce6ec55464463134feeb2eadd",
+      "bytes": 7366
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/VisitHealthIsolatedPgIT.java",
+      "sha256": "8bdeded9a75f705b08baa573b811270b365d857239555ad77f87de092fba4457",
+      "bytes": 4513
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/VisitHealthServiceTest.java",
+      "sha256": "15727c30c8bdb9d12e2bcb53da616821f7dee1ef8847f47e1880c3cdd1cdedb5",
+      "bytes": 5768
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/VisitTreatmentServiceTest.java",
+      "sha256": "995a6ac0bb7d932236d282a616cd51565bc2da12ddaef7c0521c13f12df4ecfc",
+      "bytes": 5791
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/appointments/WeChatCodeExchangeTest.java",
+      "sha256": "4979813fe68466feae6794c33d87a011309d9427aa1db71883a306c8dcd97748",
+      "bytes": 2869
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/classroom/CourseStaffLoginTest.java",
+      "sha256": "b0e21c6841634cdf79a2d230a15d390d499a4d08973efe5a7ad62724e5aa3deb",
+      "bytes": 7589
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/duration/DurationAuditPolicyTest.java",
+      "sha256": "65dc3519e0738c6c5d62e1c5e34a58856ffd9480acb4febdb403ffbc7f98bcda",
+      "bytes": 3589
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/duration/DurationControllerTest.java",
+      "sha256": "004d55cfb50a62357c5972df574c35a0d061dadf5bd0efa39920f3efce851716",
+      "bytes": 4466
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/duration/DurationPolicyTest.java",
+      "sha256": "674ecf2c2ec60d720ed759582e272906338db074ee931eb1f5dfa81ecae61a10",
+      "bytes": 1971
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/duration/DurationPublicationIT.java",
+      "sha256": "32e8ee46eac8a4f24872ee13cf60f556f7bd748afec31ae5e802757d6995bcfd",
+      "bytes": 9315
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/ClassroomInventoryConfiguration.java",
+      "sha256": "92bdde5955b21855d1f14e974c154c3e6efd251765885db288de7899badea290",
+      "bytes": 2725
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/ConsumptionCostConfirmationTest.java",
+      "sha256": "6de1f61efe834134a7c745261363da98c1d9178cc3c6aa8a1fe18133bebac538",
+      "bytes": 1229
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/CourseInventoryConfigurationTest.java",
+      "sha256": "af636c10f390d92e6621a090b04fc4a2bf57dd3429ba7bc503c48d3f606e2006",
+      "bytes": 1303
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/InventoryChainIsolatedPgIT.java",
+      "sha256": "4eda31d70e6534b29a206ca9d67716cd1afcf73199454a94d77fe7dc60ad48b0",
+      "bytes": 5680
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/PurchaseRequirementIsolatedPgIT.java",
+      "sha256": "6860420d9ddaa4368d85d98e7e0f26cd394fc1af5935bcf49c74207eaa5e0be8",
+      "bytes": 4918
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/PurchaseRequirementServiceTest.java",
+      "sha256": "ac3e0341903fd9971ccd8c9678f40ba97363a0128de6c1a1b204139cc5d9fcdb",
+      "bytes": 4215
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/StockInquiryIsolatedPgIT.java",
+      "sha256": "74aa106f9e8ef7d024874176c877c5dbde2d3260c07df6874ad262098dd6ac23",
+      "bytes": 3467
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/StockInquiryServiceTest.java",
+      "sha256": "a25ca19131110b60eea4392d25088ee5c53c35d0c304bb71a30aecdf0a9444c3",
+      "bytes": 3849
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/SupplyConsumptionIsolatedPgIT.java",
+      "sha256": "fd38b212ce12bc877930ba61e3939827d3501229bdbaa75135e1199e27c35771",
+      "bytes": 4750
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/SupplyConsumptionServiceTest.java",
+      "sha256": "42b7ba6c80634f2061b652f25c4cc27a8d57ff0a1c804b4946ed2f7844ba0956",
+      "bytes": 3906
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/SupplyReceiptIsolatedPgIT.java",
+      "sha256": "652fc529022a0b6c881f8d942714db77be86428feb64a206d12e4ade78566430",
+      "bytes": 4410
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/inventory/SupplyReceiptServiceTest.java",
+      "sha256": "5da8123db18fe4a9eb27c7fcaea9a47be130def0a650f38c67e13f9759dd5398",
+      "bytes": 5947
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/ClassroomQuarterlyConfiguration.java",
+      "sha256": "0336bb82948be63bbddf622a17fc1413ecf89e049c153f2d505d464b26737fc6",
+      "bytes": 19663
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/CourseQuarterlyConfigurationTest.java",
+      "sha256": "630f8c8047c886aa382cc3b440d496c62e3945a25b785fead55d83c9bcab7f68",
+      "bytes": 1881
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterExpenseCatalogTest.java",
+      "sha256": "dd7f892e5c36a398fb2871e28458ea93b9747422c50a7dd02cd011cd33455161",
+      "bytes": 3357
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyCalculationIsolatedPgIT.java",
+      "sha256": "4a91dd9c4b1d368c7ed73e06a4f72c6418e7e27e29e044bc2a9682073afea08f",
+      "bytes": 3578
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyCalculationServiceTest.java",
+      "sha256": "b17343b19fed37cd1b683562d3fb7bf671d40273b1c78d7552711e5c8baecce5",
+      "bytes": 4724
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyFinancialReviewIsolatedPgIT.java",
+      "sha256": "48e4bdd7ee72e1359ec5809533f08f36dde699db9be8f0adb1334bb1b8301475",
+      "bytes": 6804
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyFinancialReviewServiceTest.java",
+      "sha256": "c92be96c043499286731a5b05ddf3b4366639fae32a6a6e506e60ec0cc76ff6d",
+      "bytes": 7747
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyIssueIsolatedPgIT.java",
+      "sha256": "b2b118b1d463a8548857245858e53219fdd757514cc5050e4dbc8cd8769d4199",
+      "bytes": 8775
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyIssueServiceTest.java",
+      "sha256": "36061c988e03b37b82bd3d0e583fc1435e88eedcd363982ee82d9317374b62b3",
+      "bytes": 5383
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyMultiClinicSourceTest.java",
+      "sha256": "c05bacaecb5adccada2b8950fbe83adc22a61e8cb33df7a8e7b90306c63ba0c3",
+      "bytes": 7441
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyPreviewIsolatedPgIT.java",
+      "sha256": "9254d56bcf019c028bfea8dcd5c4c208a8728a7fb494ba3f924077815207352b",
+      "bytes": 5154
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyPreviewServiceTest.java",
+      "sha256": "83bae3ff72fab9492fd6b6cd7d235e2cef80fca49ffc14a0b3b389627741106e",
+      "bytes": 5493
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyRecordsControllerTest.java",
+      "sha256": "13d6511ebf1a8b3c2991e94f50bb0060e25ae715fe282cd55f7e01da3a64c5ca",
+      "bytes": 2882
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/quarterly/QuarterlyRecordsServiceTest.java",
+      "sha256": "d35db62d34d96cd8eef0c61bb6fa83580b50fd74b4380fe8a352f7fd4b626f4c",
+      "bytes": 6849
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ClassroomScheduleConfiguration.java",
+      "sha256": "6bcc16296f1f1f9770dcc67cde69a19843f5599c793580a8c86b93103863d45b",
+      "bytes": 1871
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/CourseUc22ActivationSafetyTest.java",
+      "sha256": "b4ba9b2aea5efb557ea9a7c9772466b1d6bd07908155d36de71666377c5846d3",
+      "bytes": 955
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ImpactAssessmentTest.java",
+      "sha256": "5fc198d9c1bd797f5a93debf16a47579b8c7b39449d5e2097862350a7937af2a",
+      "bytes": 4235
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ResolutionBrowserBridge.java",
+      "sha256": "a8a8fbe73898b1d0dbd44431ea49c7db957b058ca81fba1155df7c513b89d1cf",
+      "bytes": 8047
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ResolutionControllerTest.java",
+      "sha256": "503719bf3c6c63d7ef72985dbc93e7fe50fc6827a3cfbb0468cac1c1b8bd6f3b",
+      "bytes": 10900
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ResolutionHistoryTest.java",
+      "sha256": "097c6cba2ad64a10b44fd1d8013dd704bda2df13e339e6d72f5623e2139d4b06",
+      "bytes": 19826
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ScheduleActivationTest.java",
+      "sha256": "bbcb6797f4e1416c856a2729f7045ecec27c10eb67f4cb718b3f336cfc93e933",
+      "bytes": 2696
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ScheduleControllerOfflineTest.java",
+      "sha256": "69792fd37e37846211e1fc2312ac3ef176c69aee3750f10fbf8730873252137c",
+      "bytes": 9206
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ScheduleControllerTest.java",
+      "sha256": "6df72b0722af01c3fccd6cab6e32c2f676fe00ad532ed2d00f454b83d9f01ff2",
+      "bytes": 5930
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ScheduleDraftTest.java",
+      "sha256": "00ef53da6a0bce4fd3b53755e777396bbbd1f800ff50577337e6d3e36900b5b9",
+      "bytes": 2764
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ScheduleServiceOfflineTest.java",
+      "sha256": "a870ae36b9de28d6a3e848cac13592972e78a1a91ed9f693c3b0e31c3d499112",
+      "bytes": 22137
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/ScheduleStateTokenTest.java",
+      "sha256": "f217a58782dd4845d51121d71a1705ac6f2436802176943a694e231971de17a6",
+      "bytes": 2263
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/T024FinalEvidencePgIT.java",
+      "sha256": "14e420882dd49a6fbd85c84cb4a4364cbf2d1b35ddc3217069f4ffd22270c286",
+      "bytes": 20054
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/T024MemoryJournal.java",
+      "sha256": "883a7395492c2270884335ffa48b93a5093820c827425d35fc0fc81f8bb2014e",
+      "bytes": 5081
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/T024ServiceDemoTest.java",
+      "sha256": "696979cc6eeb182cfea7cc85a2a0d67a797d421f55fb001538deb4b972c750b9",
+      "bytes": 16126
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/T024ServicePgIT.java",
+      "sha256": "e0b325a991796ef8118f1ebfc672fe6a7205e5fa52cee6bbdf1f068f96b23905",
+      "bytes": 14210
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/scheduling/T037IsolatedPgIT.java",
+      "sha256": "8f397407f797d0a4fa67ab186f48b3e97bad7a136b5cd30eeae0a5e23265f381",
+      "bytes": 31550
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/audit/ArrivalRecoveryBridgeTest.java",
+      "sha256": "3e781700743a844a453df8e53bb44ab9d74607e51e3491a673434c5ca52d0d8b",
+      "bytes": 5448
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/audit/AuditContractTest.java",
+      "sha256": "b21ed638325dd7778e858462f543e11ce9dc989430925139e2537c2b33ec182c",
+      "bytes": 3024
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/audit/AuditFailureIT.java",
+      "sha256": "b24f29c44436bfabfb219c22efdc2f966e8db0d66aed00699a14c1a8e4c7bbfb",
+      "bytes": 13346
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/audit/OriginalAuditIT.java",
+      "sha256": "e1659bf02e33beb5422e121e8c958a0f80431141717d1675234842554970c450",
+      "bytes": 8177
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/audit/RecoveryRepairIT.java",
+      "sha256": "18cf5a22a8aad548e4a9fb9721ed46b28735c1cf43428b0bf36745eb2023d511",
+      "bytes": 12816
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/audit/RecoveryRepairTest.java",
+      "sha256": "3e4e7c34e798a55b126dd231647d7a798d89af1052793cede141908bd761c73f",
+      "bytes": 15381
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/audit/Uc02OfflineRecoveryTest.java",
+      "sha256": "4eee29699babc1a3fafd72438df5150b240933128586ad7b5840b0931715d92e",
+      "bytes": 5281
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/audit/Uc03OfflineRecoveryTest.java",
+      "sha256": "d534614c7a080d0a3271c9177d5290a3f12b4597188f64b917f0f893323ff37a",
+      "bytes": 8730
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/audit/Uc04OfflineCancellationTest.java",
+      "sha256": "d7d40daadd85aa2db7cb38c8efde82e9c5a62cf29a40b97d93df4bd87ab7cc40",
+      "bytes": 20034
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/config/ClinicDirectoryProviderTest.java",
+      "sha256": "78cbb1d29234211b4569d5249de906338a68c99c17be8989b7e6ba084cb22dfc",
+      "bytes": 2331
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/config/ConfigPrerequisitesIT.java",
+      "sha256": "44762154d77b3df24cba567fbb9150c926e13a20a8e5f8a029733ba2c4b052e2",
+      "bytes": 8610
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/config/ConfigRoleIsolationIT.java",
+      "sha256": "cd917bb56afd0d10a527aa8013e0e8f8f189f93c72e946fe729b35316df7b46b",
+      "bytes": 8989
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/config/ConfigurationReadinessTest.java",
+      "sha256": "f7c8341480497fb5c55a35f34c717bb7826bf473924ba2507d1017622067716a",
+      "bytes": 1566
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/config/DentistEligibilityProviderTest.java",
+      "sha256": "888844a1c5b233c3973f6de58ff7346911e32a7535fbc66619f3a27e7a485b3c",
+      "bytes": 1312
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/db/JdbcTransactionsTest.java",
+      "sha256": "874527d617668d6097637065c911381ee9e8c72835d371aef352c93deac008a6",
+      "bytes": 3944
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/resource/CourseUc22NarrowLocksTest.java",
+      "sha256": "6d58dea83721c71b130139fe80a5041a03b1b9bc6cf912e996c645d50e15976f",
+      "bytes": 1824
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/resource/ResourceLockCoordinatorTest.java",
+      "sha256": "67cfcab1e65ae7b1933d9d4e49ce4e3a33906c63235123f4c286d5a95b44f61b",
+      "bytes": 3277
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/resource/ResourceLockIT.java",
+      "sha256": "e9cee727eb09837065fd26ea480b2fbde7ea8b43937d6a1fb07d06c9a533498d",
+      "bytes": 5781
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/security/StaffAuthorizationTest.java",
+      "sha256": "24a11b2f0aa6c839359620ccbe75f14c6a0fdafa25fa06e72467d19022455435",
+      "bytes": 1820
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/security/StaffBindingAdapterIT.java",
+      "sha256": "3875fd706a7494d83a4667c7c23a95c3fc548dea44e1af7d20c265d9e4b1af96",
+      "bytes": 2928
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/security/StaffBindingAdapterTest.java",
+      "sha256": "3997b5041b2ae1616259f59e00a6c9f6858c75bc6e922b5bab560777193dad88",
+      "bytes": 2828
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/time/ClinicTimePolicyTest.java",
+      "sha256": "63e15aa39991f023c8e192993bcb23a40380c74ac83783a95866f55ec6890cb1",
+      "bytes": 2841
+    },
+    {
+      "file": "backend/src/test/java/cn/adc/shared/time/TimeRoundTripIT.java",
+      "sha256": "04bfcd688cfd5c58b7637032ddb56e0cc9fbe2f9e8a398cf2848c9eadad9ff02",
+      "bytes": 1335
+    },
+    {
+      "file": "backend/src/test/resources/p0/classroom-expenses.json",
+      "sha256": "bb7395806074c1f106a3c05afc9fcd0033fdba76e1c3b43d04b5a27a3415cfaa",
+      "bytes": 434
+    },
+    {
+      "file": "backend/src/test/resources/p0/fixture-manifest.json",
+      "sha256": "52a14afd7941163e372e1488cfd25e649070bc99c7410bd2defd5f095fa7fdf0",
+      "bytes": 441
+    },
+    {
+      "file": "backend/src/test/resources/p0/uc21-synthetic.json",
+      "sha256": "d9c6b31b0492b5503877fa76fc08fd13682695cfee3c58f0ac51bb575463822c",
+      "bytes": 1432
+    },
+    {
+      "file": "docs/architecture.md",
+      "sha256": "d6e6c7a8c74c58ecf00c006e3acdde617009dc3004c16e5c4e2df277e962e6d6",
+      "bytes": 852
+    },
+    {
+      "file": "docs/build-and-run.md",
+      "sha256": "1d0f6e07d7da94d2bc26977d78d13836aa84cad387cd59550cdc7957aa8525ac",
+      "bytes": 2083
+    },
+    {
+      "file": "docs/images/patient-home.png",
+      "sha256": "0b2a41e7d630f1ee6f16e6a35cbec458bc1dbd6cbf0884888397dc3b6a204b50",
+      "bytes": 55785
+    },
+    {
+      "file": "docs/images/staff-workspace.png",
+      "sha256": "765adb5c965803740618108fc2b940b4b40a5c591d0971a7f19923d5782ad9bf",
+      "bytes": 59970
+    },
+    {
+      "file": "docs/operation-manual.md",
+      "sha256": "86039450741b1fb5dbbe0cf543511b076d848b33066ebfc81fa4e97c32d9b49a",
+      "bytes": 3947
+    },
+    {
+      "file": "docs/report/README.md",
+      "sha256": "9da4e45741f591e4895b2e4706d1085085db279575d2d69347f7487cfdbc4457",
+      "bytes": 149
+    },
+    {
+      "file": "docs/testing.md",
+      "sha256": "6946144b6079fb9b2aef301ceea2553d96449db0b60c4190d94297b5449d0fd4",
+      "bytes": 1893
+    },
+    {
+      "file": "specs/001-patient-appointment-requests/contracts/api.openapi.json",
+      "sha256": "ca282c1d1a6ae7ee9c2fbf1f9ed8d0d424fbf72d215b698890dbb75e8a3b0975",
+      "bytes": 239006
+    },
+    {
+      "file": "specs/002-dentist-scheduling/contracts/api.openapi.json",
+      "sha256": "5778dc91aacab2f80d1a531382304c093e989568d8412618d0be2e667a67a6ad",
+      "bytes": 194602
+    },
+    {
+      "file": "specs/002-dentist-scheduling/contracts/course-quarterly-records.openapi.json",
+      "sha256": "57372670006d55e8924f1f3dd3f9448d49ceb9256523ad3e8f5a9d493e63c281",
+      "bytes": 7983
+    },
+    {
+      "file": "specs/002-dentist-scheduling/contracts/examples/p0-evidence-examples.json",
+      "sha256": "e08b19393ab1dd38229ff757063953378f44edb303cf71aaf1002493d3fdc132",
+      "bytes": 47004
+    },
+    {
+      "file": "specs/002-dentist-scheduling/contracts/p0-evidence.schema.json",
+      "sha256": "1a79374d25533a081a03bd9f74adea9902d74d26166a3e9576c06877cfdec3f9",
+      "bytes": 21342
+    },
+    {
+      "file": "tools/demo/p0-synthetic-data.cjs",
+      "sha256": "79eb7dc329b06b3c5eef8172e96a872d442246eb17b0de4afbeab617d5e33f6e",
+      "bytes": 4749
+    },
+    {
+      "file": "tools/deploy/adc-course.service.example",
+      "sha256": "55caf9922d14edf2fce7c451c5c600a8e2b9120c693ef60553183441e546987d",
+      "bytes": 646
+    },
+    {
+      "file": "tools/deploy/course-clinical-catalog-v2.json",
+      "sha256": "983fb393738a5c99ea9a4e4f5a0612cc3cdf9dfb841b72091b8fd36d66dcf95e",
+      "bytes": 550
+    },
+    {
+      "file": "tools/deploy/course-clinical-catalog.json",
+      "sha256": "92af57c174cc8cc0da0d2215fec7495fc35995194a4dc35c9fb387a75a2de30f",
+      "bytes": 339
+    },
+    {
+      "file": "tools/deploy/course-consumption-cost-policy.json",
+      "sha256": "9dec0c38ee46f1e6ed3d7a118af404ac94d8193690da988ff72fc4ef2e7d8e6d",
+      "bytes": 180
+    },
+    {
+      "file": "tools/deploy/course-nginx.conf.example",
+      "sha256": "dfc8058df2b887669b598040d7845417b42bd0e50ae039c4c4f5ddf782bbb778",
+      "bytes": 1101
+    },
+    {
+      "file": "tools/deploy/course-patient-grants.example.json",
+      "sha256": "eb34016113243d4672a3c5964a68b86ea9c719d262c48f6372c5b5765340f603",
+      "bytes": 41
+    },
+    {
+      "file": "tools/deploy/course-quarterly-expenses-v2.json",
+      "sha256": "e943188518bafa153f2d5a9a5b0ce08bc5023817d9a1ce584b33f54be3c3ea2e",
+      "bytes": 1912
+    },
+    {
+      "file": "tools/deploy/course-quarterly-expenses.json",
+      "sha256": "bb7395806074c1f106a3c05afc9fcd0033fdba76e1c3b43d04b5a27a3415cfaa",
+      "bytes": 434
+    },
+    {
+      "file": "tools/deploy/course-runtime.env.example",
+      "sha256": "dbf8fba08956a132390b48d3258c1b93e8ec65d5061473d7fe0ad1bd46640952",
+      "bytes": 2275
+    },
+    {
+      "file": "tools/deploy/test_quarterly_multiclinic.py",
+      "sha256": "04e461440be1e1e606dd0273f017071afec58f36b072f5d9db12019ffa500482",
+      "bytes": 2454
+    },
+    {
+      "file": "tools/deploy/test_quarterly_records.py",
+      "sha256": "97c97857de6f6292df5c2e6ba12da239dd9a46a64dcb5012c1a8948d67dcc198",
+      "bytes": 2401
+    },
+    {
+      "file": "tools/deploy/test_staff_experience.py",
+      "sha256": "3d74fae80438399d94a75a58d4ad5302eda6def7032ea11f90f04d7aad1fd501",
+      "bytes": 2368
+    },
+    {
+      "file": "tools/deploy/update-quarterly-multiclinic.py",
+      "sha256": "7c76abbbec1e0ef934b0e0dd4468b3f64aa4a3a508e0df056a983f472a35b6b9",
+      "bytes": 6575
+    },
+    {
+      "file": "tools/deploy/update-quarterly-records.py",
+      "sha256": "143af5243480bdf29b8b1296618cb1805449d28d563441e65494b5215c2fb581",
+      "bytes": 4794
+    },
+    {
+      "file": "tools/deploy/update-staff-experience.py",
+      "sha256": "e34e2dfe6fcc325b19538105d0afa8702820841762ac1da4b53891019433ba03",
+      "bytes": 4706
+    },
+    {
+      "file": "tools/postgresql/classroom-review/billing-grants.sql",
+      "sha256": "75457c72a590a056717e9a187ecce2aca9e7b8f9468b21085b608061028c1b31",
+      "bytes": 703
+    },
+    {
+      "file": "tools/postgresql/classroom-review/billing-tables.review.sql",
+      "sha256": "0e3d2517b829d066558c7051643be747a09cc3adcbe4afdd4077f8fb287840c3",
+      "bytes": 2717
+    },
+    {
+      "file": "tools/postgresql/classroom-review/booking-batch.review.sql",
+      "sha256": "91e714305000d9955802ff5c44e627f0980e02f722558cd728c64c64e484a355",
+      "bytes": 1591
+    },
+    {
+      "file": "tools/postgresql/classroom-review/catalog-snapshot.sql",
+      "sha256": "1caf750fc71ab611e0665da2932ba47123aacd4c46fdce116afa7096a73c7b9e",
+      "bytes": 1944
+    },
+    {
+      "file": "tools/postgresql/classroom-review/clinical-billing-batch.review.sql",
+      "sha256": "afe5cf352db758a151612567926f00d8b1d260c7ed179e9154f53697f68f8a78",
+      "bytes": 3053
+    },
+    {
+      "file": "tools/postgresql/classroom-review/cloud-schedule-dependencies.review.sql",
+      "sha256": "536191b212e0bdb92194df222d322e48ad1758b2074c9b85c6b76e1da2e7a16a",
+      "bytes": 4317
+    },
+    {
+      "file": "tools/postgresql/classroom-review/cloud-uc03-dependencies.review.sql",
+      "sha256": "ade16a797ea91b58a7f6ffd8a429d60d46f2682fb67d48bb3f611a7de952bc6c",
+      "bytes": 1726
+    },
+    {
+      "file": "tools/postgresql/classroom-review/cloud-uc22-locks.review.sql",
+      "sha256": "5df48387855268575a335bd0ebb0567d553f501a5067c500bcf120b665da748a",
+      "bytes": 2749
+    },
+    {
+      "file": "tools/postgresql/classroom-review/course-booking-write.review.sql",
+      "sha256": "59ee5bb76f33ed8bd5bf05eeef5b814c0d189b1fb558cd23cd8eb45bb0c55fa4",
+      "bytes": 1753
+    },
+    {
+      "file": "tools/postgresql/classroom-review/course-consent-grants.review.sql",
+      "sha256": "b46c1eca1c7573fe7a97df6daf93c61cc9a3cfcaf628686af1a57b24d5dee875",
+      "bytes": 799
+    },
+    {
+      "file": "tools/postgresql/classroom-review/course-health-allocator.review.sql",
+      "sha256": "0f68b2da17005a506c6f5eea02797659bf0b172516f6fd0d1adc121f2d02b847",
+      "bytes": 1290
+    },
+    {
+      "file": "tools/postgresql/classroom-review/course-mini-booking-link.review.sql",
+      "sha256": "5c7ef372bd72bff3a3ebf213943aeeb84d1fb6e1f66adcbfc76fb4d183791b51",
+      "bytes": 1042
+    },
+    {
+      "file": "tools/postgresql/classroom-review/course-mini-inbox-grants.review.sql",
+      "sha256": "e3b2258a0997c4a3ce02246aea6b1f6bddeb8aed1b792f424e7ec7a6a8e7e2bf",
+      "bytes": 1611
+    },
+    {
+      "file": "tools/postgresql/classroom-review/course-mini-intake.review.sql",
+      "sha256": "70ba2d2799d0d6b8bbf33b3ea9a824a165156c6068c2b310fc3a824b53f448e8",
+      "bytes": 2149
+    },
+    {
+      "file": "tools/postgresql/classroom-review/course-mini-read.review.sql",
+      "sha256": "51a8701110f2db32a1572d70c70f8063faf76a0d4527f750ba55e5b61e3490f3",
+      "bytes": 1133
+    },
+    {
+      "file": "tools/postgresql/classroom-review/course-patient-intake.review.sql",
+      "sha256": "791b01a7644950b1c4ea6647e6cc1c9ae4f1b263d3ad8cc20ddbf1d953917473",
+      "bytes": 1535
+    },
+    {
+      "file": "tools/postgresql/classroom-review/course-roles.template.sql",
+      "sha256": "f4177735bcd537686b3477b8f498b41128557464e5e4123d6cf3da749cb071db",
+      "bytes": 4270
+    },
+    {
+      "file": "tools/postgresql/classroom-review/course-treatment-grants.review.sql",
+      "sha256": "d3532cd2d8103fe07b85328dc804b936a44009ae46d077f31eee26417b7daa4f",
+      "bytes": 585
+    },
+    {
+      "file": "tools/postgresql/classroom-review/inventory-patient-detail.review.sql",
+      "sha256": "68860b332f0677c7ae525868d85ce6b76bffd5ffd1eb24e474449c41238963cb",
+      "bytes": 3101
+    },
+    {
+      "file": "tools/postgresql/classroom-review/invoice-question-grants.review.sql",
+      "sha256": "35aafaf262bf15597577a19c1307646a4c7df69612f990cfb8096318816bc7f5",
+      "bytes": 291
+    },
+    {
+      "file": "tools/postgresql/classroom-review/purchase-requirement-table.review.sql",
+      "sha256": "29fac670fff25f578ba8c7b6c7a38ffc54c91d916c0a4e3ccd5c02ae734e90d0",
+      "bytes": 1000
+    },
+    {
+      "file": "tools/postgresql/classroom-review/quarterly-calculation-fixture.sql",
+      "sha256": "8c855f6ae551ef682e2a0f65b29de7ef4b59ed8f2ba5a99d2805a50d035a3fb1",
+      "bytes": 1530
+    },
+    {
+      "file": "tools/postgresql/classroom-review/quarterly-calculation-tables.review.sql",
+      "sha256": "535944421e286fb00457b6ea1f799af3f912df929da0d08a9ce61ca050c280c3",
+      "bytes": 1399
+    },
+    {
+      "file": "tools/postgresql/classroom-review/quarterly-clinic-81002.review.sql",
+      "sha256": "cd04e16ddd3d0cda75ec1cec259caef378b742df0ab710c44022c2a1dca53458",
+      "bytes": 999
+    },
+    {
+      "file": "tools/postgresql/classroom-review/quarterly-financial-review-table.review.sql",
+      "sha256": "b91cb3cbf156c888d5a09dfc2aca4bb74e9a45feae8015010b4c65b219d97511",
+      "bytes": 652
+    },
+    {
+      "file": "tools/postgresql/classroom-review/quarterly-issue-fixture.sql",
+      "sha256": "0c8a038de3e2b6650ae96d5ca31d89389214de0613c6a9598fa9e6ff61df7e82",
+      "bytes": 832
+    },
+    {
+      "file": "tools/postgresql/classroom-review/quarterly-issue-history.review.sql",
+      "sha256": "441dc07426a0240f4f506ea52a36b19a5d114f7f1cdd29ef0d080c9b5efdb181",
+      "bytes": 1464
+    },
+    {
+      "file": "tools/postgresql/classroom-review/quarterly-preview-tables.review.sql",
+      "sha256": "a76bcc01217429eaee31343a5f5c6d2ab6a88ba340148d6d033f950b1ac53b19",
+      "bytes": 2119
+    },
+    {
+      "file": "tools/postgresql/classroom-review/quarterly-usability.review.sql",
+      "sha256": "dad28087da8a5ef1008898b4e7306170522fca8f559f5cda0dc81b883936c0fd",
+      "bytes": 4991
+    },
+    {
+      "file": "tools/postgresql/classroom-review/reception-extra-dentists.demo.sql",
+      "sha256": "050db5d1106b8285bd83662b5b23a7d5d6c44dd44a59832ceb009c46d0c1f0dd",
+      "bytes": 689
+    },
+    {
+      "file": "tools/postgresql/classroom-review/reception-multi-dentist.demo.sql",
+      "sha256": "e4c203c8a6a2bc964fc875f93a08c43287715fe52a9fe047ce2bc36f66ce4854",
+      "bytes": 1982
+    },
+    {
+      "file": "tools/postgresql/classroom-review/stock-inquiry-fixture.sql",
+      "sha256": "8f838ab95932da4078bc080b801b08cc794fe33b9871d6b750f83a3de60e41c6",
+      "bytes": 487
+    },
+    {
+      "file": "tools/postgresql/classroom-review/stock-inquiry-tables.review.sql",
+      "sha256": "cf552d9589a03399d6377bc7e17d74f13a655c212a58a55680be7f1387f48a84",
+      "bytes": 608
+    },
+    {
+      "file": "tools/postgresql/classroom-review/supply-consumption-table.review.sql",
+      "sha256": "e2199115d6c5cfc32dc1d89863a37d1b185b5f9ce459b0aefd4adbfe4570cce2",
+      "bytes": 720
+    },
+    {
+      "file": "tools/postgresql/classroom-review/supply-receipt-fixture.sql",
+      "sha256": "2af3cf8d0a0e53b7ec99eefa85a39ef9b48b4d1f1c7030705d4571fe6165307b",
+      "bytes": 411
+    },
+    {
+      "file": "tools/postgresql/classroom-review/supply-receipt-table.review.sql",
+      "sha256": "b4dc3b03db046596319f94238c4c35a2b3adbc780fa307985a539d9b539d62e3",
+      "bytes": 1486
+    },
+    {
+      "file": "tools/postgresql/classroom-review/ui-unification.review.sql",
+      "sha256": "a974b7811703feb97bd4fadd1e2f6e1818776c3ce086318cb45c207bda87a22c",
+      "bytes": 1798
+    },
+    {
+      "file": "tools/postgresql/init/A-create-roles.sql",
+      "sha256": "8838bb711e2eb6f714b84dd6d909d54a49664c72cdcafcd94c13ef839e4d8431",
+      "bytes": 1283
+    },
+    {
+      "file": "tools/postgresql/init/B1-create-databases.sql",
+      "sha256": "7b7bc9da4d391463760e70427d849fb12a26ede7bf371e1532e8c722bad85884",
+      "bytes": 1775
+    },
+    {
+      "file": "tools/postgresql/init/B2-set-database-acl.sql",
+      "sha256": "79a8991e541b9b6e6d3d5e3911d900dcdd1308a2b6d0407fccd99e68bea6c893",
+      "bytes": 963
+    },
+    {
+      "file": "tools/postgresql/init/B3-verify-closed-databases.sql",
+      "sha256": "6d193283ea3ede86d8665f30e233a3362700fafd38db319c92c9219f3f7e60b3",
+      "bytes": 915
+    },
+    {
+      "file": "tools/postgresql/init/checks/assert-approval.sql",
+      "sha256": "9098bb2dcb7b0b3837b04225e061d7bca61da6eaebc0781ec3cb06dc8cdf37c6",
+      "bytes": 616
+    },
+    {
+      "file": "tools/postgresql/init/checks/assert-closed-databases.sql",
+      "sha256": "7613a7509a9bc8185e62b191809932d60e9ea8159aa153c89991d6cfda0306d6",
+      "bytes": 1312
+    },
+    {
+      "file": "tools/postgresql/init/checks/assert-final-acls.sql",
+      "sha256": "387b980d1760849b2e9f70671a4906f43ca919b8d354fae193314122cd281edd",
+      "bytes": 3031
+    },
+    {
+      "file": "tools/postgresql/init/checks/assert-initial-acls.sql",
+      "sha256": "79de8917df181786eb91e3df837886daa375ec7a81d2f0d3f68cbfe4a03b797b",
+      "bytes": 2977
+    },
+    {
+      "file": "tools/postgresql/init/checks/assert-roles.sql",
+      "sha256": "363e597f83e9ca90013b16c87d176323c119beab25d4e1160d80dfa55a2aedfb",
+      "bytes": 1576
+    },
+    {
+      "file": "tools/postgresql/init/checks/assert-session.sql",
+      "sha256": "d03bbff9bfcf59e7df55b03fe9c56d4a711717001195745f24a79d692a97ad0a",
+      "bytes": 879
+    },
+    {
+      "file": "tools/postgresql/p0-batch1/config-role-isolation.sql",
+      "sha256": "e9d81a917e89387672c2dab40d1b175ccb4dc4ad4652607d076c3380da887bb1",
+      "bytes": 1237
+    },
+    {
+      "file": "tools/postgresql/p0-validation/sql/01-original-fixtures.sql",
+      "sha256": "e4a21cbd68d8d4bd80b0bb44c978001d765a19e9b3a69ba11f4f9ccd37716e94",
+      "bytes": 8393
+    },
+    {
+      "file": "tools/postgresql/p0-validation/sql/02-duration-version.sql",
+      "sha256": "1b9fbb87e30bae84c3cd9c9614e55c45a1e9885f5350c982ec216bfc9aba26f2",
+      "bytes": 1694
+    },
+    {
+      "file": "tools/postgresql/p0-validation/sql/03-extension-audit.sql",
+      "sha256": "57f5aa1dcb438d3cc1f09ae1f1b607b9d495c1bbaec64bd55752062f53e62a5e",
+      "bytes": 6268
+    },
+    {
+      "file": "tools/postgresql/stepwise/assert-template.sql",
+      "sha256": "7d8f66aaa9a7f9524003be6daeb5bdd99798d7133fc0ac62083c7c78d483e475",
+      "bytes": 1150
+    },
+    {
+      "file": "tools/postgresql/t028/fixture.sql",
+      "sha256": "ead2dfd0429e5c13a40dd0f850ceeb1260c65466f95e088e58c444d875066b93",
+      "bytes": 3222
+    },
+    {
+      "file": "tools/postgresql/t029/grants.sql",
+      "sha256": "195d6c320de3539df17dafc2a92afe5073729a435a0b8adc869121e15a189d7c",
+      "bytes": 460
+    },
+    {
+      "file": "tools/postgresql/t030/fixture.sql",
+      "sha256": "1a16ee18550c22d3939984b2e02014df9cb390a5a0e8fef463a08194058fc403",
+      "bytes": 861
+    },
+    {
+      "file": "tools/postgresql/t031/fixture.sql",
+      "sha256": "d1288fbe0feb32f3c287d5b546bf4f708481d25f9413d8be1e47f032aa626fa1",
+      "bytes": 524
+    },
+    {
+      "file": "tools/postgresql/t034/fixture.sql",
+      "sha256": "ecb6a8b4c1f79de6a614986509fa850e2cf4f940f1644794a2ab47a35ec988b6",
+      "bytes": 843
+    },
+    {
+      "file": "tools/postgresql/t037/fixture.sql",
+      "sha256": "36c14c86b7f0535b0c3cc866bcd41f14262e9648dc78f4de41bfa4d33bf7ac77",
+      "bytes": 1353
+    },
+    {
+      "file": "tools/postgresql/uc01-mini-intake/fixture.sql",
+      "sha256": "75a0690e24174f37637d1ad0eeb2febe1a2213743b9a2e9955f92bd8b67a2f60",
+      "bytes": 1791
+    },
+    {
+      "file": "tools/postgresql/uc02-review-readonly.sql",
+      "sha256": "e2d52f82cb91445c20bba4005c307f4a319330bdf34262ae4b9c38d4713b24a1",
+      "bytes": 4165
+    },
+    {
+      "file": "tools/postgresql/uc07/fixture.sql",
+      "sha256": "f8e833de07a2ff201e5fb07abdf82037636495a8dc0c7dae8c0824c11e4875ce",
+      "bytes": 4057
+    },
+    {
+      "file": "tools/run-technical-server.cjs",
+      "sha256": "fde957344650c367cc9c834ddd015bd9184250b993d02d3a07f5ea057d1cf50d",
+      "bytes": 1469
+    }
+  ]
+}

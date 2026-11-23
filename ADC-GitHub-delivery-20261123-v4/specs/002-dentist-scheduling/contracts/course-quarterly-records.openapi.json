@@ -1,0 +1,256 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Quarterly persisted record browsing",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/v1/staff/quarterly/records/previews": {
+      "get": {
+        "summary": "List persisted records / previews",
+        "description": "Existing UC17/19 operations or UC20 finance scope only. Calculation detail is operations-only; finance uses its existing reviewed-source read endpoint. No data mutation.",
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clinics",
+            "in": "query",
+            "required": true,
+            "description": "Exact full clinic scope; comma separated positive IDs. Server role authorization required.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quarter",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-Q[1-4]$"
+            }
+          },
+          {
+            "name": "beforeId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Frozen record or bounded exact-scope list; list includes items and optional nextBeforeId"
+          },
+          "400": {
+            "description": "Invalid or unavailable record"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role, scope or CSRF denied"
+          },
+          "503": {
+            "description": "Read unavailable; must not present as empty list"
+          }
+        }
+      }
+    },
+    "/api/v1/staff/quarterly/records/previews/{statisticId}": {
+      "get": {
+        "summary": "Read frozen record / previews",
+        "description": "Existing UC17/19 operations or UC20 finance scope only. Calculation detail is operations-only; finance uses its existing reviewed-source read endpoint. No data mutation.",
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clinics",
+            "in": "query",
+            "required": true,
+            "description": "Exact full clinic scope; comma separated positive IDs. Server role authorization required.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "statisticId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]*$"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Frozen record or bounded exact-scope list; list includes items and optional nextBeforeId"
+          },
+          "400": {
+            "description": "Invalid or unavailable record"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role, scope or CSRF denied"
+          },
+          "503": {
+            "description": "Read unavailable; must not present as empty list"
+          }
+        }
+      }
+    },
+    "/api/v1/staff/quarterly/records/calculations": {
+      "get": {
+        "summary": "List persisted records / calculations",
+        "description": "Existing UC17/19 operations or UC20 finance scope only. Calculation detail is operations-only; finance uses its existing reviewed-source read endpoint. No data mutation.",
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clinics",
+            "in": "query",
+            "required": true,
+            "description": "Exact full clinic scope; comma separated positive IDs. Server role authorization required.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "quarter",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[0-9]{4}-Q[1-4]$"
+            }
+          },
+          {
+            "name": "beforeId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 50,
+              "default": 20
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Frozen record or bounded exact-scope list; list includes items and optional nextBeforeId"
+          },
+          "400": {
+            "description": "Invalid or unavailable record"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role, scope or CSRF denied"
+          },
+          "503": {
+            "description": "Read unavailable; must not present as empty list"
+          }
+        }
+      }
+    },
+    "/api/v1/staff/quarterly/records/calculations/{calculationId}": {
+      "get": {
+        "summary": "Read frozen record / calculations",
+        "description": "Existing UC17/19 operations or UC20 finance scope only. Calculation detail is operations-only; finance uses its existing reviewed-source read endpoint. No data mutation.",
+        "parameters": [
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "clinics",
+            "in": "query",
+            "required": true,
+            "description": "Exact full clinic scope; comma separated positive IDs. Server role authorization required.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "calculationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "pattern": "^[1-9][0-9]*$"
+            }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Frozen record or bounded exact-scope list; list includes items and optional nextBeforeId"
+          },
+          "400": {
+            "description": "Invalid or unavailable record"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "403": {
+            "description": "Role, scope or CSRF denied"
+          },
+          "503": {
+            "description": "Read unavailable; must not present as empty list"
+          }
+        }
+      }
+    }
+  }
+}

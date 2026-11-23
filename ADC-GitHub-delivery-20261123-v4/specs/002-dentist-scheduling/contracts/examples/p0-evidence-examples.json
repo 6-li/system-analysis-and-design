@@ -1,0 +1,443 @@
+{
+  "kind": "SYNTHETIC-DOCUMENTATION-NOT-EXECUTED",
+  "note": "TEXT字段均是真实JSON字符串；hash仅本合成固定序列化快照摘要，正式实现须统一规范化；confirmedCommit YES表示与成功业务同事务的承诺语义，单独字段不是提交证明。",
+  "resolutionRows": [
+    {
+      "resolution_id": "100",
+      "schedule_id": "700",
+      "schedule_version_no": 2,
+      "appointment_id": "900",
+      "resolution_subject": "合成：缩短草案后预约处理",
+      "resolution_result": "PENDING",
+      "resolution_basis": null,
+      "responsible_party": "合成诊所负责人",
+      "pending_confirmation": "等待真实患者接受与正式办理",
+      "recorded_at": "2026-11-05T02:00:00.000000Z",
+      "appointment_change_id": null
+    },
+    {
+      "resolution_id": "101",
+      "schedule_id": "700",
+      "schedule_version_no": 2,
+      "appointment_id": "900",
+      "resolution_subject": "合成：缩短草案后预约处理",
+      "resolution_result": "PENDING",
+      "resolution_basis": "{\"schemaVersion\":1,\"rootResolutionId\":\"100\",\"supersedesResolutionId\":\"100\",\"revisionReason\":\"更正原沟通说明：尚未取得患者方案接受\",\"previousContentFingerprint\":\"3318f4d404edfaee59aae2e25b3e6da82eb4f92159a1b4a5e826f593e1b212ba\",\"targetDraftRef\":{\"scheduleId\":\"700\",\"versionNo\":2},\"appointmentId\":\"900\",\"processingKind\":\"PENDING\",\"observedAppointmentFingerprint\":\"e54a2d08db07cb23ea6296bb9c3a3c0d125ac5a8cf872a77e439f5e2f4df2840\",\"formalEvidence\":null,\"supportAssessment\":{\"evaluatedAt\":\"2026-11-05T02:20:00.000000Z\",\"appointmentFingerprint\":\"e54a2d08db07cb23ea6296bb9c3a3c0d125ac5a8cf872a77e439f5e2f4df2840\",\"conclusion\":\"PENDING\",\"formalEvidence\":null,\"supportReasons\":[],\"pendingReason\":\"尚未完成真实办理\"},\"necessaryBasis\":\"合成完整依据：本修订不改变前驱记录；以正式事实核验结果为准\"}",
+      "responsible_party": "合成诊所负责人",
+      "pending_confirmation": "等待真实患者接受与正式办理",
+      "recorded_at": "2026-11-05T02:10:00.000000Z",
+      "appointment_change_id": null
+    },
+    {
+      "resolution_id": "102",
+      "schedule_id": "700",
+      "schedule_version_no": 2,
+      "appointment_id": "900",
+      "resolution_subject": "合成：缩短草案后预约处理",
+      "resolution_result": "CHANGED",
+      "resolution_basis": "{\"schemaVersion\":1,\"rootResolutionId\":\"100\",\"supersedesResolutionId\":\"101\",\"revisionReason\":\"真实UC03已成功提交，追加新的核验结果\",\"previousContentFingerprint\":\"77fd81568be054bc6bc042e1a403f98d5751489f57e03c95fe61456331f4f5a7\",\"targetDraftRef\":{\"scheduleId\":\"700\",\"versionNo\":2},\"appointmentId\":\"900\",\"processingKind\":\"CHANGED\",\"observedAppointmentFingerprint\":\"a6cf1bf8f1a9652a1dab7eb59f67976da96e9de649c0e14b35973cea30369129\",\"formalEvidence\":{\"ucCode\":\"UC03\",\"auditSuccessEventId\":\"5403\",\"appointmentChangeId\":\"501\"},\"supportAssessment\":{\"evaluatedAt\":\"2026-11-05T02:20:00.000000Z\",\"appointmentFingerprint\":\"a6cf1bf8f1a9652a1dab7eb59f67976da96e9de649c0e14b35973cea30369129\",\"conclusion\":\"VERIFIED\",\"formalEvidence\":{\"ucCode\":\"UC03\",\"auditSuccessEventId\":\"5403\",\"appointmentChangeId\":\"501\"},\"supportReasons\":[\"合成场景：反查正式成功事实及当前资源支持\"],\"pendingReason\":null},\"necessaryBasis\":\"合成完整依据：本修订不改变前驱记录；以正式事实核验结果为准\"}",
+      "responsible_party": "合成诊所负责人",
+      "pending_confirmation": null,
+      "recorded_at": "2026-11-05T02:20:00.000000Z",
+      "appointment_change_id": "501"
+    },
+    {
+      "resolution_id": "200",
+      "schedule_id": "700",
+      "schedule_version_no": 2,
+      "appointment_id": "901",
+      "resolution_subject": "合成：缩短草案后预约处理",
+      "resolution_result": "PENDING",
+      "resolution_basis": null,
+      "responsible_party": "合成诊所负责人",
+      "pending_confirmation": "等待真实患者接受与正式办理",
+      "recorded_at": "2026-11-05T02:00:00.000000Z",
+      "appointment_change_id": null
+    },
+    {
+      "resolution_id": "201",
+      "schedule_id": "700",
+      "schedule_version_no": 2,
+      "appointment_id": "901",
+      "resolution_subject": "合成：缩短草案后预约处理",
+      "resolution_result": "CANCELLED",
+      "resolution_basis": "{\"schemaVersion\":1,\"rootResolutionId\":\"200\",\"supersedesResolutionId\":\"200\",\"revisionReason\":\"真实UC04成功后追加取消核验\",\"previousContentFingerprint\":\"b2fbd9b06f7ab1d63084378015c5ef9e8a5fea0667f90e3d9b3991236dd86863\",\"targetDraftRef\":{\"scheduleId\":\"700\",\"versionNo\":2},\"appointmentId\":\"901\",\"processingKind\":\"CANCELLED\",\"observedAppointmentFingerprint\":\"c4ee762715133ac8f1e44d12c6023ef1f31da67508b079550aebf8708e91b79d\",\"formalEvidence\":{\"ucCode\":\"UC04\",\"auditSuccessEventId\":\"5404\",\"cancellationBasisReference\":\"appointment:901/cancellation_verification\"},\"supportAssessment\":{\"evaluatedAt\":\"2026-11-05T02:21:00.000000Z\",\"appointmentFingerprint\":\"c4ee762715133ac8f1e44d12c6023ef1f31da67508b079550aebf8708e91b79d\",\"conclusion\":\"VERIFIED\",\"formalEvidence\":{\"ucCode\":\"UC04\",\"auditSuccessEventId\":\"5404\",\"cancellationBasisReference\":\"appointment:901/cancellation_verification\"},\"supportReasons\":[\"合成场景：反查正式成功事实及当前资源支持\"],\"pendingReason\":null},\"necessaryBasis\":\"合成：已核实患者本人取消意愿及原预约\"}",
+      "responsible_party": "合成诊所负责人",
+      "pending_confirmation": null,
+      "recorded_at": "2026-11-05T02:21:00.000000Z",
+      "appointment_change_id": null
+    }
+  ],
+  "appointmentRows": [
+    {
+      "appointment_id": "900",
+      "patient_id": "300",
+      "schedule_id": "701",
+      "schedule_version_no": 1,
+      "starts_at": "2026-11-06T02:00:00.000000Z",
+      "ends_at": "2026-11-06T02:30:00.000000Z",
+      "treatment_request": "{\"patientIntent\":\"合成患者原需求不丢失\",\"durationBasis\":{\"schemaVersion\":1,\"primaryProjectId\":\"10\",\"projectVersion\":1,\"projectNameSnapshot\":\"合成诊疗项目\",\"adoptedDurationMinutes\":30,\"basisMode\":\"PRESERVED_ORIGINAL\",\"timeInterpretation\":{\"zonePolicyVersion\":\"SYNTHETIC-v1\",\"clinicId\":\"1\",\"zoneId\":\"Asia/Shanghai\",\"sourceLocalStart\":\"2026-11-06T10:00:00\",\"sourceLocalEnd\":\"2026-11-06T10:30:00\",\"localEndSource\":\"DERIVED_FROM_DURATION\",\"selectedOffsetStart\":\"+08:00\",\"selectedOffsetEnd\":\"+08:00\",\"resolvedInstantStart\":\"2026-11-06T02:00:00.000000Z\",\"resolvedInstantEnd\":\"2026-11-06T02:30:00.000000Z\",\"tzdbVersion\":\"SYNTHETIC-NOT-RUNTIME-EVIDENCE\"}}}",
+      "manual_confirmation": "合成患者已接受701/1和10:00方案，项目与30分钟版本1不变",
+      "appointment_status": "待到诊",
+      "no_show_verification": null,
+      "reminder_arrangement": "合成新提醒",
+      "cancellation_verification": null,
+      "operated_by": "synthetic-booking-1",
+      "operated_at": "2026-11-05T02:15:00.000000Z",
+      "representative_verification_basis": null,
+      "arrival_pending_notes": null
+    },
+    {
+      "appointment_id": "901",
+      "patient_id": "301",
+      "schedule_id": "700",
+      "schedule_version_no": 1,
+      "starts_at": "2026-11-06T02:00:00.000000Z",
+      "ends_at": "2026-11-06T02:30:00.000000Z",
+      "treatment_request": "{\"patientIntent\":\"合成患者原需求不丢失\",\"durationBasis\":{\"schemaVersion\":1,\"primaryProjectId\":\"10\",\"projectVersion\":1,\"projectNameSnapshot\":\"合成诊疗项目\",\"adoptedDurationMinutes\":30,\"basisMode\":\"PRESERVED_ORIGINAL\",\"timeInterpretation\":{\"zonePolicyVersion\":\"SYNTHETIC-v1\",\"clinicId\":\"1\",\"zoneId\":\"Asia/Shanghai\",\"sourceLocalStart\":\"2026-11-06T10:00:00\",\"sourceLocalEnd\":\"2026-11-06T10:30:00\",\"localEndSource\":\"DERIVED_FROM_DURATION\",\"selectedOffsetStart\":\"+08:00\",\"selectedOffsetEnd\":\"+08:00\",\"resolvedInstantStart\":\"2026-11-06T02:00:00.000000Z\",\"resolvedInstantEnd\":\"2026-11-06T02:30:00.000000Z\",\"tzdbVersion\":\"SYNTHETIC-NOT-RUNTIME-EVIDENCE\"}}}",
+      "manual_confirmation": "合成患者已接受701/1和10:00方案，项目与30分钟版本1不变",
+      "appointment_status": "已取消",
+      "no_show_verification": null,
+      "reminder_arrangement": "合成：已停止提醒",
+      "cancellation_verification": "合成：已核实患者本人取消意愿及原预约",
+      "operated_by": "synthetic-booking-1",
+      "operated_at": "2026-11-05T02:16:00.000000Z",
+      "representative_verification_basis": null,
+      "arrival_pending_notes": null
+    }
+  ],
+  "changeHistoryRows": [
+    {
+      "appointment_change_id": "501",
+      "appointment_id": "900",
+      "old_schedule_id": "700",
+      "old_schedule_version_no": 1,
+      "new_schedule_id": "701",
+      "new_schedule_version_no": 1,
+      "old_starts_at": "2026-11-06T01:00:00.000000Z",
+      "old_ends_at": "2026-11-06T01:30:00.000000Z",
+      "new_starts_at": "2026-11-06T02:00:00.000000Z",
+      "new_ends_at": "2026-11-06T02:30:00.000000Z",
+      "old_treatment_request": "{\"patientIntent\":\"合成患者原需求不丢失\",\"durationBasis\":{\"schemaVersion\":1,\"primaryProjectId\":\"10\",\"projectVersion\":1,\"projectNameSnapshot\":\"合成诊疗项目\",\"adoptedDurationMinutes\":30,\"basisMode\":\"INITIAL_CURRENT\",\"timeInterpretation\":{\"zonePolicyVersion\":\"SYNTHETIC-v1\",\"clinicId\":\"1\",\"zoneId\":\"Asia/Shanghai\",\"sourceLocalStart\":\"2026-11-06T09:00:00\",\"sourceLocalEnd\":\"2026-11-06T09:30:00\",\"localEndSource\":\"DERIVED_FROM_DURATION\",\"selectedOffsetStart\":\"+08:00\",\"selectedOffsetEnd\":\"+08:00\",\"resolvedInstantStart\":\"2026-11-06T01:00:00.000000Z\",\"resolvedInstantEnd\":\"2026-11-06T01:30:00.000000Z\",\"tzdbVersion\":\"SYNTHETIC-NOT-RUNTIME-EVIDENCE\"}}}",
+      "new_treatment_request": "{\"patientIntent\":\"合成患者原需求不丢失\",\"durationBasis\":{\"schemaVersion\":1,\"primaryProjectId\":\"10\",\"projectVersion\":1,\"projectNameSnapshot\":\"合成诊疗项目\",\"adoptedDurationMinutes\":30,\"basisMode\":\"PRESERVED_ORIGINAL\",\"timeInterpretation\":{\"zonePolicyVersion\":\"SYNTHETIC-v1\",\"clinicId\":\"1\",\"zoneId\":\"Asia/Shanghai\",\"sourceLocalStart\":\"2026-11-06T10:00:00\",\"sourceLocalEnd\":\"2026-11-06T10:30:00\",\"localEndSource\":\"DERIVED_FROM_DURATION\",\"selectedOffsetStart\":\"+08:00\",\"selectedOffsetEnd\":\"+08:00\",\"resolvedInstantStart\":\"2026-11-06T02:00:00.000000Z\",\"resolvedInstantEnd\":\"2026-11-06T02:30:00.000000Z\",\"tzdbVersion\":\"SYNTHETIC-NOT-RUNTIME-EVIDENCE\"}}}",
+      "manual_confirmation_basis": "合成患者已接受701/1和10:00方案，项目与30分钟版本1不变",
+      "change_basis": "原安排700缩短，目标701/1为独立真实EFFECTIVE安排",
+      "verification_basis": null,
+      "old_reminder_basis": "合成旧提醒",
+      "new_reminder_basis": "合成新提醒",
+      "changed_by": "synthetic-booking-1",
+      "changed_at": "2026-11-05T02:15:00.000000Z",
+      "change_request_reference": "SYN-UC03-900"
+    }
+  ],
+  "auditRows": [
+    {
+      "audit_event_id": "5403",
+      "request_reference": "SYN-UC03-900",
+      "event_sequence_no": 2,
+      "uc_code": "UC03",
+      "operation_name": "APPOINTMENT_CHANGE",
+      "actor_reference": "synthetic-booking-1",
+      "occurred_at": "2026-11-05T02:15:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC03\"]}",
+      "business_reference": "appointment:900",
+      "outcome": "SUCCESS",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"BUSINESS_RESULT\",\"operationKind\":\"UC03\",\"canonicalPayloadHash\":\"a4753117852d1483da527556b79a42622ed00d4c915dc5857aa3c40b39127fba\",\"confirmedCommit\":\"YES\",\"businessResultSnapshot\":{\"appointment\":{\"appointment_id\":\"900\",\"patient_id\":\"300\",\"schedule_id\":\"701\",\"schedule_version_no\":1,\"starts_at\":\"2026-11-06T02:00:00.000000Z\",\"ends_at\":\"2026-11-06T02:30:00.000000Z\",\"treatment_request\":\"{\\\"patientIntent\\\":\\\"合成患者原需求不丢失\\\",\\\"durationBasis\\\":{\\\"schemaVersion\\\":1,\\\"primaryProjectId\\\":\\\"10\\\",\\\"projectVersion\\\":1,\\\"projectNameSnapshot\\\":\\\"合成诊疗项目\\\",\\\"adoptedDurationMinutes\\\":30,\\\"basisMode\\\":\\\"PRESERVED_ORIGINAL\\\",\\\"timeInterpretation\\\":{\\\"zonePolicyVersion\\\":\\\"SYNTHETIC-v1\\\",\\\"clinicId\\\":\\\"1\\\",\\\"zoneId\\\":\\\"Asia/Shanghai\\\",\\\"sourceLocalStart\\\":\\\"2026-11-06T10:00:00\\\",\\\"sourceLocalEnd\\\":\\\"2026-11-06T10:30:00\\\",\\\"localEndSource\\\":\\\"DERIVED_FROM_DURATION\\\",\\\"selectedOffsetStart\\\":\\\"+08:00\\\",\\\"selectedOffsetEnd\\\":\\\"+08:00\\\",\\\"resolvedInstantStart\\\":\\\"2026-11-06T02:00:00.000000Z\\\",\\\"resolvedInstantEnd\\\":\\\"2026-11-06T02:30:00.000000Z\\\",\\\"tzdbVersion\\\":\\\"SYNTHETIC-NOT-RUNTIME-EVIDENCE\\\"}}}\",\"manual_confirmation\":\"合成患者已接受701/1和10:00方案，项目与30分钟版本1不变\",\"appointment_status\":\"待到诊\",\"no_show_verification\":null,\"reminder_arrangement\":\"合成新提醒\",\"cancellation_verification\":null,\"operated_by\":\"synthetic-booking-1\",\"operated_at\":\"2026-11-05T02:15:00.000000Z\",\"representative_verification_basis\":null,\"arrival_pending_notes\":null},\"changeHistory\":{\"appointment_change_id\":\"501\",\"appointment_id\":\"900\",\"old_schedule_id\":\"700\",\"old_schedule_version_no\":1,\"new_schedule_id\":\"701\",\"new_schedule_version_no\":1,\"old_starts_at\":\"2026-11-06T01:00:00.000000Z\",\"old_ends_at\":\"2026-11-06T01:30:00.000000Z\",\"new_starts_at\":\"2026-11-06T02:00:00.000000Z\",\"new_ends_at\":\"2026-11-06T02:30:00.000000Z\",\"old_treatment_request\":\"{\\\"patientIntent\\\":\\\"合成患者原需求不丢失\\\",\\\"durationBasis\\\":{\\\"schemaVersion\\\":1,\\\"primaryProjectId\\\":\\\"10\\\",\\\"projectVersion\\\":1,\\\"projectNameSnapshot\\\":\\\"合成诊疗项目\\\",\\\"adoptedDurationMinutes\\\":30,\\\"basisMode\\\":\\\"INITIAL_CURRENT\\\",\\\"timeInterpretation\\\":{\\\"zonePolicyVersion\\\":\\\"SYNTHETIC-v1\\\",\\\"clinicId\\\":\\\"1\\\",\\\"zoneId\\\":\\\"Asia/Shanghai\\\",\\\"sourceLocalStart\\\":\\\"2026-11-06T09:00:00\\\",\\\"sourceLocalEnd\\\":\\\"2026-11-06T09:30:00\\\",\\\"localEndSource\\\":\\\"DERIVED_FROM_DURATION\\\",\\\"selectedOffsetStart\\\":\\\"+08:00\\\",\\\"selectedOffsetEnd\\\":\\\"+08:00\\\",\\\"resolvedInstantStart\\\":\\\"2026-11-06T01:00:00.000000Z\\\",\\\"resolvedInstantEnd\\\":\\\"2026-11-06T01:30:00.000000Z\\\",\\\"tzdbVersion\\\":\\\"SYNTHETIC-NOT-RUNTIME-EVIDENCE\\\"}}}\",\"new_treatment_request\":\"{\\\"patientIntent\\\":\\\"合成患者原需求不丢失\\\",\\\"durationBasis\\\":{\\\"schemaVersion\\\":1,\\\"primaryProjectId\\\":\\\"10\\\",\\\"projectVersion\\\":1,\\\"projectNameSnapshot\\\":\\\"合成诊疗项目\\\",\\\"adoptedDurationMinutes\\\":30,\\\"basisMode\\\":\\\"PRESERVED_ORIGINAL\\\",\\\"timeInterpretation\\\":{\\\"zonePolicyVersion\\\":\\\"SYNTHETIC-v1\\\",\\\"clinicId\\\":\\\"1\\\",\\\"zoneId\\\":\\\"Asia/Shanghai\\\",\\\"sourceLocalStart\\\":\\\"2026-11-06T10:00:00\\\",\\\"sourceLocalEnd\\\":\\\"2026-11-06T10:30:00\\\",\\\"localEndSource\\\":\\\"DERIVED_FROM_DURATION\\\",\\\"selectedOffsetStart\\\":\\\"+08:00\\\",\\\"selectedOffsetEnd\\\":\\\"+08:00\\\",\\\"resolvedInstantStart\\\":\\\"2026-11-06T02:00:00.000000Z\\\",\\\"resolvedInstantEnd\\\":\\\"2026-11-06T02:30:00.000000Z\\\",\\\"tzdbVersion\\\":\\\"SYNTHETIC-NOT-RUNTIME-EVIDENCE\\\"}}}\",\"manual_confirmation_basis\":\"合成患者已接受701/1和10:00方案，项目与30分钟版本1不变\",\"change_basis\":\"原安排700缩短，目标701/1为独立真实EFFECTIVE安排\",\"verification_basis\":null,\"old_reminder_basis\":\"合成旧提醒\",\"new_reminder_basis\":\"合成新提醒\",\"changed_by\":\"synthetic-booking-1\",\"changed_at\":\"2026-11-05T02:15:00.000000Z\",\"change_request_reference\":\"SYN-UC03-900\"},\"patientAcceptance\":\"合成患者已接受701/1和10:00方案，项目与30分钟版本1不变\",\"resourceVerification\":\"目标701/1当前EFFECTIVE；全局牙医核验通过（仅合成设定）\"},\"observationReason\":null}"
+    },
+    {
+      "audit_event_id": "5404",
+      "request_reference": "SYN-UC04-901",
+      "event_sequence_no": 2,
+      "uc_code": "UC04",
+      "operation_name": "APPOINTMENT_CANCEL",
+      "actor_reference": "synthetic-booking-1",
+      "occurred_at": "2026-11-05T02:16:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC04\"]}",
+      "business_reference": "appointment:901",
+      "outcome": "SUCCESS",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"BUSINESS_RESULT\",\"operationKind\":\"UC04\",\"canonicalPayloadHash\":\"a7fb6062e2fbad840718128d9e06f60bdb472fc6cc79c4c5ce99df4456237817\",\"confirmedCommit\":\"YES\",\"businessResultSnapshot\":{\"before\":{\"appointment_id\":\"901\",\"patient_id\":\"301\",\"schedule_id\":\"700\",\"schedule_version_no\":1,\"starts_at\":\"2026-11-06T02:00:00.000000Z\",\"ends_at\":\"2026-11-06T02:30:00.000000Z\",\"treatment_request\":\"{\\\"patientIntent\\\":\\\"合成患者原需求不丢失\\\",\\\"durationBasis\\\":{\\\"schemaVersion\\\":1,\\\"primaryProjectId\\\":\\\"10\\\",\\\"projectVersion\\\":1,\\\"projectNameSnapshot\\\":\\\"合成诊疗项目\\\",\\\"adoptedDurationMinutes\\\":30,\\\"basisMode\\\":\\\"PRESERVED_ORIGINAL\\\",\\\"timeInterpretation\\\":{\\\"zonePolicyVersion\\\":\\\"SYNTHETIC-v1\\\",\\\"clinicId\\\":\\\"1\\\",\\\"zoneId\\\":\\\"Asia/Shanghai\\\",\\\"sourceLocalStart\\\":\\\"2026-11-06T10:00:00\\\",\\\"sourceLocalEnd\\\":\\\"2026-11-06T10:30:00\\\",\\\"localEndSource\\\":\\\"DERIVED_FROM_DURATION\\\",\\\"selectedOffsetStart\\\":\\\"+08:00\\\",\\\"selectedOffsetEnd\\\":\\\"+08:00\\\",\\\"resolvedInstantStart\\\":\\\"2026-11-06T02:00:00.000000Z\\\",\\\"resolvedInstantEnd\\\":\\\"2026-11-06T02:30:00.000000Z\\\",\\\"tzdbVersion\\\":\\\"SYNTHETIC-NOT-RUNTIME-EVIDENCE\\\"}}}\",\"manual_confirmation\":\"合成患者已接受701/1和10:00方案，项目与30分钟版本1不变\",\"appointment_status\":\"待到诊\",\"no_show_verification\":null,\"reminder_arrangement\":\"合成待发送提醒\",\"cancellation_verification\":null,\"operated_by\":\"synthetic-booking-1\",\"operated_at\":\"2026-11-05T02:16:00.000000Z\",\"representative_verification_basis\":null,\"arrival_pending_notes\":null},\"after\":{\"appointment_id\":\"901\",\"patient_id\":\"301\",\"schedule_id\":\"700\",\"schedule_version_no\":1,\"starts_at\":\"2026-11-06T02:00:00.000000Z\",\"ends_at\":\"2026-11-06T02:30:00.000000Z\",\"treatment_request\":\"{\\\"patientIntent\\\":\\\"合成患者原需求不丢失\\\",\\\"durationBasis\\\":{\\\"schemaVersion\\\":1,\\\"primaryProjectId\\\":\\\"10\\\",\\\"projectVersion\\\":1,\\\"projectNameSnapshot\\\":\\\"合成诊疗项目\\\",\\\"adoptedDurationMinutes\\\":30,\\\"basisMode\\\":\\\"PRESERVED_ORIGINAL\\\",\\\"timeInterpretation\\\":{\\\"zonePolicyVersion\\\":\\\"SYNTHETIC-v1\\\",\\\"clinicId\\\":\\\"1\\\",\\\"zoneId\\\":\\\"Asia/Shanghai\\\",\\\"sourceLocalStart\\\":\\\"2026-11-06T10:00:00\\\",\\\"sourceLocalEnd\\\":\\\"2026-11-06T10:30:00\\\",\\\"localEndSource\\\":\\\"DERIVED_FROM_DURATION\\\",\\\"selectedOffsetStart\\\":\\\"+08:00\\\",\\\"selectedOffsetEnd\\\":\\\"+08:00\\\",\\\"resolvedInstantStart\\\":\\\"2026-11-06T02:00:00.000000Z\\\",\\\"resolvedInstantEnd\\\":\\\"2026-11-06T02:30:00.000000Z\\\",\\\"tzdbVersion\\\":\\\"SYNTHETIC-NOT-RUNTIME-EVIDENCE\\\"}}}\",\"manual_confirmation\":\"合成患者已接受701/1和10:00方案，项目与30分钟版本1不变\",\"appointment_status\":\"已取消\",\"no_show_verification\":null,\"reminder_arrangement\":\"合成：已停止提醒\",\"cancellation_verification\":\"合成：已核实患者本人取消意愿及原预约\",\"operated_by\":\"synthetic-booking-1\",\"operated_at\":\"2026-11-05T02:16:00.000000Z\",\"representative_verification_basis\":null,\"arrival_pending_notes\":null},\"cancellationVerification\":\"合成：已核实患者本人取消意愿及原预约\"},\"observationReason\":null}"
+    },
+    {
+      "audit_event_id": "5500",
+      "request_reference": "SYN-ROOT-100",
+      "event_sequence_no": 2,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_RESOLUTION_CREATE",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:00:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "resolution:100",
+      "outcome": "SUCCESS",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"operationKind\":\"RESOLUTION_CREATE\",\"requestReference\":\"SYN-ROOT-100\",\"canonicalPayloadHash\":\"d5b635d85ea0f5ecc5b24c1d4791986ea374a4c4d924907305e358156c4fca9a\",\"targetDraftRef\":{\"scheduleId\":\"700\",\"versionNo\":2},\"rootResolutionId\":\"100\",\"predecessorResolutionId\":null,\"newResolutionId\":\"100\",\"revisionReason\":null,\"before\":null,\"after\":{\"resolution_id\":\"100\",\"schedule_id\":\"700\",\"schedule_version_no\":2,\"appointment_id\":\"900\",\"resolution_subject\":\"合成：缩短草案后预约处理\",\"resolution_result\":\"PENDING\",\"resolution_basis\":null,\"responsible_party\":\"合成诊所负责人\",\"pending_confirmation\":\"等待真实患者接受与正式办理\",\"recorded_at\":\"2026-11-05T02:00:00.000000Z\",\"appointment_change_id\":null},\"verification\":{\"evaluatedAt\":\"2026-11-05T02:20:00.000000Z\",\"appointmentFingerprint\":\"e54a2d08db07cb23ea6296bb9c3a3c0d125ac5a8cf872a77e439f5e2f4df2840\",\"conclusion\":\"PENDING\",\"formalEvidence\":null,\"supportReasons\":[],\"pendingReason\":\"尚未完成真实办理\"}}"
+    },
+    {
+      "audit_event_id": "5501",
+      "request_reference": "SYN-REV-101",
+      "event_sequence_no": 2,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_RESOLUTION_APPEND",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:10:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "resolution:101",
+      "outcome": "SUCCESS",
+      "reason": "更正原沟通说明：尚未取得患者方案接受",
+      "evidence": "{\"schemaVersion\":1,\"operationKind\":\"RESOLUTION_APPEND\",\"requestReference\":\"SYN-REV-101\",\"canonicalPayloadHash\":\"c2a46316517afcb5eca6399ca397a0bd99c97e8299d15f48b2e929fce525c5e7\",\"targetDraftRef\":{\"scheduleId\":\"700\",\"versionNo\":2},\"rootResolutionId\":\"100\",\"predecessorResolutionId\":\"100\",\"newResolutionId\":\"101\",\"revisionReason\":\"更正原沟通说明：尚未取得患者方案接受\",\"before\":{\"resolution_id\":\"100\",\"schedule_id\":\"700\",\"schedule_version_no\":2,\"appointment_id\":\"900\",\"resolution_subject\":\"合成：缩短草案后预约处理\",\"resolution_result\":\"PENDING\",\"resolution_basis\":null,\"responsible_party\":\"合成诊所负责人\",\"pending_confirmation\":\"等待真实患者接受与正式办理\",\"recorded_at\":\"2026-11-05T02:00:00.000000Z\",\"appointment_change_id\":null},\"after\":{\"resolution_id\":\"101\",\"schedule_id\":\"700\",\"schedule_version_no\":2,\"appointment_id\":\"900\",\"resolution_subject\":\"合成：缩短草案后预约处理\",\"resolution_result\":\"PENDING\",\"resolution_basis\":\"{\\\"schemaVersion\\\":1,\\\"rootResolutionId\\\":\\\"100\\\",\\\"supersedesResolutionId\\\":\\\"100\\\",\\\"revisionReason\\\":\\\"更正原沟通说明：尚未取得患者方案接受\\\",\\\"previousContentFingerprint\\\":\\\"3318f4d404edfaee59aae2e25b3e6da82eb4f92159a1b4a5e826f593e1b212ba\\\",\\\"targetDraftRef\\\":{\\\"scheduleId\\\":\\\"700\\\",\\\"versionNo\\\":2},\\\"appointmentId\\\":\\\"900\\\",\\\"processingKind\\\":\\\"PENDING\\\",\\\"observedAppointmentFingerprint\\\":\\\"e54a2d08db07cb23ea6296bb9c3a3c0d125ac5a8cf872a77e439f5e2f4df2840\\\",\\\"formalEvidence\\\":null,\\\"supportAssessment\\\":{\\\"evaluatedAt\\\":\\\"2026-11-05T02:20:00.000000Z\\\",\\\"appointmentFingerprint\\\":\\\"e54a2d08db07cb23ea6296bb9c3a3c0d125ac5a8cf872a77e439f5e2f4df2840\\\",\\\"conclusion\\\":\\\"PENDING\\\",\\\"formalEvidence\\\":null,\\\"supportReasons\\\":[],\\\"pendingReason\\\":\\\"尚未完成真实办理\\\"},\\\"necessaryBasis\\\":\\\"合成完整依据：本修订不改变前驱记录；以正式事实核验结果为准\\\"}\",\"responsible_party\":\"合成诊所负责人\",\"pending_confirmation\":\"等待真实患者接受与正式办理\",\"recorded_at\":\"2026-11-05T02:10:00.000000Z\",\"appointment_change_id\":null},\"verification\":{\"evaluatedAt\":\"2026-11-05T02:20:00.000000Z\",\"appointmentFingerprint\":\"e54a2d08db07cb23ea6296bb9c3a3c0d125ac5a8cf872a77e439f5e2f4df2840\",\"conclusion\":\"PENDING\",\"formalEvidence\":null,\"supportReasons\":[],\"pendingReason\":\"尚未完成真实办理\"}}"
+    },
+    {
+      "audit_event_id": "5502",
+      "request_reference": "SYN-REV-102",
+      "event_sequence_no": 2,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_RESOLUTION_APPEND",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:20:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "resolution:102",
+      "outcome": "SUCCESS",
+      "reason": "真实UC03已成功提交，追加新的核验结果",
+      "evidence": "{\"schemaVersion\":1,\"operationKind\":\"RESOLUTION_APPEND\",\"requestReference\":\"SYN-REV-102\",\"canonicalPayloadHash\":\"2a170dad80047cd776e85a4cd8779c2d96b3452f883fee28c3de3432d1792a4a\",\"targetDraftRef\":{\"scheduleId\":\"700\",\"versionNo\":2},\"rootResolutionId\":\"100\",\"predecessorResolutionId\":\"101\",\"newResolutionId\":\"102\",\"revisionReason\":\"真实UC03已成功提交，追加新的核验结果\",\"before\":{\"resolution_id\":\"101\",\"schedule_id\":\"700\",\"schedule_version_no\":2,\"appointment_id\":\"900\",\"resolution_subject\":\"合成：缩短草案后预约处理\",\"resolution_result\":\"PENDING\",\"resolution_basis\":\"{\\\"schemaVersion\\\":1,\\\"rootResolutionId\\\":\\\"100\\\",\\\"supersedesResolutionId\\\":\\\"100\\\",\\\"revisionReason\\\":\\\"更正原沟通说明：尚未取得患者方案接受\\\",\\\"previousContentFingerprint\\\":\\\"3318f4d404edfaee59aae2e25b3e6da82eb4f92159a1b4a5e826f593e1b212ba\\\",\\\"targetDraftRef\\\":{\\\"scheduleId\\\":\\\"700\\\",\\\"versionNo\\\":2},\\\"appointmentId\\\":\\\"900\\\",\\\"processingKind\\\":\\\"PENDING\\\",\\\"observedAppointmentFingerprint\\\":\\\"e54a2d08db07cb23ea6296bb9c3a3c0d125ac5a8cf872a77e439f5e2f4df2840\\\",\\\"formalEvidence\\\":null,\\\"supportAssessment\\\":{\\\"evaluatedAt\\\":\\\"2026-11-05T02:20:00.000000Z\\\",\\\"appointmentFingerprint\\\":\\\"e54a2d08db07cb23ea6296bb9c3a3c0d125ac5a8cf872a77e439f5e2f4df2840\\\",\\\"conclusion\\\":\\\"PENDING\\\",\\\"formalEvidence\\\":null,\\\"supportReasons\\\":[],\\\"pendingReason\\\":\\\"尚未完成真实办理\\\"},\\\"necessaryBasis\\\":\\\"合成完整依据：本修订不改变前驱记录；以正式事实核验结果为准\\\"}\",\"responsible_party\":\"合成诊所负责人\",\"pending_confirmation\":\"等待真实患者接受与正式办理\",\"recorded_at\":\"2026-11-05T02:10:00.000000Z\",\"appointment_change_id\":null},\"after\":{\"resolution_id\":\"102\",\"schedule_id\":\"700\",\"schedule_version_no\":2,\"appointment_id\":\"900\",\"resolution_subject\":\"合成：缩短草案后预约处理\",\"resolution_result\":\"CHANGED\",\"resolution_basis\":\"{\\\"schemaVersion\\\":1,\\\"rootResolutionId\\\":\\\"100\\\",\\\"supersedesResolutionId\\\":\\\"101\\\",\\\"revisionReason\\\":\\\"真实UC03已成功提交，追加新的核验结果\\\",\\\"previousContentFingerprint\\\":\\\"77fd81568be054bc6bc042e1a403f98d5751489f57e03c95fe61456331f4f5a7\\\",\\\"targetDraftRef\\\":{\\\"scheduleId\\\":\\\"700\\\",\\\"versionNo\\\":2},\\\"appointmentId\\\":\\\"900\\\",\\\"processingKind\\\":\\\"CHANGED\\\",\\\"observedAppointmentFingerprint\\\":\\\"a6cf1bf8f1a9652a1dab7eb59f67976da96e9de649c0e14b35973cea30369129\\\",\\\"formalEvidence\\\":{\\\"ucCode\\\":\\\"UC03\\\",\\\"auditSuccessEventId\\\":\\\"5403\\\",\\\"appointmentChangeId\\\":\\\"501\\\"},\\\"supportAssessment\\\":{\\\"evaluatedAt\\\":\\\"2026-11-05T02:20:00.000000Z\\\",\\\"appointmentFingerprint\\\":\\\"a6cf1bf8f1a9652a1dab7eb59f67976da96e9de649c0e14b35973cea30369129\\\",\\\"conclusion\\\":\\\"VERIFIED\\\",\\\"formalEvidence\\\":{\\\"ucCode\\\":\\\"UC03\\\",\\\"auditSuccessEventId\\\":\\\"5403\\\",\\\"appointmentChangeId\\\":\\\"501\\\"},\\\"supportReasons\\\":[\\\"合成场景：反查正式成功事实及当前资源支持\\\"],\\\"pendingReason\\\":null},\\\"necessaryBasis\\\":\\\"合成完整依据：本修订不改变前驱记录；以正式事实核验结果为准\\\"}\",\"responsible_party\":\"合成诊所负责人\",\"pending_confirmation\":null,\"recorded_at\":\"2026-11-05T02:20:00.000000Z\",\"appointment_change_id\":\"501\"},\"verification\":{\"evaluatedAt\":\"2026-11-05T02:20:00.000000Z\",\"appointmentFingerprint\":\"a6cf1bf8f1a9652a1dab7eb59f67976da96e9de649c0e14b35973cea30369129\",\"conclusion\":\"VERIFIED\",\"formalEvidence\":{\"ucCode\":\"UC03\",\"auditSuccessEventId\":\"5403\",\"appointmentChangeId\":\"501\"},\"supportReasons\":[\"合成场景：反查正式成功事实及当前资源支持\"],\"pendingReason\":null}}"
+    },
+    {
+      "audit_event_id": "5600",
+      "request_reference": "SYN-ROOT-200",
+      "event_sequence_no": 2,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_RESOLUTION_CREATE",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:00:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "resolution:200",
+      "outcome": "SUCCESS",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"operationKind\":\"RESOLUTION_CREATE\",\"requestReference\":\"SYN-ROOT-200\",\"canonicalPayloadHash\":\"26a36cffa580039f4dfb1160c3f05e01100beb55081a436ff64f6d0cec7c15cc\",\"targetDraftRef\":{\"scheduleId\":\"700\",\"versionNo\":2},\"rootResolutionId\":\"200\",\"predecessorResolutionId\":null,\"newResolutionId\":\"200\",\"revisionReason\":null,\"before\":null,\"after\":{\"resolution_id\":\"200\",\"schedule_id\":\"700\",\"schedule_version_no\":2,\"appointment_id\":\"901\",\"resolution_subject\":\"合成：缩短草案后预约处理\",\"resolution_result\":\"PENDING\",\"resolution_basis\":null,\"responsible_party\":\"合成诊所负责人\",\"pending_confirmation\":\"等待真实患者接受与正式办理\",\"recorded_at\":\"2026-11-05T02:00:00.000000Z\",\"appointment_change_id\":null},\"verification\":{\"evaluatedAt\":\"2026-11-05T02:20:00.000000Z\",\"appointmentFingerprint\":\"e54a2d08db07cb23ea6296bb9c3a3c0d125ac5a8cf872a77e439f5e2f4df2840\",\"conclusion\":\"PENDING\",\"formalEvidence\":null,\"supportReasons\":[],\"pendingReason\":\"尚未完成真实办理\"}}"
+    },
+    {
+      "audit_event_id": "5601",
+      "request_reference": "SYN-REV-201",
+      "event_sequence_no": 2,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_RESOLUTION_APPEND",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:21:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "resolution:201",
+      "outcome": "SUCCESS",
+      "reason": "真实UC04成功后追加取消核验",
+      "evidence": "{\"schemaVersion\":1,\"operationKind\":\"RESOLUTION_APPEND\",\"requestReference\":\"SYN-REV-201\",\"canonicalPayloadHash\":\"d1a43397e99d56ce1e575c36a42fe6c7793d711976a81d888400505fe6594930\",\"targetDraftRef\":{\"scheduleId\":\"700\",\"versionNo\":2},\"rootResolutionId\":\"200\",\"predecessorResolutionId\":\"200\",\"newResolutionId\":\"201\",\"revisionReason\":\"真实UC04成功后追加取消核验\",\"before\":{\"resolution_id\":\"200\",\"schedule_id\":\"700\",\"schedule_version_no\":2,\"appointment_id\":\"901\",\"resolution_subject\":\"合成：缩短草案后预约处理\",\"resolution_result\":\"PENDING\",\"resolution_basis\":null,\"responsible_party\":\"合成诊所负责人\",\"pending_confirmation\":\"等待真实患者接受与正式办理\",\"recorded_at\":\"2026-11-05T02:00:00.000000Z\",\"appointment_change_id\":null},\"after\":{\"resolution_id\":\"201\",\"schedule_id\":\"700\",\"schedule_version_no\":2,\"appointment_id\":\"901\",\"resolution_subject\":\"合成：缩短草案后预约处理\",\"resolution_result\":\"CANCELLED\",\"resolution_basis\":\"{\\\"schemaVersion\\\":1,\\\"rootResolutionId\\\":\\\"200\\\",\\\"supersedesResolutionId\\\":\\\"200\\\",\\\"revisionReason\\\":\\\"真实UC04成功后追加取消核验\\\",\\\"previousContentFingerprint\\\":\\\"b2fbd9b06f7ab1d63084378015c5ef9e8a5fea0667f90e3d9b3991236dd86863\\\",\\\"targetDraftRef\\\":{\\\"scheduleId\\\":\\\"700\\\",\\\"versionNo\\\":2},\\\"appointmentId\\\":\\\"901\\\",\\\"processingKind\\\":\\\"CANCELLED\\\",\\\"observedAppointmentFingerprint\\\":\\\"c4ee762715133ac8f1e44d12c6023ef1f31da67508b079550aebf8708e91b79d\\\",\\\"formalEvidence\\\":{\\\"ucCode\\\":\\\"UC04\\\",\\\"auditSuccessEventId\\\":\\\"5404\\\",\\\"cancellationBasisReference\\\":\\\"appointment:901/cancellation_verification\\\"},\\\"supportAssessment\\\":{\\\"evaluatedAt\\\":\\\"2026-11-05T02:21:00.000000Z\\\",\\\"appointmentFingerprint\\\":\\\"c4ee762715133ac8f1e44d12c6023ef1f31da67508b079550aebf8708e91b79d\\\",\\\"conclusion\\\":\\\"VERIFIED\\\",\\\"formalEvidence\\\":{\\\"ucCode\\\":\\\"UC04\\\",\\\"auditSuccessEventId\\\":\\\"5404\\\",\\\"cancellationBasisReference\\\":\\\"appointment:901/cancellation_verification\\\"},\\\"supportReasons\\\":[\\\"合成场景：反查正式成功事实及当前资源支持\\\"],\\\"pendingReason\\\":null},\\\"necessaryBasis\\\":\\\"合成：已核实患者本人取消意愿及原预约\\\"}\",\"responsible_party\":\"合成诊所负责人\",\"pending_confirmation\":null,\"recorded_at\":\"2026-11-05T02:21:00.000000Z\",\"appointment_change_id\":null},\"verification\":{\"evaluatedAt\":\"2026-11-05T02:21:00.000000Z\",\"appointmentFingerprint\":\"c4ee762715133ac8f1e44d12c6023ef1f31da67508b079550aebf8708e91b79d\",\"conclusion\":\"VERIFIED\",\"formalEvidence\":{\"ucCode\":\"UC04\",\"auditSuccessEventId\":\"5404\",\"cancellationBasisReference\":\"appointment:901/cancellation_verification\"},\"supportReasons\":[\"合成场景：反查正式成功事实及当前资源支持\"],\"pendingReason\":null}}"
+    },
+    {
+      "audit_event_id": "15403",
+      "request_reference": "SYN-UC03-900",
+      "event_sequence_no": 1,
+      "uc_code": "UC03",
+      "operation_name": "APPOINTMENT_CHANGE",
+      "actor_reference": "synthetic-booking-1",
+      "occurred_at": "2026-11-05T02:00:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC03\"]}",
+      "business_reference": "appointment:900",
+      "outcome": "STARTED",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"REQUEST_STARTED\",\"operationKind\":\"APPOINTMENT_CHANGE\",\"canonicalPayloadHash\":\"6f54b9180dc87fbae4fc059893c7cbc95475eba3f48bfe7c1383d5a22e2e6b59\",\"confirmedCommit\":\"UNKNOWN\",\"businessResultSnapshot\":null,\"observationReason\":null}"
+    },
+    {
+      "audit_event_id": "15404",
+      "request_reference": "SYN-UC04-901",
+      "event_sequence_no": 1,
+      "uc_code": "UC04",
+      "operation_name": "APPOINTMENT_CANCEL",
+      "actor_reference": "synthetic-booking-1",
+      "occurred_at": "2026-11-05T02:00:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC04\"]}",
+      "business_reference": "appointment:901",
+      "outcome": "STARTED",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"REQUEST_STARTED\",\"operationKind\":\"APPOINTMENT_CANCEL\",\"canonicalPayloadHash\":\"404e551b5f3246b278d51be8a994be73b4df0f6e495340e12bb8c6f165d78abd\",\"confirmedCommit\":\"UNKNOWN\",\"businessResultSnapshot\":null,\"observationReason\":null}"
+    },
+    {
+      "audit_event_id": "15500",
+      "request_reference": "SYN-ROOT-100",
+      "event_sequence_no": 1,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_RESOLUTION_CREATE",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:00:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "resolution:100",
+      "outcome": "STARTED",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"REQUEST_STARTED\",\"operationKind\":\"SCHEDULE_RESOLUTION_CREATE\",\"canonicalPayloadHash\":\"f1bf5ea0447ac23a762f5bc4be301ef91919a0487628204a91ea3173a9048707\",\"confirmedCommit\":\"UNKNOWN\",\"businessResultSnapshot\":null,\"observationReason\":null}"
+    },
+    {
+      "audit_event_id": "15501",
+      "request_reference": "SYN-REV-101",
+      "event_sequence_no": 1,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_RESOLUTION_APPEND",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:00:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "resolution:101",
+      "outcome": "STARTED",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"REQUEST_STARTED\",\"operationKind\":\"SCHEDULE_RESOLUTION_APPEND\",\"canonicalPayloadHash\":\"c6db533066ba6bcc20a7777e254104eb9c07ac47f987a1f37132f1ba7885805a\",\"confirmedCommit\":\"UNKNOWN\",\"businessResultSnapshot\":null,\"observationReason\":null}"
+    },
+    {
+      "audit_event_id": "15502",
+      "request_reference": "SYN-REV-102",
+      "event_sequence_no": 1,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_RESOLUTION_APPEND",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:00:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "resolution:102",
+      "outcome": "STARTED",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"REQUEST_STARTED\",\"operationKind\":\"SCHEDULE_RESOLUTION_APPEND\",\"canonicalPayloadHash\":\"c6db533066ba6bcc20a7777e254104eb9c07ac47f987a1f37132f1ba7885805a\",\"confirmedCommit\":\"UNKNOWN\",\"businessResultSnapshot\":null,\"observationReason\":null}"
+    },
+    {
+      "audit_event_id": "15600",
+      "request_reference": "SYN-ROOT-200",
+      "event_sequence_no": 1,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_RESOLUTION_CREATE",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:00:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "resolution:200",
+      "outcome": "STARTED",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"REQUEST_STARTED\",\"operationKind\":\"SCHEDULE_RESOLUTION_CREATE\",\"canonicalPayloadHash\":\"f1bf5ea0447ac23a762f5bc4be301ef91919a0487628204a91ea3173a9048707\",\"confirmedCommit\":\"UNKNOWN\",\"businessResultSnapshot\":null,\"observationReason\":null}"
+    },
+    {
+      "audit_event_id": "15601",
+      "request_reference": "SYN-REV-201",
+      "event_sequence_no": 1,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_RESOLUTION_APPEND",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:00:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "resolution:201",
+      "outcome": "STARTED",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"REQUEST_STARTED\",\"operationKind\":\"SCHEDULE_RESOLUTION_APPEND\",\"canonicalPayloadHash\":\"c6db533066ba6bcc20a7777e254104eb9c07ac47f987a1f37132f1ba7885805a\",\"confirmedCommit\":\"UNKNOWN\",\"businessResultSnapshot\":null,\"observationReason\":null}"
+    },
+    {
+      "audit_event_id": "5801",
+      "request_reference": "SYN-UNKNOWN-UC22",
+      "event_sequence_no": 1,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_ACTIVATE",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:25:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "schedule:700/2",
+      "outcome": "STARTED",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"REQUEST_STARTED\",\"operationKind\":\"UC22\",\"canonicalPayloadHash\":\"f99f90810720ad5d710f37a960052359105a85256af0353a6d532915ff6e9689\",\"confirmedCommit\":\"UNKNOWN\",\"businessResultSnapshot\":null,\"observationReason\":null}"
+    },
+    {
+      "audit_event_id": "5802",
+      "request_reference": "SYN-UNKNOWN-UC22",
+      "event_sequence_no": 2,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_ACTIVATE",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:26:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "schedule:700/2",
+      "outcome": "UNKNOWN",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"RECOVERY_OBSERVATION\",\"operationKind\":\"UC22\",\"canonicalPayloadHash\":\"f99f90810720ad5d710f37a960052359105a85256af0353a6d532915ff6e9689\",\"confirmedCommit\":\"UNKNOWN\",\"businessResultSnapshot\":null,\"observationReason\":\"合成：响应丢失，核查已提交事实\"}"
+    },
+    {
+      "audit_event_id": "5803",
+      "request_reference": "SYN-UNKNOWN-UC22",
+      "event_sequence_no": 3,
+      "uc_code": "UC22",
+      "operation_name": "SCHEDULE_ACTIVATE",
+      "actor_reference": "synthetic-manager-1",
+      "occurred_at": "2026-11-05T02:27:00.000000Z",
+      "authorization_scope": "{\"source\":\"SYNTHETIC-SERVER-BINDING-v1\",\"clinicIds\":[\"1\"],\"actions\":[\"UC22\"]}",
+      "business_reference": "schedule:700/2",
+      "outcome": "SUCCESS",
+      "reason": null,
+      "evidence": "{\"schemaVersion\":1,\"eventPhase\":\"BUSINESS_RESULT\",\"operationKind\":\"UC22\",\"canonicalPayloadHash\":\"f99f90810720ad5d710f37a960052359105a85256af0353a6d532915ff6e9689\",\"confirmedCommit\":\"YES\",\"businessResultSnapshot\":{\"previousEffective\":{\"scheduleId\":\"700\",\"versionNo\":1,\"status\":\"SUPERSEDED\",\"activatedAt\":\"2026-11-05T02:01:00.000000Z\"},\"newEffective\":{\"scheduleId\":\"700\",\"versionNo\":2,\"status\":\"EFFECTIVE\",\"activatedAt\":\"2026-11-05T02:20:00.000000Z\"},\"finalVerification\":{\"rootHeads\":[\"102\",\"201\"],\"appointmentIds\":[\"900\",\"901\"],\"conclusion\":\"合成：当前支持及正式成功重新核验\"}},\"observationReason\":null}"
+    }
+  ],
+  "expectedHeads": {
+    "100": "102",
+    "200": "201"
+  },
+  "negativeCases": [
+    {
+      "name": "fork",
+      "candidate": {
+        "resolution_id": "103",
+        "schedule_id": "700",
+        "schedule_version_no": 2,
+        "appointment_id": "900",
+        "resolution_subject": "合成：缩短草案后预约处理",
+        "resolution_result": "CHANGED",
+        "resolution_basis": "{\"schemaVersion\":1,\"rootResolutionId\":\"100\",\"supersedesResolutionId\":\"101\",\"revisionReason\":\"真实UC03已成功提交，追加新的核验结果\",\"previousContentFingerprint\":\"77fd81568be054bc6bc042e1a403f98d5751489f57e03c95fe61456331f4f5a7\",\"targetDraftRef\":{\"scheduleId\":\"700\",\"versionNo\":2},\"appointmentId\":\"900\",\"processingKind\":\"CHANGED\",\"observedAppointmentFingerprint\":\"a6cf1bf8f1a9652a1dab7eb59f67976da96e9de649c0e14b35973cea30369129\",\"formalEvidence\":{\"ucCode\":\"UC03\",\"auditSuccessEventId\":\"5403\",\"appointmentChangeId\":\"501\"},\"supportAssessment\":{\"evaluatedAt\":\"2026-11-05T02:20:00.000000Z\",\"appointmentFingerprint\":\"a6cf1bf8f1a9652a1dab7eb59f67976da96e9de649c0e14b35973cea30369129\",\"conclusion\":\"VERIFIED\",\"formalEvidence\":{\"ucCode\":\"UC03\",\"auditSuccessEventId\":\"5403\",\"appointmentChangeId\":\"501\"},\"supportReasons\":[\"合成场景：反查正式成功事实及当前资源支持\"],\"pendingReason\":null},\"necessaryBasis\":\"合成完整依据：本修订不改变前驱记录；以正式事实核验结果为准\"}",
+        "responsible_party": "合成诊所负责人",
+        "pending_confirmation": null,
+        "recorded_at": "2026-11-05T02:20:00.000000Z",
+        "appointment_change_id": "501"
+      },
+      "expected": "前驱101不再是当前头，拒绝；不插入"
+    },
+    {
+      "name": "fake-success",
+      "candidateFormalEvidence": {
+        "ucCode": "UC03",
+        "auditSuccessEventId": "missing",
+        "appointmentChangeId": "501"
+      },
+      "expected": "缺真实成功审计，不得VERIFIED"
+    },
+    {
+      "name": "cancel-with-change",
+      "expected": "UC04不得用51改约事实替代取消成功"
+    },
+    {
+      "name": "unknown-no-terminal",
+      "expected": "仅START/观察时保持UNKNOWN，不重放"
+    }
+  ],
+  "recoveryCases": [
+    {
+      "case": "committed-response-lost",
+      "facts": "成功业务及成功54均已提交，客户端无响应",
+      "action": "查原请求/hash及真实业务，返回原结果，无重复写"
+    },
+    {
+      "case": "confirmed-rollback",
+      "facts": "原事务已结束且确认未提交，非仅查询暂未看到",
+      "action": "追加失败说明；重试须重新取得执行资格和全部锁"
+    },
+    {
+      "case": "success-audit-write-failed",
+      "facts": "必要成功54插入失败",
+      "action": "整个业务事务ROLLBACK，不留51/新28/生效切换"
+    },
+    {
+      "case": "failure-audit-write-failed",
+      "facts": "业务回滚确认但失败说明无法持久化",
+      "action": "如实报告说明未持久化，不声称有失败事件"
+    },
+    {
+      "case": "same-key-same-payload",
+      "action": "回既有已提交结果；在途UNKNOWN不抢占"
+    },
+    {
+      "case": "same-key-other-payload",
+      "action": "拒绝请求标识复用"
+    }
+  ]
+}

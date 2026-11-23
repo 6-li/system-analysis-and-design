@@ -1,0 +1,924 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "P0受控文书候选v1",
+  "description": "待集中审批的内容契约；不是DDL或已实现校验器。schema仅结构，真实关联/序号/权限/当前支持/历史不可变/提交事实必须服务端与真实PG测试。",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/ResolutionBasis"
+    },
+    {
+      "$ref": "#/$defs/RevisionEvidence"
+    },
+    {
+      "$ref": "#/$defs/AuditEvent"
+    },
+    {
+      "$ref": "#/$defs/DurationBasis"
+    },
+    {
+      "$ref": "#/$defs/PublicationEvidence"
+    }
+  ],
+  "$defs": {
+    "Id": {
+      "type": "string",
+      "pattern": "^-?[0-9]+$",
+      "description": "原BIGINT十进制字符串，真实引用由服务端核验，不是新PK约束"
+    },
+    "Instant": {
+      "type": "string",
+      "format": "date-time",
+      "description": "带Z/偏移，至多微秒；具体偏移/时区/精度必须语义核验"
+    },
+    "Digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "ScheduleRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "scheduleId": {
+          "$ref": "#/$defs/Id"
+        },
+        "versionNo": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "scheduleId",
+        "versionNo"
+      ]
+    },
+    "ResolutionSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "resolution_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "schedule_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "schedule_version_no": {
+          "type": "integer"
+        },
+        "appointment_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "resolution_subject": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_result": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolution_basis": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "responsible_party": {
+          "type": "string",
+          "minLength": 1
+        },
+        "pending_confirmation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "recorded_at": {
+          "$ref": "#/$defs/Instant"
+        },
+        "appointment_change_id": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "resolution_id",
+        "schedule_id",
+        "schedule_version_no",
+        "appointment_id",
+        "resolution_subject",
+        "resolution_result",
+        "resolution_basis",
+        "responsible_party",
+        "pending_confirmation",
+        "recorded_at",
+        "appointment_change_id"
+      ]
+    },
+    "FormalEvidence": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ucCode": {
+              "const": "UC03"
+            },
+            "auditSuccessEventId": {
+              "$ref": "#/$defs/Id"
+            },
+            "appointmentChangeId": {
+              "$ref": "#/$defs/Id"
+            }
+          },
+          "required": [
+            "ucCode",
+            "auditSuccessEventId",
+            "appointmentChangeId"
+          ]
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "ucCode": {
+              "const": "UC04"
+            },
+            "auditSuccessEventId": {
+              "$ref": "#/$defs/Id"
+            },
+            "cancellationBasisReference": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": [
+            "ucCode",
+            "auditSuccessEventId",
+            "cancellationBasisReference"
+          ]
+        }
+      ]
+    },
+    "Verification": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "evaluatedAt": {
+          "$ref": "#/$defs/Instant"
+        },
+        "appointmentFingerprint": {
+          "$ref": "#/$defs/Digest"
+        },
+        "conclusion": {
+          "enum": [
+            "VERIFIED",
+            "PENDING",
+            "STALE",
+            "INCONSISTENT"
+          ]
+        },
+        "formalEvidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FormalEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "supportReasons": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "pendingReason": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "evaluatedAt",
+        "appointmentFingerprint",
+        "conclusion",
+        "formalEvidence",
+        "supportReasons",
+        "pendingReason"
+      ]
+    },
+    "ResolutionBasis": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "rootResolutionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "supersedesResolutionId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "revisionReason": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "previousContentFingerprint": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Digest"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "targetDraftRef": {
+          "$ref": "#/$defs/ScheduleRef"
+        },
+        "appointmentId": {
+          "$ref": "#/$defs/Id"
+        },
+        "processingKind": {
+          "enum": [
+            "CHANGED",
+            "CANCELLED",
+            "RETAINED",
+            "PENDING"
+          ]
+        },
+        "observedAppointmentFingerprint": {
+          "$ref": "#/$defs/Digest"
+        },
+        "formalEvidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/FormalEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "supportAssessment": {
+          "$ref": "#/$defs/Verification"
+        },
+        "necessaryBasis": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "rootResolutionId",
+        "supersedesResolutionId",
+        "revisionReason",
+        "previousContentFingerprint",
+        "targetDraftRef",
+        "appointmentId",
+        "processingKind",
+        "observedAppointmentFingerprint",
+        "formalEvidence",
+        "supportAssessment",
+        "necessaryBasis"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "supersedesResolutionId": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "supersedesResolutionId"
+            ]
+          },
+          "then": {
+            "properties": {
+              "revisionReason": {
+                "type": "string",
+                "minLength": 1
+              },
+              "previousContentFingerprint": {
+                "$ref": "#/$defs/Digest"
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "processingKind": {
+                "const": "CHANGED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "formalEvidence": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/FormalEvidence"
+                  },
+                  {
+                    "properties": {
+                      "ucCode": {
+                        "const": "UC03"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "processingKind": {
+                "const": "CANCELLED"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "formalEvidence": {
+                "allOf": [
+                  {
+                    "$ref": "#/$defs/FormalEvidence"
+                  },
+                  {
+                    "properties": {
+                      "ucCode": {
+                        "const": "UC04"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ]
+    },
+    "RevisionEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "operationKind": {
+          "enum": [
+            "RESOLUTION_CREATE",
+            "RESOLUTION_APPEND"
+          ]
+        },
+        "requestReference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "canonicalPayloadHash": {
+          "$ref": "#/$defs/Digest"
+        },
+        "targetDraftRef": {
+          "$ref": "#/$defs/ScheduleRef"
+        },
+        "rootResolutionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "predecessorResolutionId": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Id"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "newResolutionId": {
+          "$ref": "#/$defs/Id"
+        },
+        "revisionReason": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "before": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/ResolutionSnapshot"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "after": {
+          "$ref": "#/$defs/ResolutionSnapshot"
+        },
+        "verification": {
+          "$ref": "#/$defs/Verification"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "operationKind",
+        "requestReference",
+        "canonicalPayloadHash",
+        "targetDraftRef",
+        "rootResolutionId",
+        "predecessorResolutionId",
+        "newResolutionId",
+        "revisionReason",
+        "before",
+        "after",
+        "verification"
+      ],
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "operationKind": {
+                "const": "RESOLUTION_APPEND"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "before": {
+                "$ref": "#/$defs/ResolutionSnapshot"
+              },
+              "predecessorResolutionId": {
+                "$ref": "#/$defs/Id"
+              },
+              "revisionReason": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "operationKind": {
+                "const": "RESOLUTION_CREATE"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "before": {
+                "type": "null"
+              },
+              "predecessorResolutionId": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "CommandEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "eventPhase": {
+          "enum": [
+            "REQUEST_STARTED",
+            "BUSINESS_RESULT",
+            "RECOVERY_OBSERVATION"
+          ]
+        },
+        "operationKind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "canonicalPayloadHash": {
+          "$ref": "#/$defs/Digest"
+        },
+        "confirmedCommit": {
+          "enum": [
+            "YES",
+            "NO",
+            "UNKNOWN"
+          ]
+        },
+        "businessResultSnapshot": {
+          "anyOf": [
+            {
+              "type": "object"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observationReason": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "eventPhase",
+        "operationKind",
+        "canonicalPayloadHash",
+        "confirmedCommit",
+        "businessResultSnapshot",
+        "observationReason"
+      ]
+    },
+    "AuditEvent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "audit_event_id": {
+          "$ref": "#/$defs/Id"
+        },
+        "request_reference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "event_sequence_no": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "uc_code": {
+          "type": "string",
+          "pattern": "^UC(0[1-9]|1[0-9]|2[0-2])$"
+        },
+        "operation_name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "actor_reference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "occurred_at": {
+          "$ref": "#/$defs/Instant"
+        },
+        "authorization_scope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "business_reference": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "outcome": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "reason": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RevisionEvidence"
+            },
+            {
+              "$ref": "#/$defs/CommandEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "audit_event_id",
+        "request_reference",
+        "event_sequence_no",
+        "uc_code",
+        "operation_name",
+        "actor_reference",
+        "occurred_at",
+        "authorization_scope",
+        "business_reference",
+        "outcome",
+        "reason",
+        "evidence"
+      ],
+      "description": "原12字段映射：evidence在此表示TEXT已解析文书，不改变物理类型。条件非空、结果/提交、UC及各引用关系须服务端验证；不能仅schema通过就宣称真实成功。"
+    },
+    "TimeInterpretation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "zonePolicyVersion": {
+          "type": "string",
+          "minLength": 1
+        },
+        "clinicId": {
+          "$ref": "#/$defs/Id"
+        },
+        "zoneId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceLocalStart": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sourceLocalEnd": {
+          "type": "string",
+          "minLength": 1
+        },
+        "localEndSource": {
+          "enum": [
+            "PROVIDED",
+            "DERIVED_FROM_DURATION"
+          ]
+        },
+        "selectedOffsetStart": {
+          "type": "string",
+          "minLength": 1
+        },
+        "selectedOffsetEnd": {
+          "type": "string",
+          "minLength": 1
+        },
+        "resolvedInstantStart": {
+          "$ref": "#/$defs/Instant"
+        },
+        "resolvedInstantEnd": {
+          "$ref": "#/$defs/Instant"
+        },
+        "tzdbVersion": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "required": [
+        "zonePolicyVersion",
+        "clinicId",
+        "zoneId",
+        "sourceLocalStart",
+        "sourceLocalEnd",
+        "localEndSource",
+        "selectedOffsetStart",
+        "selectedOffsetEnd",
+        "resolvedInstantStart",
+        "resolvedInstantEnd",
+        "tzdbVersion"
+      ]
+    },
+    "DurationBasis": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "primaryProjectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "projectVersion": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "projectNameSnapshot": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "adoptedDurationMinutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "basisMode": {
+          "enum": [
+            "INITIAL_CURRENT",
+            "CHANGED_PROJECT_CURRENT",
+            "PRESERVED_ORIGINAL"
+          ]
+        },
+        "timeInterpretation": {
+          "$ref": "#/$defs/TimeInterpretation"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "primaryProjectId",
+        "projectVersion",
+        "projectNameSnapshot",
+        "adoptedDurationMinutes",
+        "basisMode",
+        "timeInterpretation"
+      ]
+    },
+    "PublicationContent": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "projectId": {
+          "$ref": "#/$defs/Id"
+        },
+        "versionNo": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "projectName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "durationMinutes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "publicationStatus": {
+          "enum": [
+            "CURRENT",
+            "SUPERSEDED"
+          ]
+        },
+        "publishedAt": {
+          "$ref": "#/$defs/Instant"
+        },
+        "publishedBy": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        }
+      },
+      "required": [
+        "projectId",
+        "versionNo",
+        "projectName",
+        "durationMinutes",
+        "publicationStatus",
+        "publishedAt",
+        "publishedBy"
+      ]
+    },
+    "PublicationEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "schemaVersion": {
+          "const": 1
+        },
+        "operationKind": {
+          "const": "DURATION_PUBLISH"
+        },
+        "requestReference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "canonicalPayloadHash": {
+          "$ref": "#/$defs/Digest"
+        },
+        "actorReference": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "authorizationScope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "reason": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expectedDraftFingerprint": {
+          "$ref": "#/$defs/Digest"
+        },
+        "previousCurrentRef": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "projectId": {
+                  "$ref": "#/$defs/Id"
+                },
+                "versionNo": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "projectId",
+                "versionNo"
+              ]
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "before": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/PublicationContent"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "after": {
+          "$ref": "#/$defs/PublicationContent"
+        },
+        "recordedAt": {
+          "$ref": "#/$defs/Instant"
+        }
+      },
+      "required": [
+        "schemaVersion",
+        "operationKind",
+        "requestReference",
+        "canonicalPayloadHash",
+        "actorReference",
+        "authorizationScope",
+        "reason",
+        "expectedDraftFingerprint",
+        "previousCurrentRef",
+        "before",
+        "after",
+        "recordedAt"
+      ]
+    }
+  }
+}
