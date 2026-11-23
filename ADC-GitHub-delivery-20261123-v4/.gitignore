@@ -1,0 +1,69 @@
+# Local build output and secrets
+**/node_modules/
+**/dist/
+**/target/
+.tools/
+.env
+.env.*
+!.env.example
+*.log
+apps/patient-miniapp/project.private.config.json
+
+**/test-results/
+**/playwright-report/
+
+# Local caches and developer-only state
+**/__pycache__/
+*.py[cod]
+**/.pytest_cache/
+.coverage
+htmlcov/
+.idea/
+.vscode/
+.codex/
+.DS_Store
+Thumbs.db
+
+# Generated deployment packages and extracted working copies (keep locally)
+/ADC-*.zip
+/ADC-*.jar
+/ADC-*.sha256
+/ADC-*/
+/ADC-*.py
+/ADC-*.sh
+
+# Private runtime material; examples and source code stay eligible
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+.pgpass
+pgpass.conf
+*.dump
+*.backup
+**/storage-state*.json
+**/auth-state*.json
+
+# Original course report stays local unless explicitly approved for sharing
+*.docx
+*.pdf
+
+# Raw outputs are retained locally, not treated as source
+*.out
+*.err
+
+# Local launcher binaries and runtime env files (keep build sources/examples)
+*.exe
+*.dll
+*.pdb
+*.env
+!*.env.example
+
+# Historical runtime HTML snapshot contains session CSRF material; keep locally
+/docs/remote-classroom-build/health-runtime/attempt02-workspace.xml
+
+# Final submitted course report
+!docs/report/*.docx
+!docs/report/*.pdf
