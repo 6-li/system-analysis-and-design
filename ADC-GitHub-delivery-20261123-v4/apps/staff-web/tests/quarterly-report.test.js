@@ -1,0 +1,5 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import {reportHtml,financeRows} from '../src/services/quarterly-report.js'
+test('readable frozen report has Chinese totals, source identifiers and no external resources',()=>{const r={calculationId:'4',version:2,reviewId:'9',basis:{quarter:'2026-Q4',receivable:'30.00',received:'30.00',expense:'8.50',consumption:'4.00',sourceVersion:'TEST source'},netProfit:'17.50',incentivePool:'1.75',clinics:['81001'],performance:[{dentistId:'79001',amount:'30.00'}]};const html=reportHtml(r);for(const text of ['charset="utf-8"','净利润','17.50','1.75','79001','TEST source','版本2','财务复核9','@media print'])assert(html.includes(text));assert(!/<script|https?:|<iframe/i.test(html));assert.equal(financeRows(r).length,6)})
+test('every dynamic report text is escaped including table cells and source metadata',()=>{const attack='<img src=x onerror=alert(1)>';const html=reportHtml({basis:{quarter:attack,sourceVersion:attack},performance:[{dentistId:attack,amount:attack}],clinics:[attack]});assert(!html.includes(attack));assert(html.includes('&lt;img'));assert(html.includes('待核实'))})

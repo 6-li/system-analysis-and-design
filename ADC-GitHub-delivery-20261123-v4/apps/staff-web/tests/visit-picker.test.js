@@ -1,0 +1,7 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import fs from 'node:fs'
+import vm from 'node:vm'
+const source=fs.readFileSync(new URL('../src/components/VisitPicker.vue',import.meta.url),'utf8')
+test('doctor picker preserves server appointment-to-visit mapping and emits the same visit',async()=>{let selected;const row={patientId:'100000',appointmentId:'1000003',visitId:'1000002',registeredAt:'2026-11-22T14:00:00Z'};const ctx={ref:value=>({value}),defineEmits:()=>((event,value)=>{selected={event,value}}),document:{querySelector:()=>({content:'true'})},fetch:async()=>({status:200,json:async()=>({date:'2026-11-22',items:[row]})})};vm.runInNewContext(source.split('<script setup>')[1].split('</script>')[0].replace(/^import .*$/gm,'')+';globalThis.panel={date,rows,load,selectVisit,selectedVisit,registeredTime}',ctx);const p=ctx.panel;p.date.value='2026-11-22';await p.load();p.selectVisit(p.rows.value[0]);assert.equal(selected.event,'selected');assert.equal(selected.value.appointmentId,'1000003');assert.equal(selected.value.visitId,'1000002');assert.equal(p.selectedVisit.value,selected.value);assert.match(p.registeredTime(row.registeredAt),/22:00/);assert.equal(p.registeredTime(null),'未提供')})
+test('rendered columns clearly distinguish appointment, visit and registration date',()=>{for(const text of ['预约编号','就诊编号','登记时间','到诊登记日期（北京时间）','row.appointmentId','row.visitId','selectedVisit.appointmentId','selectedVisit.visitId'])assert(source.includes(text));assert(!source.includes('>到诊日期（北京时间）'))})
