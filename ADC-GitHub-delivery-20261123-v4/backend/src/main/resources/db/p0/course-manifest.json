@@ -1,0 +1,69 @@
+{
+  "scope": "COURSE_EMPTY_DATABASE_ONLY",
+  "schema": "adc",
+  "expectedOriginalTables": 31,
+  "expectedExtensionTables": 2,
+  "sources": {
+    "tools/postgresql/uc07/fixture.sql": "f8e833de07a2ff201e5fb07abdf82037636495a8dc0c7dae8c0824c11e4875ce",
+    "tools/postgresql/classroom-review/billing-tables.review.sql": "0e3d2517b829d066558c7051643be747a09cc3adcbe4afdd4077f8fb287840c3",
+    "tools/postgresql/classroom-review/invoice-question-grants.review.sql": "35aafaf262bf15597577a19c1307646a4c7df69612f990cfb8096318816bc7f5",
+    "tools/postgresql/classroom-review/stock-inquiry-tables.review.sql": "cf552d9589a03399d6377bc7e17d74f13a655c212a58a55680be7f1387f48a84",
+    "tools/postgresql/classroom-review/purchase-requirement-table.review.sql": "29fac670fff25f578ba8c7b6c7a38ffc54c91d916c0a4e3ccd5c02ae734e90d0",
+    "tools/postgresql/classroom-review/supply-receipt-table.review.sql": "b4dc3b03db046596319f94238c4c35a2b3adbc780fa307985a539d9b539d62e3",
+    "tools/postgresql/classroom-review/supply-consumption-table.review.sql": "e2199115d6c5cfc32dc1d89863a37d1b185b5f9ce459b0aefd4adbfe4570cce2",
+    "tools/postgresql/classroom-review/quarterly-preview-tables.review.sql": "a76bcc01217429eaee31343a5f5c6d2ab6a88ba340148d6d033f950b1ac53b19",
+    "tools/postgresql/classroom-review/quarterly-issue-history.review.sql": "441dc07426a0240f4f506ea52a36b19a5d114f7f1cdd29ef0d080c9b5efdb181",
+    "tools/postgresql/classroom-review/quarterly-calculation-tables.review.sql": "535944421e286fb00457b6ea1f799af3f912df929da0d08a9ce61ca050c280c3",
+    "tools/postgresql/classroom-review/quarterly-financial-review-table.review.sql": "b91cb3cbf156c888d5a09dfc2aca4bb74e9a45feae8015010b4c65b219d97511"
+  },
+  "migrations": [
+    {
+      "version": "V001",
+      "file": "V001__original_p0_tables.sql",
+      "sha256": "e4a21cbd68d8d4bd80b0bb44c978001d765a19e9b3a69ba11f4f9ccd37716e94",
+      "recovery": "事务回滚；已提交后从外部备份恢复到新空隔离库，不删除历史/不DROP清库"
+    },
+    {
+      "version": "V002",
+      "file": "V002__duration_versions.sql",
+      "sha256": "1b9fbb87e30bae84c3cd9c9614e55c45a1e9885f5350c982ec216bfc9aba26f2",
+      "recovery": "事务回滚；已提交后从外部备份恢复到新空隔离库，不删除历史/不DROP清库"
+    },
+    {
+      "version": "V003",
+      "file": "V003__headquarters_audit.sql",
+      "sha256": "57f5aa1dcb438d3cc1f09ae1f1b607b9d495c1bbaec64bd55752062f53e62a5e",
+      "recovery": "事务回滚；已提交后从外部备份恢复到新空隔离库，不删除历史/不DROP清库"
+    },
+    {
+      "version": "V004",
+      "file": "V004__minimum_test_permissions.sql",
+      "sha256": "784779c30ce29d91fc1885362c2479a6f06df3b627f05d2457c74a48066522b8",
+      "recovery": "独立事务回滚；已提交后显式核对最小ACL，不自动撤销他人权限；测试实例停止保留"
+    },
+    {
+      "version": "V005",
+      "file": "V005__clinical_and_billing.sql",
+      "sha256": "52073ea2b87b09104e90b31e18717a5b2e5f3b469e0d3ce197565c309bacbeaf",
+      "recovery": "Stop on error; retain new isolated cluster. Never replay on a nonempty database or delete data."
+    },
+    {
+      "version": "V006",
+      "file": "V006__inventory.sql",
+      "sha256": "8d39dc87763684a33f6df6a89982347297d9258ee03728708b410188b8a2044f",
+      "recovery": "Stop on error; retain new isolated cluster. Never replay on a nonempty database or delete data."
+    },
+    {
+      "version": "V007",
+      "file": "V007__quarterly.sql",
+      "sha256": "78edd92d95ace3a476283a7e5fb79a3d308f1bab9e774fd955c3d87ccb42b393",
+      "recovery": "Stop on error; retain new isolated cluster. Never replay on a nonempty database or delete data."
+    },
+    {
+      "version": "V008",
+      "file": "V008__course_roles.sql",
+      "sha256": "9a448978d6d81099b7890f923a7789a07f998a97ba02fa9570a641ec43a4cec6",
+      "recovery": "Stop on error; retain new isolated cluster. Never replay on a nonempty database or delete data."
+    }
+  ]
+}

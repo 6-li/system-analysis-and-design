@@ -1,0 +1,30 @@
+{
+  "scope": "ISOLATED_P0_BATCH1_ONLY",
+  "schema": "adc",
+  "migrations": [
+    {
+      "version": "V001",
+      "file": "V001__original_p0_tables.sql",
+      "sha256": "e4a21cbd68d8d4bd80b0bb44c978001d765a19e9b3a69ba11f4f9ccd37716e94",
+      "recovery": "事务回滚；已提交后从外部备份恢复到新空隔离库，不删除历史/不DROP清库"
+    },
+    {
+      "version": "V002",
+      "file": "V002__duration_versions.sql",
+      "sha256": "1b9fbb87e30bae84c3cd9c9614e55c45a1e9885f5350c982ec216bfc9aba26f2",
+      "recovery": "事务回滚；已提交后从外部备份恢复到新空隔离库，不删除历史/不DROP清库"
+    },
+    {
+      "version": "V003",
+      "file": "V003__headquarters_audit.sql",
+      "sha256": "57f5aa1dcb438d3cc1f09ae1f1b607b9d495c1bbaec64bd55752062f53e62a5e",
+      "recovery": "事务回滚；已提交后从外部备份恢复到新空隔离库，不删除历史/不DROP清库"
+    },
+    {
+      "version": "V004",
+      "file": "V004__minimum_test_permissions.sql",
+      "sha256": "784779c30ce29d91fc1885362c2479a6f06df3b627f05d2457c74a48066522b8",
+      "recovery": "独立事务回滚；已提交后显式核对最小ACL，不自动撤销他人权限；测试实例停止保留"
+    }
+  ]
+}
