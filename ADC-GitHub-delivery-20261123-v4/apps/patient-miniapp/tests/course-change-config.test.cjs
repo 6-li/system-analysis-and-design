@@ -1,0 +1,4 @@
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
+function launch(version,change){let app;vm.runInNewContext(fs.readFileSync(__dirname+'/../miniprogram/app.js','utf8'),{App:x=>app=x,require:p=>p.includes('course-preview')?{enabled:true,origin:'https://106.55.173.42',patientAccounts:true,changeRequests:change}:{backendOrigin:''},wx:{getAccountInfoSync:()=>({miniProgram:{envVersion:version}}),getStorageSync:()=>null}});app.onLaunch();return app.globalData.miniRequestConfig;}
+test('course change preview requires explicit flag, keeps cancellation disabled',()=>{assert.equal(launch('trial',true).changeRequestsEnabled,true);assert.equal(launch('develop',false).changeRequestsEnabled,false);assert.equal(launch('trial',true).cancelRequestsEnabled,false)});
+test('release never consumes course change preview flags',()=>assert.equal(launch('release',true),undefined));
