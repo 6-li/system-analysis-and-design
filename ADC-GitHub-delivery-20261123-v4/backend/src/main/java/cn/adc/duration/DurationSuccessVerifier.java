@@ -1,0 +1,11 @@
+package cn.adc.duration;
+import cn.adc.shared.audit.*;import tools.jackson.databind.*;import java.sql.*;import java.util.*;
+/** Audit alone is insufficient: walk the frozen edit/publication chain to an actual row. */
+public final class DurationSuccessVerifier implements CommandRecovery.SuccessVerifier {
+ private final DurationRepository repo=new DurationRepository();
+ public boolean matchesCommitted(Connection c,CommandRecovery.Command command,JsonNode saved)throws SQLException {
+  var target=saved.path("after").path("targetVersion");if(!target.isObject())return false;long id=target.path("project_id").longValue();int v=target.path("duration_version_no").intValue();var actual=repo.version(c,id,v);if(actual==null)return false;var edges=new HashMap<String,List<JsonNode>>();try(var p=c.prepareStatement("SELECT evidence->'before'->'targetVersion',evidence->'after'->'targetVersion' FROM adc.extension_operation_audit_event WHERE outcome='SUCCEEDED' AND business_reference->>'projectId'=?")){p.setString(1,Long.toString(id));try(var r=p.executeQuery()){while(r.next()){var before=AuditDocuments.parse(r.getString(1));var after=AuditDocuments.parse(r.getString(2));if(before.isObject()&&after.isObject()&&before.path("duration_version_no").intValue()==v&&after.path("duration_version_no").intValue()==v)edges.computeIfAbsent(AuditDocuments.hash(before),k->new ArrayList<>()).add(after);}}}
+  var q=new ArrayDeque<JsonNode>();q.add(target);var seen=new HashSet<String>();while(!q.isEmpty()){var n=q.remove();if(!seen.add(AuditDocuments.hash(n)))continue;if(n.equals(actual))return true;if(n.path("publication_status").asText().equals("CURRENT")&&actual.path("publication_status").asText().equals("SUPERSEDED")){var x=(tools.jackson.databind.node.ObjectNode)n.deepCopy();var y=(tools.jackson.databind.node.ObjectNode)actual.deepCopy();x.remove("publication_status");y.remove("publication_status");if(x.equals(y))return true;}q.addAll(edges.getOrDefault(AuditDocuments.hash(n),List.of()));}return false;
+ }
+ public boolean hasContradictorySuccess(Connection c,CommandRecovery.Command command,String reference)throws SQLException {try(var p=c.prepareStatement("SELECT EXISTS(SELECT 1 FROM adc.project_duration_version WHERE publication_evidence->>'requestReference'=?)")){p.setString(1,reference);try(var r=p.executeQuery()){r.next();return r.getBoolean(1);}}}
+}
