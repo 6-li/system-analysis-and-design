@@ -1,0 +1,6 @@
+package cn.adc.shared.config;
+import java.util.*;import org.junit.jupiter.api.Test;import static org.junit.jupiter.api.Assertions.*;
+class DentistEligibilityProviderTest {
+ @Test void oneGlobalDentistCanHaveVerifiedCrossClinicAssociation(){var a=new DentistConfigurationAdapter(ClinicDirectoryProviderTest.reader(),()->List.of(new DentistConfigurationAdapter.Entry(7,Set.of(1L,2L),"SYNTHETIC-verification",true,ClinicDirectoryProviderTest.stamp())));assertEquals(7,a.require(7,1).dentistId());assertEquals(7,a.require(7,2).dentistId());assertThrows(ConfigurationUnavailable.class,()->a.require(7,3));}
+ @Test void nonemptyQualificationDoesNotProveActualQualificationOrAssociation(){for(boolean verified:List.of(false,true)){var a=new DentistConfigurationAdapter(ClinicDirectoryProviderTest.reader(),()->List.of(new DentistConfigurationAdapter.Entry(7,Set.of(),"SYNTHETIC",verified,ClinicDirectoryProviderTest.stamp())));assertThrows(ConfigurationUnavailable.class,()->a.require(7,1));}var a=new DentistConfigurationAdapter(ClinicDirectoryProviderTest.reader(),()->List.of(new DentistConfigurationAdapter.Entry(7,Set.of(1L),"SYNTHETIC",false,ClinicDirectoryProviderTest.stamp())));assertThrows(ConfigurationUnavailable.class,()->a.require(7,1));assertThrows(ConfigurationUnavailable.class,()->a.require(9,1));}
+}
