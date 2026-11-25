@@ -1,0 +1,204 @@
+<view class="card screen-{{screen}}">
+  <view class="brand-line"><text class="brand-mark">ADC</text><text class="brand-caption">牙科 · 患者服务</text></view>
+  <view class="title">{{signedIn ? (screen === 'profile' ? '本人资料' : (screen === 'appointment-detail' ? '预约详情' : (screen === 'history' ? '就诊记录' : (screen === 'history-detail' ? '就诊详情' : (screen === 'booking' ? '预约就诊' : (screen === 'change' ? '改约申请' : (screen === 'cancel' ? '取消预约申请' : (screen === 'appointments' ? '我的预约' : '你好，欢迎来到 ADC')))))))) : 'ADC 牙科'}}</view>
+  <view wx:if="{{!available}}">预约需求入口暂未启用。</view>
+  <block wx:else>
+    <view wx:if="{{signedIn && (screen === 'home' || screen === 'appointments')}}" class="reminder-panel" aria-role="status">
+      <view class="reminder-heading"><text>就诊提醒</text><text class="reminder-window">预约前30分钟</text></view>
+      <view wx:for="{{appointmentReminders}}" wx:key="appointmentId" class="reminder-item">
+        <view class="reminder-countdown">{{item.countdown}}</view>
+        <view>{{item.arrivalLabel}}</view><view>{{item.clinicLabel}} · {{item.dentistLabel}}</view>
+        <view class="hint">预约编号 {{item.appointmentId}} · 请到前台核对到诊。</view>
+      </view>
+      <view wx:if="{{reminderState === 'ready' && !appointmentReminders.length}}" class="reminder-empty">暂无30分钟内的有效预约。</view>
+      <view wx:if="{{reminderState === 'loading'}}" class="reminder-empty">正在核对最新预约…</view>
+      <view wx:if="{{reminderState === 'error'}}" class="reminder-empty">暂时无法核对预约，请刷新后确认。</view>
+      <view class="reminder-actions">
+        <button class="text-button" loading="{{reminderBusy}}" disabled="{{reminderBusy}}" bindtap="refreshAppointmentReminders">刷新提醒</button>
+        <button wx:if="{{appointmentReminders.length && screen === 'home'}}" class="text-button" disabled="{{busy}}" bindtap="openAppointments">查看预约 ›</button>
+      </view>
+      <text class="reminder-note">按设备时间和最近查询结果提示，仅在小程序内显示。</text>
+    </view>
+    <view wx:if="{{!signedIn}}" class="login-panel">
+      <view class="intro">预约就诊，随时查看你的诊疗记录。</view>
+      <block wx:if="{{patientAccounts}}">
+        <view class="field"><label>账号</label><input value="{{accountName}}" maxlength="32" placeholder="4–32位字母、数字或下划线" data-field="accountName" bindinput="editAccount" /></view>
+        <view class="field"><label>密码</label><input value="{{accountPassword}}" password maxlength="128" placeholder="8–128位密码" data-field="accountPassword" bindinput="editAccount" /></view>
+        <button class="primary" loading="{{busy}}" disabled="{{busy}}" bindtap="login">登录</button>
+        <button class="choice" disabled="{{busy}}" bindtap="registerAccount">注册新账号</button>
+        <text class="hint">注册后由前台核验患者身份。</text>
+      </block>
+      <block wx:else>
+        <text wx:if="{{syntheticLogin}}" class="hint">本机演示使用合成身份。</text>
+        <button class="primary" loading="{{busy}}" disabled="{{busy}}" bindtap="login">{{syntheticLogin ? '使用演示身份登录' : '微信登录'}}</button>
+      </block>
+    </view>
+    <block wx:elif="{{screen === 'home'}}">
+      <view class="home-hero">
+        <view class="hero-kicker">从一次安心的就诊开始</view>
+        <view class="hero-title"><view>让看牙安排</view><view>更清楚一点</view></view>
+        <view class="hero-copy">选好门诊、医生和时间，提交后等待前台确认。</view>
+        <button class="primary hero-action" disabled="{{busy}}" loading="{{busy}}" bindtap="openBooking">预约就诊 <text>→</text></button>
+      </view>
+      <view class="section-heading">我的就诊服务</view>
+      <view class="service-grid">
+        <button class="service-tile" disabled="{{busy}}" bindtap="openAppointments"><view class="service-icon">约</view><view class="service-name">我的预约</view><view class="service-copy">查看进度 · 改约取消</view><text class="tile-arrow">↗</text></button>
+        <button class="service-tile" disabled="{{busy}}" bindtap="openVisitHistory"><view class="service-icon">诊</view><view class="service-name">就诊记录</view><view class="service-copy">医生说明 · 项目账单</view><text class="tile-arrow">↗</text></button>
+      </view>
+      <button class="profile-entry" disabled="{{busy}}" bindtap="openProfile"><view><view class="service-name">本人资料</view><view class="service-copy">查看已核验的患者信息</view></view><text>›</text></button>
+      <view class="home-note">预约申请通过后，才会生成正式预约。</view>
+      <button wx:if="{{patientAccounts}}" class="text-button" disabled="{{busy}}" bindtap="logout">退出当前账号</button>
+    </block>
+    <block wx:elif="{{screen === 'profile'}}">
+      <button class="choice" disabled="{{busy}}" bindtap="openHome">‹ 返回首页</button>
+      <block wx:if="{{selfProfile}}">
+        <view class="field"><text>姓名</text><text>{{selfProfile.patientName}}</text></view>
+        <view class="field"><text>联系方式</text><text>{{selfProfile.contactInformation}}</text></view>
+        <view class="field"><text>患者编号</text><text>{{selfProfile.patientId}}</text></view>
+        <text class="hint">资料来自已核验的患者档案。本页只读，健康资料请在就诊时由医生核实。</text>
+      </block>
+      <text wx:if="{{profileNotice}}" class="hint">{{profileNotice}}</text>
+      <button class="choice" disabled="{{busy}}" bindtap="openProfile">重新读取本人资料</button>
+    </block>
+    <block wx:elif="{{screen === 'appointment-detail'}}">
+      <button class="choice" disabled="{{busy}}" bindtap="openAppointments">‹ 我的预约</button>
+      <view class="field"><text>就诊门诊</text><text>{{appointmentDetail.clinicLabel}}</text></view>
+      <view class="field"><text>预约医生</text><text>{{appointmentDetail.dentistLabel}}</text></view>
+      <view class="field"><text>到达时间</text><text>{{appointmentDetail.arrivalLabel}}</text></view>
+      <view class="field"><text>预计结束时间</text><text>{{appointmentDetail.estimatedEndLabel}}</text></view>
+      <view class="field"><text>预约状态</text><text>{{appointmentDetail.statusLabel}}</text></view>
+      <view wx:if="{{appointmentDetail.verificationNotice}}" class="hint">{{appointmentDetail.verificationNotice}}</view>
+      <view class="field"><text>预约编号</text><text>{{appointmentDetail.appointmentId}}</text></view>
+    </block>
+    <block wx:elif="{{screen === 'history-detail'}}">
+      
+      <button class="choice" disabled="{{busy}}" bindtap="backToHistory">‹ 就诊记录</button>
+      <view wx:if="{{historyDetail}}">
+        <view class="field">{{historyDetail.clinicName}}</view>
+        <view class="field">接诊医生：{{historyDetail.dentistLabel}}</view>
+        <view class="field">就诊编号：{{historyDetail.visitId}}</view>
+        <view class="field">到诊时间：{{historyDetail.dateLabel}}</view>
+        <view class="section-heading">已实施项目</view>
+        <view wx:for="{{historyDetail.projects}}" wx:key="index" class="field">{{item.item}} · {{item.quantity}}{{item.unit}}</view>
+        <view class="section-heading">医生说明</view>
+        <view wx:for="{{historyDetail.clinicalNotes}}" wx:key="index" class="field"><view>本次发现：{{item.patientFindings ? item.patientFindings : '医生暂未填写'}}</view><view>后续注意事项：{{item.aftercareInstructions ? item.aftercareInstructions : '医生暂未填写'}}</view></view>
+        <view wx:if="{{!historyDetail.clinicalNotes || !historyDetail.clinicalNotes.length}}">医生暂未填写就诊说明。</view>
+        <view wx:if="{{!historyDetail.projects.length}}">暂无已实施项目。</view>
+        <view class="section-heading">诊疗账单</view>
+        <view wx:if="{{historyDetail.invoice}}">
+          <view class="invoice-panel">
+            <view class="invoice-meta"><view>账单 {{historyDetail.invoice.invoiceId}}<view class="hint">版本 {{historyDetail.invoice.version}} · 金额单位：元</view></view><text class="invoice-status">{{historyDetail.invoice.status}}</text></view>
+            <scroll-view scroll-x class="invoice-scroll">
+              <view class="invoice-table">
+                <view class="invoice-row invoice-head"><view class="invoice-project">项目</view><view class="invoice-quantity">数量</view><view class="invoice-money">单价</view><view class="invoice-money">小计</view></view>
+                <view wx:for="{{historyDetail.invoice.lines}}" wx:key="index" class="invoice-row"><view class="invoice-project">{{item.item}}</view><view class="invoice-quantity">{{item.quantity}}<text class="invoice-unit">{{item.unit}}</text></view><view class="invoice-money">{{item.unitPrice}}</view><view class="invoice-money">{{item.amount}}</view></view>
+                <view wx:if="{{!historyDetail.invoice.lines.length}}" class="hint">暂无账单明细。</view>
+              </view>
+            </scroll-view>
+            <view class="invoice-total"><text>合计</text><text>¥ {{historyDetail.invoice.total}}</text></view>
+          </view>
+          <view wx:for="{{historyDetail.invoice.payments}}" wx:key="index" class="field">{{item.synthetic ? '课程模拟结算（非实际扣款）' : item.method}} · {{item.status}} · {{item.receivedAmount ? item.receivedAmount : item.requestedAmount}}元</view>
+          <view wx:if="{{!historyDetail.invoice.payments.length}}">暂无结算记录。</view>
+        </view>
+        <view wx:else>账单尚未生成。</view>
+      </view>
+      <text class="hint">{{historyDetailNotice}}</text>
+    </block>
+    <block wx:elif="{{screen === 'history'}}">
+      <button class="choice" disabled="{{busy}}" bindtap="openHome">‹ 返回首页</button>
+      <button wx:for="{{historyPatients}}" wx:key="patientId" class="choice" disabled="{{busy}}"
+        data-id="{{item.patientId}}" bindtap="selectHistoryPatient">{{item.kind === 'SELF' ? '本人' : '获授权患者'}} · {{item.patientId}}</button>
+      <view wx:for="{{historyRows}}" wx:key="visitId" class="record-card">
+        <text>{{item.dateLabel}} · {{item.clinicLabel}}</text>
+        <view class="hint">就诊编号：{{item.visitId}}</view>
+        <view class="hint">已实施项目：{{item.projectLabel}}</view>
+        <button class="choice" disabled="{{busy}}" data-id="{{item.visitId}}" bindtap="openHistoryDetail">查看就诊及账单详情</button>
+      </view>
+      <text wx:if="{{historyNotice}}" class="hint">{{historyNotice}}</text>
+      <button wx:if="{{historyCursor}}" class="choice" disabled="{{busy}}" bindtap="loadMoreHistory">查看更多</button>
+    </block>
+    <block wx:elif="{{screen === 'appointments'}}">
+      <button class="choice" disabled="{{busy}}" bindtap="openHome">‹ 返回首页</button>
+      <view class="field">
+        <view class="section-heading">正式预约</view>
+        <button wx:for="{{appointmentPatients}}" wx:key="patientId" class="choice" disabled="{{busy}}"
+          data-id="{{item.patientId}}" bindtap="selectAppointmentPatient">{{item.kind === 'SELF' ? '本人' : '获授权患者'}} · {{item.patientId}}</button>
+        <view wx:for="{{formalAppointments}}" wx:key="appointmentId" class="record-card">
+          <text>预约编号 {{item.appointmentId}} · {{item.statusLabel}}</text>
+          <view wx:if="{{item.intervalLabel}}">{{item.intervalLabel}}</view>
+          <view wx:if="{{item.verificationNotice}}" class="hint">{{item.verificationNotice}}</view>
+          <view>{{item.clinicLabel}} · {{item.dentistLabel}}</view>
+          <button class="choice" disabled="{{busy}}" data-id="{{item.appointmentId}}" bindtap="openAppointmentDetail">查看预约详情</button>
+          <button wx:if="{{item.canRequestChange}}" class="choice" disabled="{{busy || pending}}"
+            data-id="{{item.appointmentId}}" bindtap="openChange">申请改约</button>
+          <button wx:if="{{item.canRequestCancel}}" class="choice" disabled="{{busy || pending}}"
+            data-id="{{item.appointmentId}}" bindtap="openCancel">申请取消</button>
+        </view>
+        <button wx:if="{{appointmentCursor}}" class="choice" disabled="{{busy}}" bindtap="loadMoreAppointments">查看更多</button>
+        <text wx:if="{{appointmentNotice}}" class="hint">{{appointmentNotice}}</text>
+      </view>
+      <view class="field">
+        <block wx:if="{{patientAccounts}}">
+          <view class="section-heading">预约申请进度</view>
+          <button class="choice" disabled="{{busy}}" bindtap="refreshRequests">刷新申请状态</button>
+          <view wx:for="{{ownRequests}}" wx:key="requestId" class="hint"><text>{{item.statusLabel}} · {{item.preferredDate}}</text><view>申请编号 {{item.requestId}}</view><view wx:if="{{item.reason}}">拒绝原因：{{item.reason}}</view></view>
+          <text wx:if="{{!ownRequests.length}}" class="hint">暂无已读取的申请。</text>
+          <text wx:if="{{requestNotice}}" class="hint">{{requestNotice}}</text>
+          <button wx:if="{{requestCursor}}" class="choice" data-more="true" bindtap="refreshRequests">查看更多申请</button>
+        </block>
+        <text wx:else>本次登录收到的申请回执</text>
+        <view wx:for="{{patientAccounts ? [] : receivedRequests}}" wx:key="*this" class="hint">
+          <text>申请已接收 · 等待接待核验</text>
+          <view>申请编号 {{item}}</view>
+        </view>
+        <text wx:if="{{!patientAccounts && !receivedRequests.length && !pending}}" class="hint">本次登录暂无申请回执。</text>
+      </view>
+      <button wx:if="{{pending}}" class="choice" disabled="{{busy}}" bindtap="lookup">查询原回执</button>
+    </block>
+    <block wx:else>
+      <view wx:if="{{screen !== 'cancel'}}" class="flow-guide"><text>{{screen === 'change' ? '01 核对信息' : '01 选择门诊'}}</text><text>02 医生与时间</text><text>03 确认申请</text></view>
+      <button class="choice" disabled="{{busy}}" bindtap="openHome">‹ 返回首页</button>
+      <view wx:if="{{screen === 'change' || screen === 'cancel'}}" class="hint">原预约编号 {{requestTarget}}。提交后由接待人员办理。</view>
+      <view wx:else class="field"><label for="clinic-choice">意向诊所</label>
+        <button id="clinic-choice" class="choice" bindtap="openClinics">{{clinicName || '选择诊所'}}</button>
+        <button wx:if="{{syntheticLogin && !recommended}}" class="choice" bindtap="recommendDemoClinic">使用演示位置推荐附近诊所</button>
+        <text wx:if="{{recommended}}" class="hint">演示诊所按距离排序，可点上方更换。距离不代表有号。</text>
+        <view wx:if="{{choosingClinic}}">
+          <button wx:for="{{clinics}}" wx:key="clinicId" class="choice" data-id="{{item.clinicId}}" bindtap="selectClinic">
+            {{item.clinicName}}{{recommended && item.distanceLabel ? ' · ' + item.distanceLabel : ''}}{{clinic === item.clinicId ? ' · 当前选择' : ''}}
+          </button>
+          <text wx:if="{{!clinics.length}}" class="hint">暂时没有可选诊所。</text>
+        </view>
+      </view>
+      <view class="field"><label for="patient">就诊人信息</label><input id="patient" value="{{patientAccounts ? (screen === 'booking' && !bookingProfileBound ? patient : requestPatientName) : patient}}" disabled="{{patientAccounts ? (screen === 'booking' ? bookingProfileBound : true) : false}}" placeholder="姓名及便于前台核对的身份说明" data-field="patient" bindinput="edit" /></view>
+      <view wx:if="{{screen !== 'booking'}}" class="field"><label for="applicant">本次申请人信息</label><input id="applicant" value="{{applicant}}" data-field="applicant" bindinput="edit" /></view>
+      <text wx:if="{{screen === 'booking'}}" class="hint">本人预约无需重复填写申请人；代他人预约需另行核验授权。</text>
+      <view class="field"><label for="contact">联系方式</label><input id="contact" placeholder="填写便于前台联系的方式" value="{{contact}}" data-field="contact" bindinput="edit" /></view>
+      <view wx:if="{{(screen === 'booking' || screen === 'change') && slotSelectionEnabled}}" class="field">
+        <label>选择医生</label>
+        <picker wx:if="{{bookingDoctors.length}}" range="{{bookingDoctors}}" range-key="dentistLabel" bindchange="chooseBookingDoctor"><view class="date-choice">{{bookingDoctorName || '请先选择医生'}}</view></picker>
+        <button wx:else class="choice" disabled="{{busy || !clinic}}" bindtap="loadBookingDoctors">读取医生列表</button>
+        <text wx:if="{{doctorNotice}}" class="hint">{{doctorNotice}}</text>
+      </view>
+      <view wx:if="{{screen !== 'cancel'}}" class="field"><label for="date">{{screen === 'cancel' ? '意向日期' : '预约到诊日期'}}</label><picker id="date" mode="date" value="{{date}}" disabled="{{(screen === 'booking' || screen === 'change') && slotSelectionEnabled && !bookingDoctor}}" data-field="date" bindchange="edit"><view class="date-choice">{{date || '请选择日期'}}</view></picker></view>
+      <view class="field"><label for="need">{{screen === 'change' ? '改约原因（选填）' : (screen === 'cancel' ? '取消原因（选填）' : '诊疗需求')}}</label><textarea id="need" value="{{need}}" placeholder="简要说明需求或原因" auto-height data-field="need" bindinput="edit" /></view>
+      <view wx:if="{{(screen === 'booking' || screen === 'change') && slotSelectionEnabled}}" class="field">
+        <text class="hint">这里确认预约时间。到诊后的诊疗方案由医生检查后说明，并另行征得同意。</text>
+        <button class="choice" disabled="{{busy || !clinic || !date || !bookingDoctor}}" bindtap="loadBookingSlots">查询这位医生的到诊时间</button>
+        <label>预约项目（用于预估时长）</label>
+        <picker wx:if="{{bookingProjects.length}}" range="{{bookingProjects}}" range-key="projectName" bindchange="chooseBookingProject"><view class="date-choice">{{bookingProjectName || '请选择诊疗项目'}}</view></picker>
+        <view wx:if="{{bookingSlots.length}}" class="slot-heading">可选到诊时间<text>点击选择</text></view>
+        <view class="slot-grid">
+          <button wx:for="{{bookingSlots}}" wx:key="index" class="choice slot-option {{selectedSlot.index === item.index ? 'slot-selected' : ''}}" disabled="{{busy || item.availabilityStatus === 'FULL'}}" aria-label="{{item.label + (item.availabilityStatus === 'FULL' ? '已约满' : (selectedSlot.index === item.index ? '已选择' : '可预约'))}}" data-index="{{index}}" bindtap="chooseBookingSlot"><view class="slot-time">{{item.label}}</view><view class="slot-state">{{item.availabilityStatus === 'FULL' ? '已约满' : (selectedSlot.index === item.index ? '✓ 已选择' : '可预约')}}</view></button>
+        </view>
+        <text wx:if="{{slotNotice}}" class="hint">{{slotNotice}}</text>
+        <text wx:if="{{selectedSlot}}" class="hint">预计占用 {{selectedSlot.estimatedMinutes}} 分钟，预计结束 {{selectedSlot.estimatedEnd}}。到诊后的治疗方案由医生检查后确定。</text>
+        <checkbox-group class="selection-summary" wx:if="{{selectedSlot}}" bindchange="confirmBookingSelection"><label><checkbox value="confirmed" checked="{{selectionConfirmed}}"/>我确认 {{date}} {{selectedSlot.label}} 及上述预计占用时间，等待前台核验通过。</label></checkbox-group>
+      </view>
+      <button class="primary" loading="{{busy}}" disabled="{{busy || pending || (screen === 'booking' ? !clinic : false)}}" bindtap="submit">{{screen === 'change' ? '提交改约申请' : (screen === 'cancel' ? '提交取消申请' : '提交预约需求')}}</button>
+      <button wx:if="{{pending}}" disabled="{{busy}}" bindtap="lookup">查询原回执</button>
+    </block>
+  </block>
+  <view wx:if="{{busy}}" class="loading-hint" aria-role="status">正在处理，请稍候…</view>
+  <view wx:if="{{message}}" class="notice" aria-role="status">{{message}}</view>
+</view>
