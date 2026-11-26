@@ -1,0 +1,10 @@
+岗位 及登录账号（账号密码和账号一样）
+ 前台接待 reception
+ 接诊牙医 dentist
+ 收费人员 billing
+ 采购人员 procurement
+ 诊所负责人 manager
+ 总部运营 operations
+ 财务人员 finance
+
+网站网址：https://106.55.173.42
